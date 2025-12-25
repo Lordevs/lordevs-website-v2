@@ -1,5 +1,9 @@
-import { createClient } from '@/lib/supabase/client';
-import { Project, ProjectFeature, ProjectSection } from '@/lib/types/database';
+import { createClient } from "@/lib/supabase/client";
+import type {
+  Project,
+  ProjectFeature,
+  ProjectSection,
+} from "@/lib/types/database";
 
 const supabase = createClient();
 
@@ -24,11 +28,11 @@ export const uploadProjectImage = async (
   file: File,
   projectId: string
 ): Promise<string> => {
-  const fileExt = file.name.split('.').pop();
+  const fileExt = file.name.split(".").pop();
   // Generate a unique suffix per file:
   const uniqueSuffix =
     // in modern browsers / Node:
-    typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    typeof crypto !== "undefined" && "randomUUID" in crypto
       ? crypto.randomUUID()
       : Math.random().toString(36).substring(2, 10);
 
@@ -37,9 +41,9 @@ export const uploadProjectImage = async (
   const filePath = `projects/${fileName}`;
 
   const { data, error } = await supabase.storage
-    .from('lordevs')
+    .from("lordevs")
     .upload(filePath, file, {
-      cacheControl: '3600',
+      cacheControl: "3600",
       upsert: false, // still false so you get errors if you really duplicate––but names now unique
     });
 
@@ -47,7 +51,7 @@ export const uploadProjectImage = async (
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from('lordevs').getPublicUrl(data.path);
+  } = supabase.storage.from("lordevs").getPublicUrl(data.path);
 
   return publicUrl;
 };
@@ -57,11 +61,11 @@ export const uploadProjectImage = async (
  */
 export const deleteProjectImage = async (imageUrl: string): Promise<void> => {
   // Extract file path from URL
-  const urlParts = imageUrl.split('/');
+  const urlParts = imageUrl.split("/");
   const fileName = urlParts[urlParts.length - 1];
   const filePath = `projects/${fileName}`;
 
-  const { error } = await supabase.storage.from('lordevs').remove([filePath]);
+  const { error } = await supabase.storage.from("lordevs").remove([filePath]);
 
   if (error) {
     throw error;
@@ -75,7 +79,7 @@ export const createProject = async (
   formData: ProjectFormData,
   imageFile?: File
 ): Promise<Project> => {
-  let imageUrl = '';
+  let imageUrl = "";
 
   // Generate temporary ID for image upload
   const tempId = Date.now().toString();
@@ -103,7 +107,7 @@ export const createProject = async (
 
   // Insert project into database
   const { data, error } = await supabase
-    .from('projects')
+    .from("projects")
     .insert([projectData])
     .select()
     .single();
@@ -114,7 +118,7 @@ export const createProject = async (
       try {
         await deleteProjectImage(imageUrl);
       } catch (cleanupError) {
-        console.error('Failed to cleanup image:', cleanupError);
+        console.error("Failed to cleanup image:", cleanupError);
       }
     }
     throw error;
@@ -132,7 +136,7 @@ export const updateProject = async (
   imageFile?: File,
   currentImageUrl?: string
 ): Promise<Project> => {
-  let imageUrl = currentImageUrl || '';
+  let imageUrl = currentImageUrl || "";
 
   // Upload new image if provided
   if (imageFile) {
@@ -141,7 +145,7 @@ export const updateProject = async (
       try {
         await deleteProjectImage(currentImageUrl);
       } catch (error) {
-        console.error('Failed to delete old image:', error);
+        console.error("Failed to delete old image:", error);
       }
     }
 
@@ -167,9 +171,9 @@ export const updateProject = async (
 
   // Update project in database
   const { data, error } = await supabase
-    .from('projects')
+    .from("projects")
     .update(updateData)
-    .eq('id', projectId)
+    .eq("id", projectId)
     .select()
     .single();
 
@@ -179,7 +183,7 @@ export const updateProject = async (
       try {
         await deleteProjectImage(imageUrl);
       } catch (cleanupError) {
-        console.error('Failed to cleanup image:', cleanupError);
+        console.error("Failed to cleanup image:", cleanupError);
       }
     }
     throw error;
@@ -193,9 +197,9 @@ export const updateProject = async (
  */
 export const getProjectById = async (projectId: string): Promise<Project> => {
   const { data, error } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('id', projectId)
+    .from("projects")
+    .select("*")
+    .eq("id", projectId)
     .single();
 
   if (error) {
@@ -217,15 +221,15 @@ export const deleteProject = async (projectId: string): Promise<void> => {
     try {
       await deleteProjectImage(project.main_image);
     } catch (error) {
-      console.error('Failed to delete project image:', error);
+      console.error("Failed to delete project image:", error);
     }
   }
 
   // Delete project from database
   const { error } = await supabase
-    .from('projects')
+    .from("projects")
     .delete()
-    .eq('id', projectId);
+    .eq("id", projectId);
 
   if (error) {
     throw error;
@@ -241,17 +245,17 @@ export const getProjects = async (filters?: {
   searchTerm?: string;
 }): Promise<Project[]> => {
   let query = supabase
-    .from('projects')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .from("projects")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   // Apply filters
   if (filters?.category) {
-    query = query.eq('category', filters.category);
+    query = query.eq("category", filters.category);
   }
 
   if (filters?.isActive !== undefined) {
-    query = query.eq('is_active', filters.isActive);
+    query = query.eq("is_active", filters.isActive);
   }
 
   if (filters?.searchTerm) {
@@ -274,10 +278,10 @@ export const getProjects = async (filters?: {
  */
 export const getActiveProjects = async (): Promise<Project[]> => {
   const { data, error } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('is_active', true)
-    .order('created_at', { ascending: false });
+    .from("projects")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false });
 
   if (error) {
     throw error;
@@ -293,14 +297,14 @@ export const getProjectBySlug = async (
   slug: string
 ): Promise<Project | null> => {
   const { data, error } = await supabase
-    .from('projects')
-    .select('*')
-    .eq('project_slug', slug)
-    .eq('is_active', true)
+    .from("projects")
+    .select("*")
+    .eq("project_slug", slug)
+    .eq("is_active", true)
     .single();
 
   if (error) {
-    console.error('Error fetching project by slug:', error);
+    console.error("Error fetching project by slug:", error);
     return null;
   }
 

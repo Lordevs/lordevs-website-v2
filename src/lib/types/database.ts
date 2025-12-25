@@ -1,4 +1,4 @@
-import { IconName } from '@/components/ui/icon-picker';
+import type { IconName } from "@/components/ui/icon-picker";
 
 // Supporting types
 export interface ProjectSection {
@@ -170,7 +170,7 @@ export interface Database {
   };
 }
 
-export type FAQ = Database['public']['Tables']['faqs']['Row'];
-export type Project = Database['public']['Tables']['projects']['Row'];
+export type FAQ = Database["public"]["Tables"]["faqs"]["Row"];
+export type Project = Database["public"]["Tables"]["projects"]["Row"];
 export type TestimonialRow =
-  Database['public']['Tables']['testimonials']['Row'];
+  Database["public"]["Tables"]["testimonials"]["Row"];

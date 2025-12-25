@@ -1,5 +1,5 @@
-import { createClient } from '@/lib/supabase/client';
-import { Testimonial } from '@/lib/types/database';
+import { createClient } from "@/lib/supabase/client";
+import type { Testimonial } from "@/lib/types/database";
 
 const supabase = createClient();
 
@@ -19,9 +19,9 @@ export const uploadTestimonialImage = async (
   file: File,
   testimonialId: string
 ): Promise<string> => {
-  const fileExt = file.name.split('.').pop();
+  const fileExt = file.name.split(".").pop();
   const uniqueSuffix =
-    typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    typeof crypto !== "undefined" && "randomUUID" in crypto
       ? crypto.randomUUID()
       : Math.random().toString(36).substring(2, 10);
 
@@ -29,9 +29,9 @@ export const uploadTestimonialImage = async (
   const filePath = `testimonials/${fileName}`;
 
   const { data, error } = await supabase.storage
-    .from('testimonial-images')
+    .from("testimonial-images")
     .upload(filePath, file, {
-      cacheControl: '3600',
+      cacheControl: "3600",
       upsert: false,
     });
 
@@ -39,7 +39,7 @@ export const uploadTestimonialImage = async (
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from('lordevs').getPublicUrl(data.path);
+  } = supabase.storage.from("lordevs").getPublicUrl(data.path);
 
   return publicUrl;
 };
@@ -52,17 +52,17 @@ export const deleteTestimonialImage = async (
 ): Promise<void> => {
   try {
     const url = new URL(imageUrl);
-    const pathParts = url.pathname.split('/');
+    const pathParts = url.pathname.split("/");
     const fileName = pathParts[pathParts.length - 1];
     const filePath = `testimonials/${fileName}`;
 
     const { error } = await supabase.storage
-      .from('testimonial-images')
+      .from("testimonial-images")
       .remove([filePath]);
 
     if (error) throw error;
   } catch (error) {
-    console.error('Error deleting testimonial image:', error);
+    console.error("Error deleting testimonial image:", error);
     throw error;
   }
 };
@@ -83,7 +83,7 @@ export const createTestimonial = async (
   }
 
   const { data, error } = await supabase
-    .from('testimonials')
+    .from("testimonials")
     .insert({
       ...testimonialData,
       image: imageUrl,
@@ -115,19 +115,19 @@ export const updateTestimonial = async (
       try {
         await deleteTestimonialImage(existingImageUrl);
       } catch (error) {
-        console.error('Error deleting old testimonial image:', error);
+        console.error("Error deleting old testimonial image:", error);
       }
     }
   }
 
   const { data, error } = await supabase
-    .from('testimonials')
+    .from("testimonials")
     .update({
       ...testimonialData,
       image: imageUrl,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', id)
+    .eq("id", id)
     .select()
     .single();
 
@@ -140,9 +140,9 @@ export const updateTestimonial = async (
  */
 export const getTestimonials = async (): Promise<Testimonial[]> => {
   const { data, error } = await supabase
-    .from('testimonials')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .from("testimonials")
+    .select("*")
+    .order("created_at", { ascending: false });
 
   if (error) throw error;
   return data;
@@ -153,10 +153,10 @@ export const getTestimonials = async (): Promise<Testimonial[]> => {
  */
 export const getActiveTestimonials = async (): Promise<Testimonial[]> => {
   const { data, error } = await supabase
-    .from('testimonials')
-    .select('*')
-    .eq('is_active', true)
-    .order('created_at', { ascending: false });
+    .from("testimonials")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false });
 
   if (error) throw error;
   return data;
@@ -167,9 +167,9 @@ export const getActiveTestimonials = async (): Promise<Testimonial[]> => {
  */
 export const getTestimonialById = async (id: string): Promise<Testimonial> => {
   const { data, error } = await supabase
-    .from('testimonials')
-    .select('*')
-    .eq('id', id)
+    .from("testimonials")
+    .select("*")
+    .eq("id", id)
     .single();
 
   if (error) throw error;
@@ -184,7 +184,7 @@ export const deleteTestimonial = async (id: string): Promise<void> => {
   const testimonial = await getTestimonialById(id);
 
   // Delete the testimonial record
-  const { error } = await supabase.from('testimonials').delete().eq('id', id);
+  const { error } = await supabase.from("testimonials").delete().eq("id", id);
 
   if (error) throw error;
 
@@ -193,7 +193,7 @@ export const deleteTestimonial = async (id: string): Promise<void> => {
     try {
       await deleteTestimonialImage(testimonial.image);
     } catch (error) {
-      console.error('Error deleting testimonial image:', error);
+      console.error("Error deleting testimonial image:", error);
     }
   }
 };
@@ -206,12 +206,12 @@ export const toggleTestimonialStatus = async (
   isActive: boolean
 ): Promise<Testimonial> => {
   const { data, error } = await supabase
-    .from('testimonials')
+    .from("testimonials")
     .update({
       is_active: isActive,
       updated_at: new Date().toISOString(),
     })
-    .eq('id', id)
+    .eq("id", id)
     .select()
     .single();
 
