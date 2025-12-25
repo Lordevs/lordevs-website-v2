@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-
-import { useProjects } from '@/hooks/use-projects';
-import { Skeleton } from '@/components/ui/skeleton';
-import { ProjectCard } from '@/components/home/cards/project-card';
+import { motion } from "framer-motion";
+import { useProjects } from "@/hooks/use-projects";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ProjectCard } from "@/components/home/cards/project-card";
 
 export function ProjectsSection() {
   const { projects, loading } = useProjects(true);
@@ -33,13 +32,12 @@ export function ProjectsSection() {
               Array.from({ length: 3 }).map((_, index) => (
                 <div
                   key={index}
-                  className="rounded-4xl border-[#939393] bg-[#080808] p-3"
-                >
+                  className="rounded-4xl border-[#939393] bg-[#080808] p-3">
                   <div className="flex flex-col gap-4 md:gap-6 lg:flex-row">
                     {/* Left side skeleton */}
-                    <div className="relative overflow-hidden rounded-[22px] border-[1px] border-[#4F1AD626] p-4 lg:w-1/3">
+                    <div className="relative overflow-hidden rounded-[22px] border-px border-[#4F1AD626] p-4 lg:w-1/3">
                       <Skeleton className="mb-4 h-8 w-3/4" />
-                      <div className="mb-4 h-[1px] bg-gradient-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05]" />
+                      <div className="mb-4 h-px bg-linear-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05]" />
                       <div className="mb-6 space-y-3">
                         {Array.from({ length: 3 }).map((_, i) => (
                           <div key={i} className="flex items-center space-x-2">
@@ -72,8 +70,7 @@ export function ProjectsSection() {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
+                  viewport={{ once: true }}>
                   <ProjectCard {...project} />
                 </motion.div>
               ))}

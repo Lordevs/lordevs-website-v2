@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-
-import Icon from '@/components/ui/icon';
-import { TiltCard } from '@/components/common/tilt-card';
+import { motion } from "framer-motion";
+import Icon from "@/components/ui/icon";
+import { TiltCard } from "@/components/common/tilt-card";
 
 interface Feature {
   title: string;
@@ -29,12 +28,11 @@ export function ProjectFeatureGrid({ features }: ProjectFeatureGridProps) {
           transition: {
             staggerChildren: 0.15,
             duration: 0.7,
-            ease: 'easeOut',
+            ease: "easeOut",
           },
         },
       }}
-      viewport={{ once: true, amount: 0.3 }}
-    >
+      viewport={{ once: true, amount: 0.3 }}>
       {features.map((f, i) => (
         <motion.div
           key={i}
@@ -43,15 +41,14 @@ export function ProjectFeatureGrid({ features }: ProjectFeatureGridProps) {
             visible: {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.7, ease: 'easeOut' },
+              transition: { duration: 0.7, ease: "easeOut" },
             },
-          }}
-        >
+          }}>
           <TiltCard className="mx-auto w-fit">
-            <div className="h-full min-h-[180px] max-w-[325px] rounded-2xl border-[1px] border-[#FFFFFF12] bg-[#202020] shadow-lg hover:shadow-[0_4px_32px_0_rgba(59,130,246,0.5)]">
+            <div className="h-full min-h-[180px] max-w-[325px] rounded-2xl border-1px border-[#FFFFFF12] bg-[#202020] shadow-lg hover:shadow-[0_4px_32px_0_rgba(59,130,246,0.5)]">
               <div className="h-16 w-full bg-[url('/images/backgrounds/abstract-dots.svg')] bg-cover bg-center bg-no-repeat px-6 py-4">
                 {/* <Image src={f.icon} alt={f.title} width={32} height={32} /> */}
-                <div className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] p-1.5">
+                <div className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-[#00B2FF] to-[#8F00FF] p-1.5">
                   <Icon name={f.icon} className="h-5 w-5 text-white" />
                 </div>
               </div>

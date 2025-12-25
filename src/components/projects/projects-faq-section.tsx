@@ -1,9 +1,8 @@
-import { getFAQsForPage } from '@/lib/utils/faqs';
-
-import { FAQSection } from '../common/faq-section';
+import { getFAQsForPage } from "@/lib/utils/faqs";
+import { FAQSection } from "../common/faq-section";
 
 export default async function ProjectsFAQsSection() {
-  const faqs = await getFAQsForPage('about');
+  const faqs = await getFAQsForPage("about");
 
   return (
     <FAQSection
