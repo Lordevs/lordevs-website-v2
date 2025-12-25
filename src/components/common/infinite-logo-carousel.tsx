@@ -28,7 +28,7 @@ interface InfiniteLogoCarouselProps {
  * }
  * @keyframes scroll-seamless {
  *   0% { transform: translateX(0); }
- *   100% { transform: translateX(-33.333%); }
+ *   100% { transform: translateX(-25%); }
  * }
  */
 export function InfiniteLogoCarousel({
