@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router";
 
 export function CareerHeroSection() {
   return (
@@ -73,7 +73,7 @@ export function CareerHeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="my-16">
-            <link href="/contact">
+            <NavLink to="/contact">
               <Button
                 variant="gradient"
                 className="px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl">
@@ -82,7 +82,7 @@ export function CareerHeroSection() {
                   <ArrowRight className="size-6" />
                 </span>
               </Button>
-            </link>
+            </NavLink>
           </motion.div>
         </div>
       </div>

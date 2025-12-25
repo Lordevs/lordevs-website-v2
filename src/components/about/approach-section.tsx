@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-
 interface ApproachCardProps {
   index: number;
   title: string;

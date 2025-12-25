@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { TiltCard } from "../common/tilt-card";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { NavLink } from "react-router";
 
 export interface CareerCardProps {
   title: string;
@@ -70,13 +71,13 @@ export function CareerCard({ title, features, tags }: CareerCardProps) {
         </div>
 
         <div className="flex flex-col items-end">
-          <link href="/careers/apply-for-job">
+          <NavLink to="/careers/apply-for-job">
             <Button
               variant="gradient"
               className="mt-2 cursor-pointer shadow-none">
               Apply now →
             </Button>
-          </link>
+          </NavLink>
         </div>
       </div>
     </TiltCard>

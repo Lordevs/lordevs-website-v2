@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
+import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 
 export function AboutHeroSection() {
@@ -74,7 +74,7 @@ export function AboutHeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="my-16">
-            <link href="/contact">
+            <Link to="/contact">
               <Button
                 variant="gradient"
                 className="cursor-pointer px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl">
@@ -83,7 +83,7 @@ export function AboutHeroSection() {
                   <ArrowRight className="size-6" />
                 </span>
               </Button>
-            </link>
+            </Link>
           </motion.div>
         </div>
       </div>
