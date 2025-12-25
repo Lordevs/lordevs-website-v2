@@ -165,7 +165,7 @@ export function Footer() {
                     <img
                       src={social.icon}
                       alt={social.label}
-                      className="w-full"
+                      className="h-full w-full object-contain"
                     />
                   </motion.div>
                 </a>

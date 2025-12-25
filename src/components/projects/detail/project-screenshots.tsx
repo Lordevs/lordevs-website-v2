@@ -59,7 +59,7 @@ export function ProjectScreenshots({
             src={shot.src}
             alt={shot.alt}
             className={cn(
-              "object-cover transition-opacity duration-300",
+              "object-cover h-full w-full transition-opacity duration-300",
               imageLoadingStates[idx] ? "opacity-0" : "opacity-100"
             )}
             onLoad={() => handleImageLoad(idx)}

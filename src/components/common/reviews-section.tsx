@@ -71,7 +71,7 @@ export function ReviewsSection() {
         <img
           src="/images/backgrounds/home/hero-bg.svg"
           alt=""
-          className="object-cover"
+          className="object-cover h-full w-full"
         />
         <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/10 to-black/80" />
       </div>

@@ -478,25 +478,41 @@ export function EnhancedServiceCard({
       case "chat":
         return (
           <div className="relative h-48 w-full md:h-56">
-            <img src="/images/services/service-1.png" alt="" />
+            <img
+              src="/images/services/service-1.png"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
         );
       case "dashboard":
         return (
           <div className="relative h-48 md:h-56">
-            <img src="/images/services/service-2.png" alt="" />
+            <img
+              src="/images/services/service-2.png"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
         );
       case "erp":
         return (
           <div className="relative h-48 md:h-56">
-            <img src="/images/services/service-3.png" alt="" />
+            <img
+              src="/images/services/service-3.png"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
         );
       case "workflow":
         return (
           <div className="relative h-48 md:h-56">
-            <img src="/images/services/service-4.png" alt="" />
+            <img
+              src="/images/services/service-4.png"
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
         );
     }
