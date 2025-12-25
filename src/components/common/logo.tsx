@@ -1,9 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ROUTES } from '@/constants/routes';
+import { NavLink } from "react-router";
+import { ROUTES } from "@/constants/routes";
 
-import { siteConfig } from '@/config/site';
-import { cn } from '@/lib/utils';
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 export function Logo({
   href = ROUTES.HOME,
@@ -15,13 +14,12 @@ export function Logo({
   className?: string;
 }) {
   return (
-    <Link
-      href={href}
-      className={cn('flex items-center justify-center', containerClassName)}
-    >
-      <div className={cn('relative h-10 w-24', className)}>
-        <Image src="/logo.svg" alt={siteConfig.name} fill priority />
+    <NavLink
+      to={href}
+      className={cn("flex items-center justify-center", containerClassName)}>
+      <div className={cn("relative h-10 w-24", className)}>
+        <img src="/logo.svg" alt={siteConfig.name} />
       </div>
-    </Link>
+    </NavLink>
   );
 }

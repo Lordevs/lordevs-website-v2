@@ -1,10 +1,10 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Upload } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { z, ZodType } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Upload } from "lucide-react";
+import { type FieldValues, type Resolver, useForm } from "react-hook-form";
+import { z, ZodType } from "zod";
 
 // ShadCN form components
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,17 +12,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 // Field configuration interface
 export interface FieldOption {
@@ -33,14 +33,14 @@ export interface FieldOption {
 export interface FieldConfig {
   name: string;
   label: string;
-  type: 'text' | 'email' | 'textarea' | 'radio' | 'tel' | 'select' | 'file';
+  type: "text" | "email" | "textarea" | "radio" | "tel" | "select" | "file";
   placeholder?: string;
   options?: FieldOption[];
   accept?: string;
 }
 
 // Props for the reusable form
-interface ReusableFormProps<T extends ZodType<unknown, z.ZodTypeDef, unknown>> {
+interface ReusableFormProps<T extends ZodType<any, any, any>> {
   schema: T;
   fields: FieldConfig[];
   onSubmit: (values: z.infer<T>) => void | Promise<void>;
@@ -51,11 +51,11 @@ interface ReusableFormProps<T extends ZodType<unknown, z.ZodTypeDef, unknown>> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ReusableForm<T extends ZodType<any, any>>({
+export function ReusableForm<T extends ZodType<any, any, any>>({
   schema,
   fields,
   onSubmit,
-  submitLabel = 'Submit',
+  submitLabel = "Submit",
   disabled = false,
   resetOnSuccess = false,
   defaultValues,
@@ -64,28 +64,30 @@ export function ReusableForm<T extends ZodType<any, any>>({
   const getDefaultValues = (): Partial<z.infer<T>> => {
     const defaults: Record<string, string> = {};
     fields.forEach((field) => {
-      if (field.type === 'radio' && field.options) {
-        defaults[field.name] = '';
-      } else if (field.type === 'select' && field.options) {
-        defaults[field.name] = '';
+      if (field.type === "radio" && field.options) {
+        defaults[field.name] = "";
+      } else if (field.type === "select" && field.options) {
+        defaults[field.name] = "";
       } else {
-        defaults[field.name] = '';
+        defaults[field.name] = "";
       }
     });
     return { ...defaults, ...defaultValues } as Partial<z.infer<T>>;
   };
 
-  const form = useForm<z.infer<T>>({
-    resolver: zodResolver(schema),
-    mode: 'onBlur',
-    defaultValues: getDefaultValues() as z.infer<T>,
+  const form = useForm<z.infer<T> & FieldValues>({
+    resolver: zodResolver(schema) as unknown as Resolver<
+      z.infer<T> & FieldValues
+    >,
+    mode: "onBlur",
+    defaultValues: getDefaultValues() as z.infer<T> & FieldValues,
   });
 
   const handleSubmit = async (values: z.infer<T>) => {
     try {
       await onSubmit(values);
       if (resetOnSuccess) {
-        form.reset(getDefaultValues() as z.infer<T>);
+        form.reset(getDefaultValues() as z.infer<T> & FieldValues);
       }
     } catch (error) {
       // Let the parent component handle the error
@@ -108,23 +110,21 @@ export function ReusableForm<T extends ZodType<any, any>>({
                   {field.label}
                 </FormLabel>
                 <FormControl>
-                  {field.type === 'textarea' ? (
+                  {field.type === "textarea" ? (
                     <Textarea
                       placeholder={field.placeholder}
                       {...controller}
                       className="w-full resize-none rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-3 text-white placeholder-gray-500"
                     />
-                  ) : field.type === 'radio' && field.options ? (
+                  ) : field.type === "radio" && field.options ? (
                     <RadioGroup
                       onValueChange={controller.onChange}
                       value={controller.value}
-                      className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
-                    >
+                      className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                       {field.options.map((opt) => (
                         <FormItem
                           key={opt.value}
-                          className="flex items-center space-x-2"
-                        >
+                          className="flex items-center space-x-2">
                           <RadioGroupItem
                             value={opt.value}
                             id={opt.value}
@@ -132,18 +132,16 @@ export function ReusableForm<T extends ZodType<any, any>>({
                           />
                           <FormLabel
                             htmlFor={opt.value}
-                            className="text-[#D3D3D3]"
-                          >
+                            className="text-[#D3D3D3]">
                             {opt.label}
                           </FormLabel>
                         </FormItem>
                       ))}
                     </RadioGroup>
-                  ) : field.type === 'select' && field.options ? (
+                  ) : field.type === "select" && field.options ? (
                     <Select
                       onValueChange={controller.onChange}
-                      value={controller.value}
-                    >
+                      value={controller.value}>
                       <SelectTrigger className="w-full rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-3 text-white placeholder-gray-500">
                         <SelectValue placeholder={field.placeholder} />
                       </SelectTrigger>
@@ -155,14 +153,13 @@ export function ReusableForm<T extends ZodType<any, any>>({
                         ))}
                       </SelectContent>
                     </Select>
-                  ) : field.type === 'file' ? (
+                  ) : field.type === "file" ? (
                     <div className="relative">
                       <label
                         htmlFor={field.name}
-                        className="flex w-full flex-col rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-3 transition hover:border-blue-500"
-                      >
+                        className="flex w-full flex-col rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-3 transition hover:border-blue-500">
                         <span className="text-sm font-light text-[#FFFFFFB2]">
-                          {controller.value?.name || 'Upload Resume'}
+                          {controller.value?.name || "Upload Resume"}
                         </span>
                         <div className="mt-2 flex h-14 w-14 items-center justify-center self-center justify-self-center rounded-xl border border-[#949191] bg-[#FFFFFF0F] md:mt-0 md:h-18 md:w-18">
                           <Upload className="h-5 w-5 text-[#949191]" />
@@ -196,8 +193,7 @@ export function ReusableForm<T extends ZodType<any, any>>({
           type="submit"
           variant="gradient"
           className="mt-4 w-full py-4 text-base font-medium md:py-6 md:text-xl"
-          disabled={disabled}
-        >
+          disabled={disabled}>
           {submitLabel}
         </Button>
       </form>

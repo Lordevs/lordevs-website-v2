@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { motion } from "framer-motion";
 
@@ -90,11 +90,11 @@ export function Footer() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
                     viewport={{ once: true }}>
-                    <Link
+                    <NavLink
                       to={link.href}
                       className="text-sm text-[#EFEDFD99] transition-colors duration-300 hover:text-white">
                       {link.name}
-                    </Link>
+                    </NavLink>
                   </motion.li>
                 ))}
               </ul>

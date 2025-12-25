@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-
-import useMobile from '@/hooks/use-mobile';
+import { useRef } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import useMobile from "@/hooks/use-mobile";
 
 export const TiltCard = ({
   children,
@@ -36,7 +35,7 @@ export const TiltCard = ({
 
   if (isMobile) {
     // On mobile, render without tilt or mouse handlers
-    return <div className={`h-full ${className ?? ''}`}>{children}</div>;
+    return <div className={`h-full ${className ?? ""}`}>{children}</div>;
   }
 
   return (
@@ -44,13 +43,11 @@ export const TiltCard = ({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`h-full ${className ?? ''}`}
-      style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
-    >
+      className={`h-full ${className ?? ""}`}
+      style={{ perspective: "1000px", transformStyle: "preserve-3d" }}>
       <motion.div
         style={{ rotateX, rotateY }}
-        className="transform-style-3d h-full"
-      >
+        className="transform-style-3d h-full">
         {children}
       </motion.div>
     </motion.div>

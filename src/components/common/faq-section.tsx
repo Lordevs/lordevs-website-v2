@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 import type { FAQ } from "@/lib/types/database";
 import { FAQItem } from "@/components/common/faq-item";
-
 import SectionBagde from "../common/section-badge";
 
 interface FAQSectionProps {

@@ -6,7 +6,6 @@ import { ROUTES } from "@/constants/routes";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 import { Logo } from "./logo";
 
 const navItems = [
