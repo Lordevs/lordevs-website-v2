@@ -18,65 +18,7 @@ export function FAQSection({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Fallback to default FAQs if none provided
-  const defaultFaqs = [
-    {
-      id: "1",
-      question: "What is LORDEVS and what services do you offer?",
-      answer:
-        "LORDEVS is an innovative software company specializing in AI-driven solutions. We help businesses and startups leverage artificial intelligence to create customized SaaS applications, automate processes, and optimize their operations. Our services include AI development, machine learning integration, data analytics, and more.",
-      pages: ["home"],
-      order_index: 1,
-      is_active: true,
-      created_at: "",
-      updated_at: "",
-    },
-    {
-      id: "2",
-      question: "Do you offer customer support?",
-      answer:
-        "Yes, we provide comprehensive customer support including 24/7 technical assistance, onboarding help, training sessions, and ongoing maintenance for all our AI solutions.",
-      pages: ["home"],
-      order_index: 2,
-      is_active: true,
-      created_at: "",
-      updated_at: "",
-    },
-    {
-      id: "3",
-      question: "Is my data secure on this platform?",
-      answer:
-        "Absolutely. We implement enterprise-grade security measures including end-to-end encryption, secure data storage, regular security audits, and compliance with industry standards like GDPR and SOC 2.",
-      pages: ["home"],
-      order_index: 3,
-      is_active: true,
-      created_at: "",
-      updated_at: "",
-    },
-    {
-      id: "4",
-      question: "Is there a free trial available?",
-      answer:
-        "Yes, we offer a 14-day free trial for most of our services. This allows you to explore our AI solutions and see how they can benefit your business before making a commitment.",
-      pages: ["home"],
-      order_index: 4,
-      is_active: true,
-      created_at: "",
-      updated_at: "",
-    },
-    {
-      id: "5",
-      question: "Can I set up automated reorder alerts?",
-      answer:
-        "Yes, our AI-powered systems can automatically monitor your inventory levels and set up intelligent reorder alerts based on your business patterns, seasonal trends, and custom thresholds.",
-      pages: ["home"],
-      order_index: 5,
-      is_active: true,
-      created_at: "",
-      updated_at: "",
-    },
-  ];
-
-  const faqs = propFaqs || defaultFaqs;
+  const faqs = propFaqs || [];
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
