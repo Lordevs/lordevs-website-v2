@@ -1,10 +1,27 @@
 import { writeFileSync } from "fs";
 import { SitemapStream, streamToPromise } from "sitemap";
-import { createClient } from "../src/lib/supabase/client";
+import { createClient } from "@supabase/supabase-js";
+import { config } from "dotenv";
 
-const supabase = createClient();
+// Load environment variables from .env
+config(); // Tries to load .env by default
+// If using .env.local, we can try to load it if .env doesn't exist or we want to support it
+// But usually in local dev, .env is standard. If the user has .env.local, we might need:
+import { resolve } from "path";
+config({ path: resolve(process.cwd(), ".env.local") });
 
-const BASE_URL = import.meta.env.VITE_FRONTEND_URL || "https://lordevs.com";
+const supabaseUrl = process.env.VITE_PUBLIC_SUPABASE_URL || "";
+const supabaseAnonKey = process.env.VITE_PUBLIC_SUPABASE_ANON_KEY || "";
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn("Missing Supabase credentials in environment variables.");
+}
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+const BASE_URL = (
+  process.env.VITE_FRONTEND_URL || "https://lordevs.com"
+).replace(/['"‘]+/g, "");
 
 // Static routes
 const staticRoutes = [
@@ -47,17 +64,32 @@ async function getCaseStudyRoutes() {
 
 // Generate sitemap
 async function generateSitemap() {
-  const sitemap = new SitemapStream({ hostname: BASE_URL });
+  console.log("Generating sitemap...");
+  console.log("BASE_URL:", BASE_URL);
 
-  const dynamicRoutes = await getCaseStudyRoutes();
-  const allRoutes = [...staticRoutes, ...dynamicRoutes];
+  try {
+    const sitemap = new SitemapStream({ hostname: BASE_URL });
 
-  allRoutes.forEach((route) => sitemap.write(route));
-  sitemap.end();
+    const dynamicRoutes = await getCaseStudyRoutes();
+    const allRoutes = [...staticRoutes, ...dynamicRoutes];
 
-  const xml = await streamToPromise(sitemap);
-  writeFileSync("dist/sitemap.xml", xml.toString());
-  console.log("✅ Sitemap generated with", allRoutes.length, "entries");
+    allRoutes.forEach((route) => sitemap.write(route));
+    sitemap.end();
+
+    const xml = await streamToPromise(sitemap);
+
+    // Ensure dist directory exists
+    const { mkdirSync, existsSync } = await import("fs");
+    if (!existsSync("dist")) {
+      mkdirSync("dist", { recursive: true });
+    }
+
+    writeFileSync("dist/sitemap.xml", xml.toString());
+    console.log("✅ Sitemap generated with", allRoutes.length, "entries");
+  } catch (error) {
+    console.error("❌ Failed to generate sitemap:", error);
+    process.exit(1);
+  }
 }
 
 // Run script
