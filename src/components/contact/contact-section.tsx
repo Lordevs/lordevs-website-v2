@@ -92,7 +92,7 @@ export function ContactSection() {
         <img
           src="/images/backgrounds/home/hero-bg.svg"
           alt="Background dots"
-          className="object-cover opacity-70"
+          className="object-cover opacity-70 w-full h-full"
         />
         <div
           className="absolute top-0 -left-1/3 aspect-video w-[900px]"

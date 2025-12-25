@@ -14,7 +14,7 @@ export function CareerHeroSection() {
         <img
           src="./images/backgrounds/home/hero-bg.svg"
           alt=""
-          className="object-cover opacity-70"
+          className="object-cover opacity-70 h-full w-full"
         />
 
         {/* Gradient Orbs - positioned to match your reference */}

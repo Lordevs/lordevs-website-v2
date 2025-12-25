@@ -3,7 +3,6 @@
 import { NavLink } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 
 export function ProjectsHeroSection() {
@@ -15,7 +14,7 @@ export function ProjectsHeroSection() {
         <img
           src="./images/backgrounds/home/hero-bg.svg"
           alt=""
-          className="object-cover opacity-70"
+          className="object-cover opacity-70 h-full w-full"
         />
 
         {/* Large blue gradient - center left */}

@@ -14,7 +14,7 @@ export function AboutHeroSection() {
         <img
           src="./images/backgrounds/home/hero-bg.svg"
           alt=""
-          className="object-cover opacity-70"
+          className="object-cover opacity-70 h-full w-full"
         />
         {/* Large blue gradient */}
         <div
