@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -75,13 +76,13 @@ export default function CTA({
 
             {/* Right side - Button */}
             <div className="mt-4 shrink-0 md:mt-0">
-              <link href={ctaLink}>
+              <Link to={ctaLink}>
                 <Button
                   variant="gradient"
                   className="cursor-pointer rounded-xl px-10 py-3 text-base font-medium">
                   {ctaText}
                 </Button>
-              </link>
+              </Link>
             </div>
           </div>
         </div>
