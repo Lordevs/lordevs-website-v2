@@ -9,7 +9,7 @@ export default function SectionBagde({ name }: { name: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="relative mb-8 inline-block rounded-full bg-linear-to-r from-[#FFFFFF] from-[1.62%] via-[#454545] via-[19.4%] to-[#000000] to-[66.19%] p-[1px] text-sm font-medium">
+      className="relative mb-8 inline-block rounded-full bg-linear-to-r from-[#FFFFFF] from-[1.62%] via-[#454545] via-[19.4%] to-[#000000] to-[66.19%] p-1px text-sm font-medium">
       <div className="rounded-full bg-[#262635] px-6 py-2">
         <div
           style={{
