@@ -1,12 +1,12 @@
 // Available pages for FAQ assignment
 export const AVAILABLE_PAGES = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'services', label: 'Services' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
-  { id: 'careers', label: 'Careers' },
-  { id: 'all', label: 'All Pages' },
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+  { id: "careers", label: "Careers" },
+  { id: "all", label: "All Pages" },
 ] as const;
 
 // FAQ form data interface
@@ -21,12 +21,12 @@ export interface FAQFormData {
 // Filter options
 export const FILTER_OPTIONS = {
   status: [
-    { value: 'all', label: 'All Status' },
-    { value: 'active', label: 'Active' },
-    { value: 'inactive', label: 'Inactive' },
+    { value: "all", label: "All Status" },
+    { value: "active", label: "Active" },
+    { value: "inactive", label: "Inactive" },
   ],
   pages: [
-    { value: 'all', label: 'All Pages' },
+    { value: "all", label: "All Pages" },
     ...AVAILABLE_PAGES.map((page) => ({ value: page.id, label: page.label })),
   ],
 } as const;
@@ -54,63 +54,63 @@ export const ANIMATION_VARIANTS = {
 export const STATS_CARD_CONFIGS = {
   faq: {
     total: {
-      title: 'Total FAQs',
-      color: 'blue' as const,
-      description: 'All FAQ entries',
+      title: "Total FAQs",
+      color: "blue" as const,
+      description: "All FAQ entries",
     },
     active: {
-      title: 'Active FAQs',
-      color: 'green' as const,
-      description: 'Currently visible FAQs',
+      title: "Active FAQs",
+      color: "green" as const,
+      description: "Currently visible FAQs",
     },
     inactive: {
-      title: 'Inactive FAQs',
-      color: 'red' as const,
-      description: 'Hidden FAQ entries',
+      title: "Inactive FAQs",
+      color: "red" as const,
+      description: "Hidden FAQ entries",
     },
     pages: {
-      title: 'Pages',
-      color: 'purple' as const,
-      description: 'Available page assignments',
+      title: "Pages",
+      color: "purple" as const,
+      description: "Available page assignments",
     },
   },
   project: {
     total: {
-      title: 'Total Projects',
-      color: 'purple' as const,
-      description: 'All project entries',
+      title: "Total Projects",
+      color: "purple" as const,
+      description: "All project entries",
     },
     featured: {
-      title: 'Featured Projects',
-      color: 'orange' as const,
-      description: 'Highlighted projects',
+      title: "Featured Projects",
+      color: "orange" as const,
+      description: "Highlighted projects",
     },
     active: {
-      title: 'Active Projects',
-      color: 'green' as const,
-      description: 'Currently visible projects',
+      title: "Active Projects",
+      color: "green" as const,
+      description: "Currently visible projects",
     },
     inactive: {
-      title: 'Inactive Projects',
-      color: 'red' as const,
-      description: 'Hidden project entries',
+      title: "Inactive Projects",
+      color: "red" as const,
+      description: "Hidden project entries",
     },
   },
   testimonials: {
     total: {
-      title: 'Total Testimonials',
-      color: 'blue' as const,
-      description: 'All testimonial entries',
+      title: "Total Testimonials",
+      color: "blue" as const,
+      description: "All testimonial entries",
     },
     active: {
-      title: 'Active Testimonials',
-      color: 'green' as const,
-      description: 'Currently visible testimonials',
+      title: "Active Testimonials",
+      color: "green" as const,
+      description: "Currently visible testimonials",
     },
     inactive: {
-      title: 'Inactive Testimonials',
-      color: 'red' as const,
-      description: 'Hidden testimonial entries',
+      title: "Inactive Testimonials",
+      color: "red" as const,
+      description: "Hidden testimonial entries",
     },
   },
 } as const;
