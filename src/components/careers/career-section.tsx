@@ -1,47 +1,47 @@
-import { CareerCard, CareerCardProps } from './career-card';
+import { CareerCard, type CareerCardProps } from "./career-card";
 
 export function CareerSection() {
   const cards: CareerCardProps[] = [
     {
-      title: 'BACKEND DEV',
+      title: "BACKEND DEV",
       features: [
-        'Scalable API Design',
-        'Database & Cloud Integration',
-        'Performance Optimization',
-        'Secure Architecture',
+        "Scalable API Design",
+        "Database & Cloud Integration",
+        "Performance Optimization",
+        "Secure Architecture",
       ],
-      tags: ['Full time', 'Internship'],
+      tags: ["Full time", "Internship"],
     },
     {
-      title: 'FRONTEND DEV',
+      title: "FRONTEND DEV",
       features: [
-        'Responsive UI Development',
-        'React & Modern Frameworks',
-        'Seamless API Integration',
-        'Cross-Browser Compatibility',
+        "Responsive UI Development",
+        "React & Modern Frameworks",
+        "Seamless API Integration",
+        "Cross-Browser Compatibility",
       ],
-      tags: ['Internship'],
+      tags: ["Internship"],
     },
     {
-      title: 'UI/UX DESIGNER',
+      title: "UI/UX DESIGNER",
 
       features: [
-        'User Research & Testing',
-        'Wireframing & Prototyping',
-        'Design Systems & Consistency',
-        'Accessibility Focus',
+        "User Research & Testing",
+        "Wireframing & Prototyping",
+        "Design Systems & Consistency",
+        "Accessibility Focus",
       ],
-      tags: ['Full time', 'Internship'],
+      tags: ["Full time", "Internship"],
     },
     {
-      title: 'ML ENGINEER',
+      title: "ML ENGINEER",
       features: [
-        'Model Development & Training',
-        'Data Pipeline Optimization',
-        'AI Model Deployment',
-        'Real-Time Inference',
+        "Model Development & Training",
+        "Data Pipeline Optimization",
+        "AI Model Deployment",
+        "Real-Time Inference",
       ],
-      tags: ['Internship'],
+      tags: ["Internship"],
     },
   ];
 

@@ -1,11 +1,9 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 export function CareerHeroSection() {
   return (
@@ -13,12 +11,10 @@ export function CareerHeroSection() {
       {/* Enhanced Background with Gradient Dots */}
       <div className="absolute inset-0 z-0 bg-black">
         {/* Main background image */}
-        <Image
+        <img
           src="./images/backgrounds/home/hero-bg.svg"
           alt=""
-          fill
           className="object-cover opacity-70"
-          priority
         />
 
         {/* Gradient Orbs - positioned to match your reference */}
@@ -28,8 +24,8 @@ export function CareerHeroSection() {
           className="absolute right-1/12 -bottom-6/12 aspect-video w-[900px]"
           style={{
             background:
-              'radial-gradient(circle, #4742B6 0%, rgba(59, 130, 246, 0.2) 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%)',
-            filter: 'blur(132px)',
+              "radial-gradient(circle, #4742B6 0%, rgba(59, 130, 246, 0.2) 30%, rgba(59, 130, 246, 0.1) 50%, transparent 70%)",
+            filter: "blur(132px)",
           }}
         />
 
@@ -38,8 +34,8 @@ export function CareerHeroSection() {
           className="absolute -bottom-6/12 aspect-video w-[900px]"
           style={{
             background:
-              'radial-gradient(circle, #8F403E 0%, rgba(249, 115, 22, 0.2) 30%, rgba(249, 115, 22, 0.1) 50%, transparent 70%)',
-            filter: 'blur(103px)',
+              "radial-gradient(circle, #8F403E 0%, rgba(249, 115, 22, 0.2) 30%, rgba(249, 115, 22, 0.1) 50%, transparent 70%)",
+            filter: "blur(103px)",
           }}
         />
       </div>
@@ -51,11 +47,10 @@ export function CareerHeroSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-3xl leading-tight font-bold md:text-4xl md:text-[64px]"
-          >
-            Build the{' '}
-            <span className="bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
-              Future{' '}
+            className="mb-6 text-3xl leading-tight font-bold md:text-4xl md:text-[64px]">
+            Build the{" "}
+            <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+              Future{" "}
             </span>
             with Us
           </motion.h1>
@@ -65,8 +60,7 @@ export function CareerHeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-8 max-w-4xl text-base text-gray-300 md:text-2xl md:text-lg"
-          >
+            className="mx-auto mb-8 max-w-4xl text-base text-gray-300 md:text-2xl">
             At Lordevs, we&rsquo;re shaping the future of AI-driven websites.
             Join our team of innovators and help us push boundaries.
           </motion.p>
@@ -78,19 +72,17 @@ export function CareerHeroSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="my-16"
-          >
-            <Link href="/contact">
+            className="my-16">
+            <link href="/contact">
               <Button
                 variant="gradient"
-                className="px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl"
-              >
+                className="px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl">
                 Reach us
                 <span>
                   <ArrowRight className="size-6" />
                 </span>
               </Button>
-            </Link>
+            </link>
           </motion.div>
         </div>
       </div>
