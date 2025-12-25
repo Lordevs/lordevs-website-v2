@@ -1,9 +1,7 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-
-import { Card } from '@/components/ui/card';
+import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
 
 interface IntegrationCardProps {
   icon: string;
@@ -19,10 +17,9 @@ export function IntegrationCard({
   return (
     <motion.div
       whileHover={{ scale: 1.05, y: -5 }}
-      transition={{ duration: 0.3 }}
-    >
+      transition={{ duration: 0.3 }}>
       <Card className="gap-3 border-0 bg-transparent">
-        <Image
+        <img
           src={icon}
           alt={`${title} Icon`}
           width={48}

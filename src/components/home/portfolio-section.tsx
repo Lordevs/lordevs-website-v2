@@ -1,13 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ROUTES } from '@/constants/routes';
-import { motion } from 'framer-motion';
-
-import { Button } from '@/components/ui/button';
-
-import SectionBagde from '../common/section-badge';
-import { ProjectsSection } from '../projects/projects-section';
+import { NavLink } from "react-router";
+import { ROUTES } from "@/constants/routes";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import SectionBagde from "../common/section-badge";
+import { ProjectsSection } from "../projects/projects-section";
 
 export function PortfolioSection() {
   return (
@@ -22,8 +20,7 @@ export function PortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mb-4 text-3xl font-medium md:text-5xl"
-          >
+            className="mb-4 text-3xl font-medium md:text-5xl">
             Our Recent Projects
           </motion.h2>
         </div>
@@ -37,16 +34,14 @@ export function PortfolioSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className="text-center"
-        >
-          <Link href={ROUTES.CASE_STUDIES}>
+          className="text-center">
+          <NavLink to={ROUTES.CASE_STUDIES}>
             <Button
               variant="gradient"
-              className="px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl"
-            >
+              className="px-8 py-4 text-base font-semibold md:px-16 md:py-6 md:text-xl">
               See more case studies →
             </Button>
-          </Link>
+          </NavLink>
         </motion.div>
       </div>
     </section>

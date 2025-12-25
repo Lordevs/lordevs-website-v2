@@ -1,33 +1,31 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-
-import { IntegrationCard } from '@/components/home/cards/integration-card';
-
-import CTA from '../common/cta';
-import SectionBagde from '../common/section-badge';
+import { motion } from "framer-motion";
+import { IntegrationCard } from "@/components/home/cards/integration-card";
+import CTA from "../common/cta";
+import SectionBagde from "../common/section-badge";
 
 export function IntegrationsSection() {
   const integrations = [
     {
-      icon: '/icons/ai-rag-icon.svg',
-      title: 'AI RAG AGENTS',
-      description: 'Connect with AI chatbots to improve engagement.',
+      icon: "/icons/ai-rag-icon.svg",
+      title: "AI RAG AGENTS",
+      description: "Connect with AI chatbots to improve engagement.",
     },
     {
-      icon: '/icons/erp-sys-icon.svg',
-      title: 'ERP System Integration',
-      description: 'Sync inventory with enterprise resource (ERP) systems.',
+      icon: "/icons/erp-sys-icon.svg",
+      title: "ERP System Integration",
+      description: "Sync inventory with enterprise resource (ERP) systems.",
     },
     {
-      icon: '/icons/supplier-procurement-icon.svg',
-      title: 'Supplier & Procurement',
-      description: 'Seamlessly connect with for automated restocking.',
+      icon: "/icons/supplier-procurement-icon.svg",
+      title: "Supplier & Procurement",
+      description: "Seamlessly connect with for automated restocking.",
     },
     {
-      icon: '/icons/pos-integration-icon.svg',
-      title: 'POS Integration',
-      description: 'Sync inventory with POS for real-time updates.',
+      icon: "/icons/pos-integration-icon.svg",
+      title: "POS Integration",
+      description: "Sync inventory with POS for real-time updates.",
     },
   ];
 
@@ -43,8 +41,7 @@ export function IntegrationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mb-4 text-3xl font-medium md:text-5xl"
-          >
+            className="mb-4 text-3xl font-medium md:text-5xl">
             Seamless Integrations
           </motion.h2>
           <motion.p
@@ -52,8 +49,7 @@ export function IntegrationsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-3xl text-base text-[#B2B2B2] md:text-lg"
-          >
+            className="mx-auto max-w-3xl text-base text-[#B2B2B2] md:text-lg">
             Effortlessly connect AI into your existing workflows, tools, and
             platforms — without disrupting your operations.
           </motion.p>
@@ -68,8 +64,7 @@ export function IntegrationsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="px-4 md:px-0"
-            >
+              className="px-4 md:px-0">
               <IntegrationCard {...integration} />
             </motion.div>
           ))}

@@ -1,98 +1,97 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-import SectionBagde from '../common/section-badge';
-import { TiltCard } from '../common/tilt-card';
-import { Separator } from '../ui/separator';
+import SectionBagde from "../common/section-badge";
+import { TiltCard } from "../common/tilt-card";
+import { Separator } from "../ui/separator";
 
 const EXPERTISES = [
   {
-    name: 'Web Applications',
-    tags: ['Automation', 'Scalable'],
-    desc: 'We build fast, scalable, and modern web applications tailored to your business needs. From sleek frontends to powerful backends, our solutions are crafted to deliver seamless performance and exceptional user experiences across all devices.',
+    name: "Web Applications",
+    tags: ["Automation", "Scalable"],
+    desc: "We build fast, scalable, and modern web applications tailored to your business needs. From sleek frontends to powerful backends, our solutions are crafted to deliver seamless performance and exceptional user experiences across all devices.",
     bullets: [
-      'Fully responsive for desktop, tablet, and mobile',
-      'Optimized and smooth UI/UX',
-      'SEO-optimized and performance-tuned',
-      'Long term support',
+      "Fully responsive for desktop, tablet, and mobile",
+      "Optimized and smooth UI/UX",
+      "SEO-optimized and performance-tuned",
+      "Long term support",
     ],
-    image: '/images/expertise/web-apps.svg',
+    image: "/images/expertise/web-apps.svg",
     icon: {
-      src: '/icons/laptop.svg',
+      src: "/icons/laptop.svg",
       width: 40,
       height: 40,
     },
   },
   {
-    name: 'Mobile Apps',
-    tags: ['Cross-Platform', 'User-Centric'],
-    desc: 'We craft high-performance, user-friendly mobile applications that deliver seamless experiences across Android and iOS. Built with modern frameworks, our apps are designed to scale and engage users effectively.',
+    name: "Mobile Apps",
+    tags: ["Cross-Platform", "User-Centric"],
+    desc: "We craft high-performance, user-friendly mobile applications that deliver seamless experiences across Android and iOS. Built with modern frameworks, our apps are designed to scale and engage users effectively.",
     bullets: [
-      'Cross-platform development',
-      'Optimized for performance and smooth UX',
-      'Deployment support',
-      'Scalable architecture with secure backend APIs',
+      "Cross-platform development",
+      "Optimized for performance and smooth UX",
+      "Deployment support",
+      "Scalable architecture with secure backend APIs",
     ],
-    image: '/images/expertise/mobile-apps.svg',
+    image: "/images/expertise/mobile-apps.svg",
     icon: {
-      src: '/icons/mobile.svg',
+      src: "/icons/mobile.svg",
       width: 25,
       height: 40,
     },
   },
   {
-    name: 'No-Code',
-    tags: ['Low Maintenance', 'Fast Delivery'],
-    desc: 'We build powerful, functional applications using modern no-code tools—perfect for MVPs, dashboards, and internal tools. Our no-code solutions are fast to deploy, easy to manage, and scalable as your needs grow.',
+    name: "No-Code",
+    tags: ["Low Maintenance", "Fast Delivery"],
+    desc: "We build powerful, functional applications using modern no-code tools—perfect for MVPs, dashboards, and internal tools. Our no-code solutions are fast to deploy, easy to manage, and scalable as your needs grow.",
     bullets: [
-      'Cost Effective Solution',
-      'Fast Delivery',
-      'SEO-optimized and performance-tuned',
-      'Customized User Interface',
+      "Cost Effective Solution",
+      "Fast Delivery",
+      "SEO-optimized and performance-tuned",
+      "Customized User Interface",
     ],
-    image: '/images/expertise/no-code.svg',
+    image: "/images/expertise/no-code.svg",
     icon: {
-      src: '/icons/no-code.svg',
+      src: "/icons/no-code.svg",
       width: 28,
       height: 39,
     },
   },
   {
-    name: 'SaaS Products',
-    tags: ['Modular', 'Scalable'],
-    desc: 'We design and develop scalable SaaS platforms with robust functionality, modern interfaces, and flexible user management. From user onboarding to analytics, our SaaS solutions are built to grow with your business.',
+    name: "SaaS Products",
+    tags: ["Modular", "Scalable"],
+    desc: "We design and develop scalable SaaS platforms with robust functionality, modern interfaces, and flexible user management. From user onboarding to analytics, our SaaS solutions are built to grow with your business.",
     bullets: [
-      'Subscription models with billing integration',
-      'Role-based access and multi-user support',
-      'Admin dashboards with real-time metrics',
-      'Secure authentication and user management',
+      "Subscription models with billing integration",
+      "Role-based access and multi-user support",
+      "Admin dashboards with real-time metrics",
+      "Secure authentication and user management",
     ],
-    image: '/images/expertise/saas-products.svg',
+    image: "/images/expertise/saas-products.svg",
     icon: {
-      src: '/icons/devices.svg',
+      src: "/icons/devices.svg",
       width: 40,
       height: 30,
     },
   },
   {
-    name: 'AI Tools',
-    tags: ['Automation', 'Personalized UX'],
-    desc: 'We create intelligent tools that leverage AI to automate processes, deliver personalized experiences, and drive smarter decision-making. Our AI-powered solutions are built to seamlessly integrate with your applications and elevate user engagement.',
+    name: "AI Tools",
+    tags: ["Automation", "Personalized UX"],
+    desc: "We create intelligent tools that leverage AI to automate processes, deliver personalized experiences, and drive smarter decision-making. Our AI-powered solutions are built to seamlessly integrate with your applications and elevate user engagement.",
     bullets: [
-      'NLP and AI Chatbots',
-      'Intelligent document review and generation',
-      'Smart automation for workflows and operations',
-      'Real-time personalization',
+      "NLP and AI Chatbots",
+      "Intelligent document review and generation",
+      "Smart automation for workflows and operations",
+      "Real-time personalization",
     ],
-    image: '/images/expertise/ai-tools.svg',
+    image: "/images/expertise/ai-tools.svg",
     icon: {
-      src: '/icons/magic-wand.svg',
+      src: "/icons/magic-wand.svg",
       width: 38,
       height: 34,
     },
@@ -124,7 +123,7 @@ export function ExpertiseSection() {
 
   // Handle drag end for touch gestures
   const handleDragEnd = (
-    event: MouseEvent | TouchEvent | PointerEvent,
+    _: MouseEvent | TouchEvent | PointerEvent,
     info: { offset: { x: number; y: number } }
   ) => {
     const SWIPE_THRESHOLD = 50;
@@ -152,8 +151,7 @@ export function ExpertiseSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mx-auto mb-4 max-w-3xl text-3xl leading-14 font-bold md:text-5xl"
-          >
+            className="mx-auto mb-4 max-w-3xl text-3xl leading-14 font-bold md:text-5xl">
             What We Build
           </motion.h2>
           <motion.p
@@ -161,8 +159,7 @@ export function ExpertiseSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-4xl text-lg text-[#B2B2B2] md:text-2xl"
-          >
+            className="mx-auto max-w-4xl text-lg text-[#B2B2B2] md:text-2xl">
             Explore the range of platforms we design and develop, tailored for
             performance, scalability, and user experience.
           </motion.p>
@@ -176,12 +173,13 @@ export function ExpertiseSection() {
               <div key={exp.name} className="relative">
                 <motion.button
                   onClick={() => setSelected(idx)}
-                  className={`group relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-2xl border border-transparent bg-gradient-to-l from-[#202020]/50 to-[#23242F]/50 px-4 py-3 text-left text-sm font-medium text-[#959595] shadow-md transition-all duration-300 hover:shadow-blue-500/30 md:gap-16 md:px-6 md:py-5 md:text-[28px] ${selected === idx ? 'text-[#F8F8F8]' : 'text-[#B2B2B2]'} `}
+                  className={`group relative flex w-full cursor-pointer items-center gap-4 overflow-hidden rounded-2xl border border-transparent bg-linear-to-l from-[#202020]/50 to-[#23242F]/50 px-4 py-3 text-left text-sm font-medium text-[#959595] shadow-md transition-all duration-300 hover:shadow-blue-500/30 md:gap-16 md:px-6 md:py-5 md:text-[28px] ${
+                    selected === idx ? "text-[#F8F8F8]" : "text-[#B2B2B2]"
+                  } `}
                   whileHover={{ scale: 1.03 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}>
                   <div className="flex h-8 w-8 items-center justify-center md:h-12 md:w-12">
-                    <Image
+                    <img
                       src={exp.icon.src}
                       alt=""
                       width={exp.icon.width}
@@ -200,7 +198,7 @@ export function ExpertiseSection() {
                     />
                     <motion.div
                       layoutId="glow2"
-                      className="absolute top-1/4 right-5 z-[-2] h-[30] w-[30px] -translate-y-1/4 rounded-2xl bg-gradient-to-r from-[#00B1FE] to-[#504EFF] blur-[15px] md:h-[50px] md:w-[50px]"
+                      className="absolute top-1/4 right-5 z-[-2] h-[30] w-[30px] -translate-y-1/4 rounded-2xl bg-linear-to-r from-[#00B1FE] to-[#504EFF] blur-[15px] md:h-[50px] md:w-[50px]"
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
@@ -212,7 +210,7 @@ export function ExpertiseSection() {
                     />
                     <motion.div
                       layoutId="glow4"
-                      className="absolute top-1/4 -left-3 z-[-2] h-[30] w-[30px] -translate-y-1/4 rounded-2xl bg-gradient-to-r from-[#00B1FE] to-[#504EFF] blur-[15px] md:h-[50px] md:w-[50px]"
+                      className="absolute top-1/4 -left-3 z-[-2] h-[30] w-[30px] -translate-y-1/4 rounded-2xl bg-linear-to-r from-[#00B1FE] to-[#504EFF] blur-[15px] md:h-[50px] md:w-[50px]"
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
@@ -233,23 +231,22 @@ export function ExpertiseSection() {
                   exit={{ opacity: 0, x: -60 }}
                   transition={{
                     duration: 0.5,
-                    type: 'spring',
+                    type: "spring",
                     stiffness: 80,
                     damping: 20,
                   }}
                   className="relative h-full min-h-[510px] gap-8 overflow-hidden rounded-2xl border border-blue-500/10 p-4 shadow-lg hover:shadow-[0_4px_32px_0_rgba(59,130,246,0.5)]"
                   style={{
                     background:
-                      'radial-gradient(43% 50% at 50% 50%, rgba(15, 9, 18, 0.15) 0%, #0C0912 100%)',
+                      "radial-gradient(43% 50% at 50% 50%, rgba(15, 9, 18, 0.15) 0%, #0C0912 100%)",
                     backgroundImage: [
-                      'radial-gradient(circle at 50% 50%, #000000, #0D0D12)',
-                      'linear-gradient(111.94deg, #363636 86.94%, #FFFFFF 99.79%)',
-                    ].join(','),
-                    backgroundOrigin: 'padding-box, border-box',
-                    backgroundClip: 'padding-box, border-box',
-                  }}
-                >
-                  <div className="absolute top-[-90px] -right-20 h-[205px] w-[448px] bg-gradient-to-r from-[#00B1FE] to-[#504EFF] opacity-30 blur-[103.4px]" />
+                      "radial-gradient(circle at 50% 50%, #000000, #0D0D12)",
+                      "linear-gradient(111.94deg, #363636 86.94%, #FFFFFF 99.79%)",
+                    ].join(","),
+                    backgroundOrigin: "padding-box, border-box",
+                    backgroundClip: "padding-box, border-box",
+                  }}>
+                  <div className="absolute top-[-90px] -right-20 h-[205px] w-[448px] bg-linear-to-r from-[#00B1FE] to-[#504EFF] opacity-30 blur-[103.4px]" />
 
                   {/* Header */}
                   <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
@@ -261,28 +258,26 @@ export function ExpertiseSection() {
                       {EXPERTISES[selected].tags.map((tag, index) => (
                         <div
                           key={index}
-                          className="relative inline-block rounded-full bg-gradient-to-l from-[#202020] from-[20.61%] to-[#FFFFFF] p-[1px]"
-                        >
+                          className="relative inline-block rounded-full bg-linear-to-l from-[#202020] from-[20.61%] to-[#FFFFFF] p-px">
                           <div className="relative z-10 rounded-full bg-[#000000] px-5 py-1 text-xs md:text-base">
                             <div
                               style={{
                                 background:
-                                  'radial-gradient(65.65% 45.65% at 50.59% 69.57%, #FFFFFF 0%, #B8B8B8 100%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                              }}
-                            >
+                                  "radial-gradient(65.65% 45.65% at 50.59% 69.57%, #FFFFFF 0%, #B8B8B8 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                              }}>
                               {tag}
                             </div>
                           </div>
                           <span
                             className={cn(
-                              'absolute top-1/2 -z-[0] h-6 w-6 -translate-y-1/2 transform rounded-full',
-                              'bg-gradient-to-r',
+                              "absolute top-1/2 z-0 h-6 w-6 -translate-y-1/2 transform rounded-full",
+                              "bg-linear-to-r",
                               index % 2 === 0
-                                ? '-left-1 from-[#00B2FF]'
-                                : '-left-3 from-[##8F00FF]',
-                              'to-[#504EFF] blur-sm'
+                                ? "-left-1 from-[#00B2FF]"
+                                : "-left-3 from-[##8F00FF]",
+                              "to-[#504EFF] blur-sm"
                             )}
                           />
                         </div>
@@ -290,7 +285,7 @@ export function ExpertiseSection() {
                     </div>
                   </div>
 
-                  <Separator className="mt-6 mb-6 h-[1px] bg-gradient-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05] md:mt-0" />
+                  <Separator className="mt-6 mb-6 h-px bg-linear-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05] md:mt-0" />
 
                   <div className="flex flex-col-reverse md:flex-row">
                     {/* Description and Bullets */}
@@ -302,9 +297,8 @@ export function ExpertiseSection() {
                         {EXPERTISES[selected].bullets.map((b, index) => (
                           <div
                             key={index}
-                            className="flex items-start space-x-2"
-                          >
-                            <Image
+                            className="flex items-start space-x-2">
+                            <img
                               src="/icons/check-icon.svg"
                               alt=""
                               width={16}
@@ -325,12 +319,10 @@ export function ExpertiseSection() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.5 }}
-                        className="relative h-48 w-full md:h-72"
-                      >
-                        <Image
+                        className="relative h-48 w-full md:h-72">
+                        <img
                           src={EXPERTISES[selected].image}
                           alt={EXPERTISES[selected].name}
-                          fill
                           className="h-full w-full rounded-xl object-contain"
                         />
                       </motion.div>
@@ -352,8 +344,7 @@ export function ExpertiseSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="mb-4 text-center"
-              >
+                className="mb-4 text-center">
                 <p className="text-sm text-gray-400">
                   Swipe left or right to explore our expertise
                 </p>
@@ -371,7 +362,7 @@ export function ExpertiseSection() {
                 exit={{ opacity: 0, x: -100 }}
                 transition={{
                   duration: 0.3,
-                  type: 'spring',
+                  type: "spring",
                   stiffness: 300,
                   damping: 30,
                 }}
@@ -380,25 +371,23 @@ export function ExpertiseSection() {
                 dragConstraints={{ left: 0, right: 0 }}
                 onDragEnd={handleDragEnd}
                 dragElastic={0.2}
-                style={{ cursor: 'grab' }}
-                whileDrag={{ cursor: 'grabbing', scale: 0.95 }}
-                whileTap={{ scale: 0.98 }}
-              >
+                style={{ cursor: "grab" }}
+                whileDrag={{ cursor: "grabbing", scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}>
                 <TiltCard>
                   <div
                     className="relative min-h-[500px] overflow-hidden rounded-2xl border border-blue-500/10 p-6 shadow-lg"
                     style={{
                       background:
-                        'radial-gradient(43% 50% at 50% 50%, rgba(15, 9, 18, 0.15) 0%, #0C0912 100%)',
+                        "radial-gradient(43% 50% at 50% 50%, rgba(15, 9, 18, 0.15) 0%, #0C0912 100%)",
                       backgroundImage: [
-                        'radial-gradient(circle at 50% 50%, #000000, #0D0D12)',
-                        'linear-gradient(111.94deg, #363636 86.94%, #FFFFFF 99.79%)',
-                      ].join(','),
-                      backgroundOrigin: 'padding-box, border-box',
-                      backgroundClip: 'padding-box, border-box',
-                    }}
-                  >
-                    <div className="absolute top-[-90px] -right-20 h-[205px] w-[448px] bg-gradient-to-r from-[#00B1FE] to-[#504EFF] opacity-30 blur-[103.4px]" />
+                        "radial-gradient(circle at 50% 50%, #000000, #0D0D12)",
+                        "linear-gradient(111.94deg, #363636 86.94%, #FFFFFF 99.79%)",
+                      ].join(","),
+                      backgroundOrigin: "padding-box, border-box",
+                      backgroundClip: "padding-box, border-box",
+                    }}>
+                    <div className="absolute top-[-90px] -right-20 h-[205px] w-[448px] bg-linear-to-r from-[#00B1FE] to-[#504EFF] opacity-30 blur-[103.4px]" />
 
                     {/* Header */}
                     <div className="mb-6">
@@ -412,28 +401,26 @@ export function ExpertiseSection() {
                         {EXPERTISES[selected].tags.map((tag, index) => (
                           <div
                             key={index}
-                            className="relative inline-block rounded-full bg-gradient-to-l from-[#202020] from-[20.61%] to-[#FFFFFF] p-[1px]"
-                          >
+                            className="relative inline-block rounded-full bg-linear-to-l from-[#202020] from-[20.61%] to-[#FFFFFF] p-px">
                             <div className="relative z-10 rounded-full bg-[#000000] px-3 py-1 text-xs">
                               <div
                                 style={{
                                   background:
-                                    'radial-gradient(65.65% 45.65% at 50.59% 69.57%, #FFFFFF 0%, #B8B8B8 100%)',
-                                  WebkitBackgroundClip: 'text',
-                                  WebkitTextFillColor: 'transparent',
-                                }}
-                              >
+                                    "radial-gradient(65.65% 45.65% at 50.59% 69.57%, #FFFFFF 0%, #B8B8B8 100%)",
+                                  WebkitBackgroundClip: "text",
+                                  WebkitTextFillColor: "transparent",
+                                }}>
                                 {tag}
                               </div>
                             </div>
                             <span
                               className={cn(
-                                'absolute top-1/2 -z-[0] h-4 w-4 -translate-y-1/2 transform rounded-full',
-                                'bg-gradient-to-r',
+                                "absolute top-1/2 z-0 h-4 w-4 -translate-y-1/2 transform rounded-full",
+                                "bg-linear-to-r",
                                 index % 2 === 0
-                                  ? '-left-1 from-[#00B2FF]'
-                                  : '-left-2 from-[##8F00FF]',
-                                'to-[#504EFF] blur-sm'
+                                  ? "-left-1 from-[#00B2FF]"
+                                  : "-left-2 from-[##8F00FF]",
+                                "to-[#504EFF] blur-sm"
                               )}
                             />
                           </div>
@@ -441,7 +428,7 @@ export function ExpertiseSection() {
                       </div>
                     </div>
 
-                    <Separator className="mb-6 h-[1px] bg-gradient-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05]" />
+                    <Separator className="mb-6 h-px bg-linear-to-r from-[#FFFFFF05] via-[#FFFFFF1A] to-[#FFFFFF05]" />
 
                     <div className="flex flex-col gap-6">
                       {/* Illustration */}
@@ -451,12 +438,10 @@ export function ExpertiseSection() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.95 }}
                           transition={{ duration: 0.5 }}
-                          className="relative h-32 w-full max-w-xs"
-                        >
-                          <Image
+                          className="relative h-32 w-full max-w-xs">
+                          <img
                             src={EXPERTISES[selected].image}
                             alt={EXPERTISES[selected].name}
-                            fill
                             className="h-full w-full rounded-xl object-contain"
                           />
                         </motion.div>
@@ -472,9 +457,8 @@ export function ExpertiseSection() {
                         {EXPERTISES[selected].bullets.map((b, index) => (
                           <div
                             key={index}
-                            className="flex items-start space-x-3"
-                          >
-                            <Image
+                            className="flex items-start space-x-3">
+                            <img
                               src="/icons/check-icon.svg"
                               alt=""
                               width={16}
@@ -500,8 +484,7 @@ export function ExpertiseSection() {
               onClick={prevSlide}
               className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0D0D12] text-gray-400 backdrop-blur-sm transition-all duration-300 hover:bg-gray-700/50 hover:text-white"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+              whileTap={{ scale: 0.95 }}>
               <ChevronLeft className="h-5 w-5" />
             </motion.button>
 
@@ -510,10 +493,10 @@ export function ExpertiseSection() {
                 <div
                   key={idx}
                   className={cn(
-                    'h-2 w-2 rounded-full transition-all',
+                    "h-2 w-2 rounded-full transition-all",
                     selected === idx
-                      ? 'bg-gradient-to-r from-[#00B2FF] to-[#8F00FF]'
-                      : 'bg-gray-600'
+                      ? "bg-linear-to-r from-[#00B2FF] to-[#8F00FF]"
+                      : "bg-gray-600"
                   )}
                 />
               ))}
@@ -523,8 +506,7 @@ export function ExpertiseSection() {
               onClick={nextSlide}
               className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0D0D12] text-gray-400 backdrop-blur-sm transition-all duration-300 hover:bg-gray-700/50 hover:text-white"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+              whileTap={{ scale: 0.95 }}>
               <ChevronRight className="h-5 w-5" />
             </motion.button>
           </div>

@@ -1,38 +1,35 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-
-import { EnhancedServiceCard } from '@/components/home/cards/enhanced-service-card';
-
-import SectionBagde from '../common/section-badge';
-import { TiltCard } from '../common/tilt-card';
+import { motion } from "framer-motion";
+import { EnhancedServiceCard } from "@/components/home/cards/enhanced-service-card";
+import SectionBagde from "../common/section-badge";
+import { TiltCard } from "../common/tilt-card";
 
 export function ServicesSection() {
   const services = [
     {
-      title: 'LLM RAG MODELS',
+      title: "LLM RAG MODELS",
       description:
-        'Enhance customer interactions by automating responses with intelligent chatbots, providing seamless service tailored to your business.',
-      mockupType: 'chat' as const,
+        "Enhance customer interactions by automating responses with intelligent chatbots, providing seamless service tailored to your business.",
+      mockupType: "chat" as const,
     },
     {
-      title: 'FULL STACK APPS',
+      title: "FULL STACK APPS",
       description:
-        'Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.',
-      mockupType: 'dashboard' as const,
+        "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
+      mockupType: "dashboard" as const,
     },
     {
-      title: 'ERP SOLUTIONS',
+      title: "ERP SOLUTIONS",
       description:
-        'Empower your teams with centralized task management, real-time collaboration, and intelligent workflows.',
-      mockupType: 'erp' as const,
+        "Empower your teams with centralized task management, real-time collaboration, and intelligent workflows.",
+      mockupType: "erp" as const,
     },
     {
-      title: 'AI SAAS APPS',
+      title: "AI SAAS APPS",
       description:
-        'Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.',
-      mockupType: 'workflow' as const,
+        "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
+      mockupType: "workflow" as const,
     },
   ];
 
@@ -48,12 +45,11 @@ export function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mx-auto mb-4 max-w-3xl text-3xl font-bold md:text-5xl md:leading-14"
-          >
-            Innovative Services for Your{' '}
-            <span className="bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+            className="mx-auto mb-4 max-w-3xl text-3xl font-bold md:text-5xl md:leading-14">
+            Innovative Services for Your{" "}
+            <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
               Business
-            </span>{' '}
+            </span>{" "}
             growth
           </motion.h2>
           <motion.p
@@ -61,8 +57,7 @@ export function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-sm text-lg text-[#B2B2B2] md:max-w-2xl md:text-2xl"
-          >
+            className="mx-auto max-w-sm text-lg text-[#B2B2B2] md:max-w-2xl md:text-2xl">
             Tailored solutions to streamline, innovate, and grow
           </motion.p>
         </div>
@@ -72,10 +67,9 @@ export function ServicesSection() {
           {/* Background Image at the center*/}
           <div className="absolute -top-20 left-1/2 z-0 h-[327px] w-[548px] -translate-x-1/2">
             {/* Main background image */}
-            <Image
+            <img
               src="./images/backgrounds/home/services-bg.svg"
               alt=""
-              fill
               className="object-cover"
             />
             {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" /> */}
