@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 import {
   InfiniteLogoCarousel,
-  LogoItem,
-} from '@/components/common/infinite-logo-carousel';
+  type LogoItem,
+} from "@/components/common/infinite-logo-carousel";
 
 // List of built-by logos
 const builtByLogos: LogoItem[] = [
-  { name: 'Gripco Lims', logo: '/images/logos/gripco-lims-logo.png' },
-  { name: 'Compl-AI', logo: '/images/logos/compl-ai-logo.png' },
-  { name: 'QuickAuthors', logo: '/images/logos/quick-authors-logo.png' },
-  { name: 'More Life', logo: '/images/logos/more-life-logo.png' },
-  { name: 'Skainet Beta', logo: '/images/logos/skainet-logo.png' },
-  { name: 'Model Leap', logo: '/images/logos/model-leap-logo.png' },
-  { name: 'Mind Hush', logo: '/images/logos/mind-hush-logo.png' },
+  { name: "Gripco Lims", logo: "/images/logos/gripco-lims-logo.png" },
+  { name: "Compl-AI", logo: "/images/logos/compl-ai-logo.png" },
+  { name: "QuickAuthors", logo: "/images/logos/quick-authors-logo.png" },
+  { name: "More Life", logo: "/images/logos/more-life-logo.png" },
+  { name: "Skainet Beta", logo: "/images/logos/skainet-logo.png" },
+  { name: "Model Leap", logo: "/images/logos/model-leap-logo.png" },
+  { name: "Mind Hush", logo: "/images/logos/mind-hush-logo.png" },
 ];
 
 export function BuiltBySection() {
@@ -27,11 +27,10 @@ export function BuiltBySection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, amount: 0.4 }}
-        >
+          viewport={{ once: true, amount: 0.4 }}>
           <h2 className="text-3xl font-medium text-white md:text-5xl">
-            Built by{' '}
-            <span className="bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+            Built by{" "}
+            <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
               LORDEVS
             </span>
           </h2>
@@ -45,8 +44,7 @@ export function BuiltBySection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+          viewport={{ once: true, amount: 0.3 }}>
           <InfiniteLogoCarousel
             items={builtByLogos}
             duration={40}
@@ -61,10 +59,9 @@ export function BuiltBySection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true, amount: 0.4 }}
-          className="mx-auto max-w-4xl text-3xl font-medium text-white md:mt-36 md:text-5xl"
-        >
-          We at{' '}
-          <span className="bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+          className="mx-auto max-w-4xl text-3xl font-medium text-white md:mt-36 md:text-5xl">
+          We at{" "}
+          <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
             Lordevs
           </span>
           , help founders like you to automate their day to day business
