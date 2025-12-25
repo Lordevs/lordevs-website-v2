@@ -53,25 +53,18 @@ export function HeroSection() {
       <div className="relative z-10 container mx-auto">
         <div className="mx-auto max-w-6xl text-center">
           {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-6 text-3xl leading-tight font-bold md:text-4xl md:text-[64px]">
+          {/* Main Heading */}
+          <h1 className="mb-6 text-3xl leading-tight font-bold md:text-4xl md:text-[64px]">
             We Turn Your Vision into Impact with{" "}
             <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
               AI-Powered Products
             </span>
-          </motion.h1>
+          </h1>
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-8 max-w-sm text-lg text-gray-300 md:max-w-4xl md:text-2xl">
+          <p className="mx-auto mb-8 max-w-sm text-lg text-gray-300 md:max-w-4xl md:text-2xl">
             Accelerating growth through custom SaaS, agents, and automation
             tools.
-          </motion.p>
+          </p>
           {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
