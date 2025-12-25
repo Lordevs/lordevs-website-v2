@@ -1,15 +1,19 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Button } from '@/components/ui/button';
-import { Flag } from '@/components/ui/flag';
-import { FlagCode, FlagPicker, flagsData } from '@/components/ui/flag-picker';
-import { Label } from '@/components/ui/label';
+import { Button } from "@/components/ui/button";
+import { Flag } from "@/components/ui/flag";
+import {
+  type FlagCode,
+  FlagPicker,
+  flagsData,
+} from "@/components/ui/flag-picker";
+import { Label } from "@/components/ui/label";
 
 export default function FlagPickerDemo() {
   const [selectedCountry, setSelectedCountry] = useState<FlagCode | undefined>(
-    'US'
+    "US"
   );
 
   const clearSelection = () => {
@@ -76,11 +80,11 @@ export default function FlagPickerDemo() {
                   <strong>Code:</strong> {selectedCountry}
                 </div>
                 <div>
-                  <strong>Name:</strong>{' '}
+                  <strong>Name:</strong>{" "}
                   {flagsData.find((f) => f.code === selectedCountry)?.name}
                 </div>
                 <div>
-                  <strong>Continent:</strong>{' '}
+                  <strong>Continent:</strong>{" "}
                   {flagsData.find((f) => f.code === selectedCountry)?.continent}
                 </div>
               </div>
@@ -93,24 +97,23 @@ export default function FlagPickerDemo() {
         <Label className="text-md font-medium">Popular Countries:</Label>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
           {[
-            'US',
-            'GB',
-            'DE',
-            'FR',
-            'JP',
-            'CA',
-            'AU',
-            'BR',
-            'IN',
-            'CN',
-            'IT',
-            'ES',
+            "US",
+            "GB",
+            "DE",
+            "FR",
+            "JP",
+            "CA",
+            "AU",
+            "BR",
+            "IN",
+            "CN",
+            "IT",
+            "ES",
           ].map((code) => (
             <div
               key={code}
               className="flex cursor-pointer flex-col items-center gap-2 rounded-lg border p-3 transition-colors hover:bg-gray-50"
-              onClick={() => setSelectedCountry(code as FlagCode)}
-            >
+              onClick={() => setSelectedCountry(code as FlagCode)}>
               <Flag code={code as FlagCode} size="xl" />
               <span className="text-center text-xs font-medium">
                 {flagsData.find((f) => f.code === code)?.name}
@@ -125,15 +128,12 @@ export default function FlagPickerDemo() {
           All Available Flags by Continent:
         </Label>
         {Object.entries(
-          flagsData.reduce(
-            (acc, flag) => {
-              const continent = flag.continent;
-              if (!acc[continent]) acc[continent] = [];
-              acc[continent].push(flag);
-              return acc;
-            },
-            {} as Record<string, typeof flagsData>
-          )
+          flagsData.reduce((acc, flag) => {
+            const continent = flag.continent;
+            if (!acc[continent]) acc[continent] = [];
+            acc[continent].push(flag);
+            return acc;
+          }, {} as Record<string, typeof flagsData>)
         ).map(([continent, flags]) => (
           <div key={continent} className="space-y-2">
             <Label className="text-sm font-medium text-gray-700">
@@ -145,8 +145,7 @@ export default function FlagPickerDemo() {
                   key={flag.code}
                   className="flex cursor-pointer items-center gap-1 rounded border px-2 py-1 transition-colors hover:bg-gray-50"
                   onClick={() => setSelectedCountry(flag.code as FlagCode)}
-                  title={flag.name}
-                >
+                  title={flag.name}>
                   <Flag code={flag.code as FlagCode} size="sm" />
                   <span className="text-xs">{flag.name}</span>
                 </div>
@@ -160,7 +159,7 @@ export default function FlagPickerDemo() {
         <Label className="text-md font-medium">Usage Examples:</Label>
         <div className="space-y-2 text-sm">
           <div className="rounded bg-gray-100 p-2 font-mono">
-            {'<FlagPicker value={country} onValueChange={setCountry} />'}
+            {"<FlagPicker value={country} onValueChange={setCountry} />"}
           </div>
           <div className="rounded bg-gray-100 p-2 font-mono">
             {'<Flag code="US" showName size="lg" />'}

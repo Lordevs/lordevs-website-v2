@@ -1,36 +1,35 @@
-'use client';
+"use client";
 
-import { useVirtualizer, VirtualItem } from '@tanstack/react-virtual';
+import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual";
+import "flag-icons/css/flag-icons.min.css";
 
-import 'flag-icons/css/flag-icons.min.css';
+import * as React from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import Fuse from "fuse.js";
+import { useDebounceValue } from "usehooks-ts";
 
-import * as React from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import Fuse from 'fuse.js';
-import { useDebounceValue } from 'usehooks-ts';
-
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Skeleton } from '@/components/ui/skeleton';
+} from "@/components/ui/popover";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/tooltip";
 
-import { FlagCode, FlagData, flagsData } from './flags-data';
+import { type FlagCode, type FlagData, flagsData } from "./flags-data";
 
 interface FlagPickerProps
   extends Omit<
     React.ComponentPropsWithoutRef<typeof PopoverTrigger>,
-    'onSelect' | 'onOpenChange'
+    "onSelect" | "onOpenChange"
   > {
   value?: FlagCode;
   defaultValue?: FlagCode;
@@ -54,7 +53,7 @@ const FlagRenderer = React.memo(({ flag }: { flag: FlagData }) => {
     />
   );
 });
-FlagRenderer.displayName = 'FlagRenderer';
+FlagRenderer.displayName = "FlagRenderer";
 
 const FlagsColumnSkeleton = () => {
   return (
@@ -111,8 +110,8 @@ const FlagPicker = React.forwardRef<
       onOpenChange,
       children,
       searchable = true,
-      searchPlaceholder = 'Search for a country...',
-      triggerPlaceholder = 'Select a country',
+      searchPlaceholder = "Search for a country...",
+      triggerPlaceholder = "Select a country",
       flagsList,
       categorized = true,
       modal = false,
@@ -124,7 +123,7 @@ const FlagPicker = React.forwardRef<
       defaultValue
     );
     const [isOpen, setIsOpen] = useState(defaultOpen || false);
-    const [search, setSearch] = useDebounceValue('', 100);
+    const [search, setSearch] = useDebounceValue("", 100);
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const { flags } = useFlagsData();
     const [isLoading, setIsLoading] = useState(true);
@@ -133,7 +132,7 @@ const FlagPicker = React.forwardRef<
 
     const fuseInstance = useMemo(() => {
       return new Fuse(flagsToUse, {
-        keys: ['name', 'code', 'continent', 'tags'],
+        keys: ["name", "code", "continent", "tags"],
         threshold: 0.3,
         ignoreLocation: true,
         includeScore: true,
@@ -141,7 +140,7 @@ const FlagPicker = React.forwardRef<
     }, [flagsToUse]);
 
     const filteredFlags = useMemo(() => {
-      if (search.trim() === '') {
+      if (search.trim() === "") {
         return flagsToUse;
       }
 
@@ -150,14 +149,14 @@ const FlagPicker = React.forwardRef<
     }, [search, flagsToUse, fuseInstance]);
 
     const categorizedFlags = useMemo(() => {
-      if (!categorized || search.trim() !== '') {
-        return [{ name: 'All Countries', flags: filteredFlags }];
+      if (!categorized || search.trim() !== "") {
+        return [{ name: "All Countries", flags: filteredFlags }];
       }
 
       const continents = new Map<string, FlagData[]>();
 
       filteredFlags.forEach((flag) => {
-        const continent = flag.continent || 'Other';
+        const continent = flag.continent || "Other";
         if (!continents.has(continent)) {
           continents.set(continent, []);
         }
@@ -171,14 +170,14 @@ const FlagPicker = React.forwardRef<
 
     const virtualItems = useMemo(() => {
       const items: Array<{
-        type: 'category' | 'row';
+        type: "category" | "row";
         categoryIndex: number;
         rowIndex?: number;
         flags?: FlagData[];
       }> = [];
 
       categorizedFlags.forEach((category, categoryIndex) => {
-        items.push({ type: 'category', categoryIndex });
+        items.push({ type: "category", categoryIndex });
 
         const rows = [];
         for (let i = 0; i < category.flags.length; i += 6) {
@@ -187,7 +186,7 @@ const FlagPicker = React.forwardRef<
 
         rows.forEach((rowFlags, rowIndex) => {
           items.push({
-            type: 'row',
+            type: "row",
             categoryIndex,
             rowIndex,
             flags: rowFlags,
@@ -202,7 +201,7 @@ const FlagPicker = React.forwardRef<
       const indices: Record<string, number> = {};
 
       virtualItems.forEach((item, index) => {
-        if (item.type === 'category') {
+        if (item.type === "category") {
           indices[categorizedFlags[item.categoryIndex].name] = index;
         }
       });
@@ -216,7 +215,7 @@ const FlagPicker = React.forwardRef<
       count: virtualItems.length,
       getScrollElement: () => parentRef.current,
       estimateSize: (index) =>
-        virtualItems[index].type === 'category' ? 25 : 50,
+        virtualItems[index].type === "category" ? 25 : 50,
       paddingEnd: 2,
       gap: 10,
       overscan: 5,
@@ -234,7 +233,7 @@ const FlagPicker = React.forwardRef<
 
     const handleOpenChange = useCallback(
       (newOpen: boolean) => {
-        setSearch('');
+        setSearch("");
         if (open === undefined) {
           setIsOpen(newOpen);
         }
@@ -256,7 +255,7 @@ const FlagPicker = React.forwardRef<
       (flagCode: FlagCode) => {
         handleValueChange(flagCode);
         setIsOpen(false);
-        setSearch('');
+        setSearch("");
       },
       [handleValueChange, setSearch]
     );
@@ -280,8 +279,8 @@ const FlagPicker = React.forwardRef<
 
         if (categoryIndex !== undefined && virtualizer) {
           virtualizer.scrollToIndex(categoryIndex, {
-            align: 'start',
-            behavior: 'smooth',
+            align: "start",
+            behavior: "smooth",
           });
         }
       },
@@ -289,19 +288,18 @@ const FlagPicker = React.forwardRef<
     );
 
     const categoryButtons = useMemo(() => {
-      if (!categorized || search.trim() !== '') return null;
+      if (!categorized || search.trim() !== "") return null;
 
       return categorizedFlags.map((category) => (
         <Button
           key={category.name}
-          variant={'outline'}
+          variant={"outline"}
           size="sm"
           className="text-xs"
           onClick={(e) => {
             e.stopPropagation();
             scrollToCategory(category.name);
-          }}
-        >
+          }}>
           {category.name}
         </Button>
       ));
@@ -313,11 +311,10 @@ const FlagPicker = React.forwardRef<
           <Tooltip>
             <TooltipTrigger
               className={cn(
-                'hover:bg-foreground/10 rounded-md border p-2 transition',
-                'flex items-center justify-center'
+                "hover:bg-foreground/10 rounded-md border p-2 transition",
+                "flex items-center justify-center"
               )}
-              onClick={() => handleFlagClick(flag.code as FlagCode)}
-            >
+              onClick={() => handleFlagClick(flag.code as FlagCode)}>
               <FlagRenderer flag={flag} />
             </TooltipTrigger>
             <TooltipContent>
@@ -341,29 +338,27 @@ const FlagPicker = React.forwardRef<
           className="relative w-full overscroll-contain"
           style={{
             height: `${virtualizer.getTotalSize()}px`,
-          }}
-        >
+          }}>
           {virtualizer.getVirtualItems().map((virtualItem: VirtualItem) => {
             const item = virtualItems[virtualItem.index];
 
             if (!item) return null;
 
             const itemStyle = {
-              position: 'absolute' as const,
+              position: "absolute" as const,
               top: 0,
               left: 0,
-              width: '100%',
+              width: "100%",
               height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             };
 
-            if (item.type === 'category') {
+            if (item.type === "category") {
               return (
                 <div
                   key={virtualItem.key}
                   data-index={virtualItem.index}
-                  style={itemStyle}
-                >
+                  style={itemStyle}>
                   <div className="text-sm font-medium text-gray-700">
                     {categorizedFlags[item.categoryIndex].name}
                   </div>
@@ -375,8 +370,7 @@ const FlagPicker = React.forwardRef<
               <div
                 key={virtualItem.key}
                 data-index={virtualItem.index}
-                style={itemStyle}
-              >
+                style={itemStyle}>
                 <div className="grid grid-cols-6 gap-2">
                   {item.flags?.map((flag) => renderFlag(flag))}
                 </div>
@@ -425,8 +419,7 @@ const FlagPicker = React.forwardRef<
       <Popover
         open={open ?? isOpen}
         onOpenChange={handleOpenChange}
-        modal={modal}
-      >
+        modal={modal}>
         <PopoverTrigger ref={ref} asChild {...props}>
           {children || (
             <Button variant="outline">
@@ -452,7 +445,7 @@ const FlagPicker = React.forwardRef<
               className="mb-2"
             />
           )}
-          {categorized && search.trim() === '' && (
+          {categorized && search.trim() === "" && (
             <div className="mt-2 flex flex-row gap-1 overflow-x-auto pb-2">
               {categoryButtons}
             </div>
@@ -460,8 +453,7 @@ const FlagPicker = React.forwardRef<
           <div
             ref={parentRef}
             className="max-h-60 overflow-auto"
-            style={{ scrollbarWidth: 'thin' }}
-          >
+            style={{ scrollbarWidth: "thin" }}>
             {isLoading ? <FlagsColumnSkeleton /> : renderVirtualContent()}
           </div>
         </PopoverContent>
@@ -469,7 +461,7 @@ const FlagPicker = React.forwardRef<
     );
   }
 );
-FlagPicker.displayName = 'FlagPicker';
+FlagPicker.displayName = "FlagPicker";
 
 interface FlagProps extends React.HTMLAttributes<HTMLDivElement> {
   code: FlagCode;
@@ -496,6 +488,6 @@ const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
     );
   }
 );
-Flag.displayName = 'Flag';
+Flag.displayName = "Flag";
 
 export { Flag, FlagPicker, flagsData, type FlagCode, type FlagData };

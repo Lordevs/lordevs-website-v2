@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import 'flag-icons/css/flag-icons.min.css';
+import "flag-icons/css/flag-icons.min.css";
 
-import * as React from 'react';
+import * as React from "react";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-import { FlagCode, FlagData, flagsData } from './flags-data';
+import { type FlagCode, type FlagData, flagsData } from "./flags-data";
 
 interface FlagProps extends React.HTMLAttributes<HTMLDivElement> {
   code: FlagCode;
   showName?: boolean;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   fallback?: React.ReactNode;
 }
 
@@ -27,7 +27,7 @@ interface FlagProps extends React.HTMLAttributes<HTMLDivElement> {
  */
 const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
   (
-    { code, showName = false, size = 'md', fallback, className, ...props },
+    { code, showName = false, size = "md", fallback, className, ...props },
     ref
   ) => {
     const flagData = flagsData.find((flag) => flag.code === code);
@@ -37,29 +37,28 @@ const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
     }
 
     const sizeClasses = {
-      xs: 'w-3 h-3',
-      sm: 'w-4 h-4',
-      md: 'w-5 h-5',
-      lg: 'w-6 h-6',
-      xl: 'w-8 h-8',
-      '2xl': 'w-10 h-10',
+      xs: "w-3 h-3",
+      sm: "w-4 h-4",
+      md: "w-5 h-5",
+      lg: "w-6 h-6",
+      xl: "w-8 h-8",
+      "2xl": "w-10 h-10",
     };
 
     const textSizeClasses = {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-sm',
-      lg: 'text-base',
-      xl: 'text-lg',
-      '2xl': 'text-xl',
+      xs: "text-xs",
+      sm: "text-sm",
+      md: "text-sm",
+      lg: "text-base",
+      xl: "text-lg",
+      "2xl": "text-xl",
     };
 
     return (
       <div
         ref={ref}
-        className={cn('flex items-center gap-2', className)}
-        {...props}
-      >
+        className={cn("flex items-center gap-2", className)}
+        {...props}>
         <span
           className={cn(
             `fi fi-${code.toLowerCase()} rounded-sm shadow-sm`,
@@ -68,7 +67,7 @@ const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
           title={flagData.name}
         />
         {showName && (
-          <span className={cn('font-medium', textSizeClasses[size])}>
+          <span className={cn("font-medium", textSizeClasses[size])}>
             {flagData.name}
           </span>
         )}
@@ -77,7 +76,7 @@ const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
   }
 );
 
-Flag.displayName = 'Flag';
+Flag.displayName = "Flag";
 
 export { Flag, type FlagCode, type FlagData };
 export default Flag;

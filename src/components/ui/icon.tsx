@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Image from 'next/image';
-import { LucideIcon, LucideProps } from 'lucide-react';
-import { DynamicIcon, IconName } from 'lucide-react/dynamic';
+import * as React from "react";
+import type { LucideIcon, LucideProps } from "lucide-react";
+import { DynamicIcon, type IconName } from "lucide-react/dynamic";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-interface IconProps extends Omit<LucideProps, 'ref'> {
+interface IconProps extends Omit<LucideProps, "ref"> {
   name: IconName | string;
   fallback?: React.ReactNode;
   src?: string; // For custom uploaded icons
@@ -28,18 +27,18 @@ const Icon = React.forwardRef<React.ComponentRef<LucideIcon>, IconProps>(
       // If src is provided, render as image (for custom uploaded icons)
       if (src) {
         return (
-          <Image
+          <img
             src={src}
             alt={alt || `${name} icon`}
-            width={typeof size === 'number' ? size : 16}
-            height={typeof size === 'number' ? size : 16}
-            className={cn('h-4 w-4', className)}
+            width={typeof size === "number" ? size : 16}
+            height={typeof size === "number" ? size : 16}
+            className={cn("h-4 w-4", className)}
           />
         );
       }
 
       // If the name is a valid IconName, render the dynamic icon
-      if (name && typeof name === 'string') {
+      if (name && typeof name === "string") {
         return (
           <DynamicIcon
             name={name as IconName}
@@ -61,7 +60,7 @@ const Icon = React.forwardRef<React.ComponentRef<LucideIcon>, IconProps>(
   }
 );
 
-Icon.displayName = 'Icon';
+Icon.displayName = "Icon";
 
 export { Icon, type IconName };
 export default Icon;

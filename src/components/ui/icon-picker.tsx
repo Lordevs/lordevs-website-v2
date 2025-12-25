@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useVirtualizer, VirtualItem } from '@tanstack/react-virtual';
-import Fuse from 'fuse.js';
-import { LucideIcon, LucideProps } from 'lucide-react';
-import { DynamicIcon, IconName } from 'lucide-react/dynamic';
-import { useDebounceValue } from 'usehooks-ts';
+import * as React from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual";
+import Fuse from "fuse.js";
+import type { LucideIcon, LucideProps } from "lucide-react";
+import { DynamicIcon, type IconName } from "lucide-react/dynamic";
+import { useDebounceValue } from "usehooks-ts";
 
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Skeleton } from '@/components/ui/skeleton';
+} from "@/components/ui/popover";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/tooltip";
 
-import { iconsData } from './icons-data';
+import { iconsData } from "./icons-data";
 
 export type IconData = (typeof iconsData)[number];
 
 interface IconPickerProps
   extends Omit<
     React.ComponentPropsWithoutRef<typeof PopoverTrigger>,
-    'onSelect' | 'onOpenChange'
+    "onSelect" | "onOpenChange"
   > {
   value?: IconName;
   defaultValue?: IconName;
@@ -50,7 +50,7 @@ interface IconPickerProps
 const IconRenderer = React.memo(({ name }: { name: IconName }) => {
   return <Icon name={name} />;
 });
-IconRenderer.displayName = 'IconRenderer';
+IconRenderer.displayName = "IconRenderer";
 
 const IconsColumnSkeleton = () => {
   return (
@@ -75,7 +75,7 @@ const useIconsData = () => {
     const loadIcons = async () => {
       setIsLoading(true);
 
-      const { iconsData } = await import('./icons-data');
+      const { iconsData } = await import("./icons-data");
       if (isMounted) {
         setIcons(iconsData);
         setIsLoading(false);
@@ -106,8 +106,8 @@ const IconPicker = React.forwardRef<
       onOpenChange,
       children,
       searchable = true,
-      searchPlaceholder = 'Search for an icon...',
-      triggerPlaceholder = 'Select an icon',
+      searchPlaceholder = "Search for an icon...",
+      triggerPlaceholder = "Select an icon",
       iconsList,
       categorized = true,
       modal = false,
@@ -119,7 +119,7 @@ const IconPicker = React.forwardRef<
       defaultValue
     );
     const [isOpen, setIsOpen] = useState(defaultOpen || false);
-    const [search, setSearch] = useDebounceValue('', 100);
+    const [search, setSearch] = useDebounceValue("", 100);
     const [isPopoverVisible, setIsPopoverVisible] = useState(false);
     const { icons } = useIconsData();
     const [isLoading, setIsLoading] = useState(true);
@@ -128,7 +128,7 @@ const IconPicker = React.forwardRef<
 
     const fuseInstance = useMemo(() => {
       return new Fuse(iconsToUse, {
-        keys: ['name', 'tags', 'categories'],
+        keys: ["name", "tags", "categories"],
         threshold: 0.3,
         ignoreLocation: true,
         includeScore: true,
@@ -136,7 +136,7 @@ const IconPicker = React.forwardRef<
     }, [iconsToUse]);
 
     const filteredIcons = useMemo(() => {
-      if (search.trim() === '') {
+      if (search.trim() === "") {
         return iconsToUse;
       }
 
@@ -145,8 +145,8 @@ const IconPicker = React.forwardRef<
     }, [search, iconsToUse, fuseInstance]);
 
     const categorizedIcons = useMemo(() => {
-      if (!categorized || search.trim() !== '') {
-        return [{ name: 'All Icons', icons: filteredIcons }];
+      if (!categorized || search.trim() !== "") {
+        return [{ name: "All Icons", icons: filteredIcons }];
       }
 
       const categories = new Map<string, IconData[]>();
@@ -160,7 +160,7 @@ const IconPicker = React.forwardRef<
             categories.get(category)!.push(icon);
           });
         } else {
-          const category = 'Other';
+          const category = "Other";
           if (!categories.has(category)) {
             categories.set(category, []);
           }
@@ -175,14 +175,14 @@ const IconPicker = React.forwardRef<
 
     const virtualItems = useMemo(() => {
       const items: Array<{
-        type: 'category' | 'row';
+        type: "category" | "row";
         categoryIndex: number;
         rowIndex?: number;
         icons?: IconData[];
       }> = [];
 
       categorizedIcons.forEach((category, categoryIndex) => {
-        items.push({ type: 'category', categoryIndex });
+        items.push({ type: "category", categoryIndex });
 
         const rows = [];
         for (let i = 0; i < category.icons.length; i += 5) {
@@ -191,7 +191,7 @@ const IconPicker = React.forwardRef<
 
         rows.forEach((rowIcons, rowIndex) => {
           items.push({
-            type: 'row',
+            type: "row",
             categoryIndex,
             rowIndex,
             icons: rowIcons,
@@ -206,7 +206,7 @@ const IconPicker = React.forwardRef<
       const indices: Record<string, number> = {};
 
       virtualItems.forEach((item, index) => {
-        if (item.type === 'category') {
+        if (item.type === "category") {
           indices[categorizedIcons[item.categoryIndex].name] = index;
         }
       });
@@ -220,7 +220,7 @@ const IconPicker = React.forwardRef<
       count: virtualItems.length,
       getScrollElement: () => parentRef.current,
       estimateSize: (index) =>
-        virtualItems[index].type === 'category' ? 25 : 40,
+        virtualItems[index].type === "category" ? 25 : 40,
       paddingEnd: 2,
       gap: 10,
       overscan: 5,
@@ -238,7 +238,7 @@ const IconPicker = React.forwardRef<
 
     const handleOpenChange = useCallback(
       (newOpen: boolean) => {
-        setSearch('');
+        setSearch("");
         if (open === undefined) {
           setIsOpen(newOpen);
         }
@@ -260,7 +260,7 @@ const IconPicker = React.forwardRef<
       (iconName: IconName) => {
         handleValueChange(iconName);
         setIsOpen(false);
-        setSearch('');
+        setSearch("");
       },
       [handleValueChange]
     );
@@ -284,8 +284,8 @@ const IconPicker = React.forwardRef<
 
         if (categoryIndex !== undefined && virtualizer) {
           virtualizer.scrollToIndex(categoryIndex, {
-            align: 'start',
-            behavior: 'smooth',
+            align: "start",
+            behavior: "smooth",
           });
         }
       },
@@ -293,19 +293,18 @@ const IconPicker = React.forwardRef<
     );
 
     const categoryButtons = useMemo(() => {
-      if (!categorized || search.trim() !== '') return null;
+      if (!categorized || search.trim() !== "") return null;
 
       return categorizedIcons.map((category) => (
         <Button
           key={category.name}
-          variant={'outline'}
+          variant={"outline"}
           size="sm"
           className="text-xs"
           onClick={(e) => {
             e.stopPropagation();
             scrollToCategory(category.name);
-          }}
-        >
+          }}>
           {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
         </Button>
       ));
@@ -317,11 +316,10 @@ const IconPicker = React.forwardRef<
           <Tooltip>
             <TooltipTrigger
               className={cn(
-                'hover:bg-foreground/10 rounded-md border p-2 transition',
-                'flex items-center justify-center'
+                "hover:bg-foreground/10 rounded-md border p-2 transition",
+                "flex items-center justify-center"
               )}
-              onClick={() => handleIconClick(icon.name as IconName)}
-            >
+              onClick={() => handleIconClick(icon.name as IconName)}>
               <IconRenderer name={icon.name as IconName} />
             </TooltipTrigger>
             <TooltipContent>
@@ -343,33 +341,31 @@ const IconPicker = React.forwardRef<
           className="relative w-full overscroll-contain"
           style={{
             height: `${virtualizer.getTotalSize()}px`,
-          }}
-        >
+          }}>
           {virtualizer.getVirtualItems().map((virtualItem: VirtualItem) => {
             const item = virtualItems[virtualItem.index];
 
             if (!item) return null;
 
             const itemStyle = {
-              position: 'absolute' as const,
+              position: "absolute" as const,
               top: 0,
               left: 0,
-              width: '100%',
+              width: "100%",
               height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             };
 
-            if (item.type === 'category') {
+            if (item.type === "category") {
               return (
                 <div
                   key={virtualItem.key}
                   style={itemStyle}
-                  className="bg-background top-0 z-10"
-                >
+                  className="bg-background top-0 z-10">
                   <h3 className="text-sm font-medium capitalize">
                     {categorizedIcons[item.categoryIndex].name}
                   </h3>
-                  <div className="bg-foreground/10 h-[1px] w-full" />
+                  <div className="bg-foreground/10 h-px w-full" />
                 </div>
               );
             }
@@ -378,8 +374,7 @@ const IconPicker = React.forwardRef<
               <div
                 key={virtualItem.key}
                 data-index={virtualItem.index}
-                style={itemStyle}
-              >
+                style={itemStyle}>
                 <div className="grid w-full grid-cols-5 gap-2">
                   {item.icons!.map(renderIcon)}
                 </div>
@@ -423,14 +418,13 @@ const IconPicker = React.forwardRef<
       <Popover
         open={open ?? isOpen}
         onOpenChange={handleOpenChange}
-        modal={modal}
-      >
+        modal={modal}>
         <PopoverTrigger ref={ref} asChild {...props}>
           {children || (
             <Button variant="outline" className="cursor-pointer">
               {value || selectedIcon ? (
                 <>
-                  <Icon name={(value || selectedIcon)!} />{' '}
+                  <Icon name={(value || selectedIcon)!} />{" "}
                   {value || selectedIcon}
                 </>
               ) : (
@@ -447,7 +441,7 @@ const IconPicker = React.forwardRef<
               className="mb-2"
             />
           )}
-          {categorized && search.trim() === '' && (
+          {categorized && search.trim() === "" && (
             <div className="mt-2 flex flex-row gap-1 overflow-x-auto pb-2">
               {categoryButtons}
             </div>
@@ -455,8 +449,7 @@ const IconPicker = React.forwardRef<
           <div
             ref={parentRef}
             className="max-h-60 overflow-auto"
-            style={{ scrollbarWidth: 'thin' }}
-          >
+            style={{ scrollbarWidth: "thin" }}>
             {isLoading ? <IconsColumnSkeleton /> : renderVirtualContent()}
           </div>
         </PopoverContent>
@@ -464,9 +457,9 @@ const IconPicker = React.forwardRef<
     );
   }
 );
-IconPicker.displayName = 'IconPicker';
+IconPicker.displayName = "IconPicker";
 
-interface IconProps extends Omit<LucideProps, 'ref'> {
+interface IconProps extends Omit<LucideProps, "ref"> {
   name: IconName;
 }
 
@@ -475,6 +468,6 @@ const Icon = React.forwardRef<React.ComponentRef<LucideIcon>, IconProps>(
     return <DynamicIcon name={name} {...props} ref={ref} />;
   }
 );
-Icon.displayName = 'Icon';
+Icon.displayName = "Icon";
 
 export { Icon, IconPicker, type IconName };

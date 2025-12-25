@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Flag } from '@/components/ui/flag';
-import { FlagCode, FlagPicker } from '@/components/ui/flag-picker';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Flag } from "@/components/ui/flag";
+import { type FlagCode, FlagPicker } from "@/components/ui/flag-picker";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface UserProfile {
   id: string;
@@ -18,21 +18,21 @@ interface UserProfile {
 
 export default function UserProfileForm() {
   const [profile, setProfile] = useState<UserProfile>({
-    id: '1',
-    name: '',
-    email: '',
-    country: 'US',
+    id: "1",
+    name: "",
+    email: "",
+    country: "US",
   });
 
   const [users, setUsers] = useState<UserProfile[]>([
-    { id: '1', name: 'John Doe', email: 'john@example.com', country: 'US' },
-    { id: '2', name: 'Jane Smith', email: 'jane@example.com', country: 'GB' },
-    { id: '3', name: 'Hans Mueller', email: 'hans@example.com', country: 'DE' },
+    { id: "1", name: "John Doe", email: "john@example.com", country: "US" },
+    { id: "2", name: "Jane Smith", email: "jane@example.com", country: "GB" },
+    { id: "3", name: "Hans Mueller", email: "hans@example.com", country: "DE" },
     {
-      id: '4',
-      name: 'Marie Dubois',
-      email: 'marie@example.com',
-      country: 'FR',
+      id: "4",
+      name: "Marie Dubois",
+      email: "marie@example.com",
+      country: "FR",
     },
   ]);
 
@@ -43,7 +43,7 @@ export default function UserProfileForm() {
         id: Date.now().toString(),
       };
       setUsers([...users, newUser]);
-      setProfile({ id: '', name: '', email: '', country: 'US' });
+      setProfile({ id: "", name: "", email: "", country: "US" });
     }
   };
 
@@ -114,8 +114,7 @@ export default function UserProfileForm() {
             <Button
               onClick={addUser}
               disabled={!profile.name || !profile.email}
-              className="w-full"
-            >
+              className="w-full">
               Add User
             </Button>
           </CardContent>
@@ -136,8 +135,7 @@ export default function UserProfileForm() {
               {users.map((user) => (
                 <div
                   key={user.id}
-                  className="flex items-center justify-between rounded-lg border p-3 hover:bg-gray-50"
-                >
+                  className="flex items-center justify-between rounded-lg border p-3 hover:bg-gray-50">
                   <div className="flex items-center gap-3">
                     <Flag code={user.country} size="md" />
                     <div>
@@ -149,8 +147,7 @@ export default function UserProfileForm() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => removeUser(user.id)}
-                  >
+                    onClick={() => removeUser(user.id)}>
                     Remove
                   </Button>
                 </div>
