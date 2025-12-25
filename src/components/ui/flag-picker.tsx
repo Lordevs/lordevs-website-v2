@@ -1,5 +1,3 @@
-"use client";
-
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual";
 import "flag-icons/css/flag-icons.min.css";
 

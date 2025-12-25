@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { ROUTES } from "@/constants/routes";
 import { Separator } from "@radix-ui/react-separator";

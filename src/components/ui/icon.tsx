@@ -1,11 +1,7 @@
-"use client";
-
 import * as React from "react";
 import type { LucideIcon, LucideProps } from "lucide-react";
 import { DynamicIcon, type IconName } from "lucide-react/dynamic";
-
 import { cn } from "@/lib/utils";
-
 interface IconProps extends Omit<LucideProps, "ref"> {
   name: IconName | string;
   fallback?: React.ReactNode;

@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useVirtualizer, type VirtualItem } from "@tanstack/react-virtual";
@@ -7,7 +5,6 @@ import Fuse from "fuse.js";
 import type { LucideIcon, LucideProps } from "lucide-react";
 import { DynamicIcon, type IconName } from "lucide-react/dynamic";
 import { useDebounceValue } from "usehooks-ts";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

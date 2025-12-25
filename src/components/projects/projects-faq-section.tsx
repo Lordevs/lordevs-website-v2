@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { getFAQsForPage } from "@/lib/utils/faqs";
 import { FAQSection } from "../common/faq-section";

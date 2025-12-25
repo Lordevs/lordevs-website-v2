@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { EnhancedServiceCard } from "@/components/home/cards/enhanced-service-card";
 import SectionBagde from "../common/section-badge";

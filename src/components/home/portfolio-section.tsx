@@ -1,5 +1,3 @@
-"use client";
-
 import { NavLink } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { motion } from "framer-motion";

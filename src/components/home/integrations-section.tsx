@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { IntegrationCard } from "@/components/home/cards/integration-card";
 import CTA from "../common/cta";

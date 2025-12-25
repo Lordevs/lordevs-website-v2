@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import Icon from "@/components/ui/icon";
 import { TiltCard } from "@/components/common/tilt-card";

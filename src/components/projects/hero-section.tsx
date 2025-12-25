@@ -1,5 +1,3 @@
-"use client";
-
 import { NavLink } from "react-router";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";

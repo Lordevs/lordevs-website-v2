@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import useMobile from "@/hooks/use-mobile";

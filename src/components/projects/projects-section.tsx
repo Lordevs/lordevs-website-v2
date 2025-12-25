@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/use-projects";
 import { Skeleton } from "@/components/ui/skeleton";

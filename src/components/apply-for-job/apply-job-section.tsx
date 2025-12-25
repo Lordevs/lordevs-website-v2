@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import * as z from "zod";

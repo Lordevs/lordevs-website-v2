@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import { ROUTES } from "@/constants/routes";

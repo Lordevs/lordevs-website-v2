@@ -1,7 +1,4 @@
-"use client";
-
 import { useCallback, useEffect, useRef, useState } from "react";
-
 import { useTestimonials } from "@/hooks";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";

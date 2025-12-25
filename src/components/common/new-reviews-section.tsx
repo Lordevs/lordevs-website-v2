@@ -1,5 +1,3 @@
-"use client";
-
 import { useTestimonials } from "@/hooks";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
