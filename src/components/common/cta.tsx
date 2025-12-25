@@ -46,7 +46,7 @@ export default function CTA({
             alt=""
             width={1200}
             height={309}
-            className="absolute top-0 right-0 left-0 z-[-1] h-full w-full rotate-90 transform mix-blend-soft-light blur-[400px] md:blur-[178px]"
+            className="absolute top-0 right-0 left-0 z-[-1] h-full w-full rotate-90 transform object-cover mix-blend-soft-light blur-[400px] md:blur-[178px]"
           />
 
           <div
