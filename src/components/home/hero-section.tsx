@@ -23,6 +23,8 @@ export function HeroSection() {
           src="./images/backgrounds/home/hero-bg.svg"
           alt=""
           className="object-cover opacity-70 h-full w-full"
+          fetchPriority="high"
+          loading="eager"
         />
 
         {/* Gradient Orbs - positioned to match your reference */}

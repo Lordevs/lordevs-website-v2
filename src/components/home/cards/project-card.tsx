@@ -122,6 +122,7 @@ export function ProjectCard({
                     )}
                     <img
                       src={image || "/placeholder.svg"}
+                      loading="lazy"
                       alt={`${title} mockup ${index + 1}`}
                       className={cn(
                         "object-cover transition-opacity duration-300",
