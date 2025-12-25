@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import { cn } from "@/lib/utils";
-
 import SectionBagde from "../common/section-badge";
 import { TiltCard } from "../common/tilt-card";
 import { Separator } from "../ui/separator";
