@@ -293,7 +293,7 @@ export function ExpertiseSection() {
                       </p>
                       <ul className="mb-2 space-y-2">
                         {EXPERTISES[selected].bullets.map((b, index) => (
-                          <div
+                          <li
                             key={index}
                             className="flex items-start space-x-2">
                             <img
@@ -306,7 +306,7 @@ export function ExpertiseSection() {
                             <span className="text-sm text-white md:text-base">
                               {b}
                             </span>
-                          </div>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -453,7 +453,7 @@ export function ExpertiseSection() {
                       {/* Bullets */}
                       <ul className="space-y-3">
                         {EXPERTISES[selected].bullets.map((b, index) => (
-                          <div
+                          <li
                             key={index}
                             className="flex items-start space-x-3">
                             <img
@@ -466,7 +466,7 @@ export function ExpertiseSection() {
                             <span className="text-xs text-white md:text-sm">
                               {b}
                             </span>
-                          </div>
+                          </li>
                         ))}
                       </ul>
                     </div>
