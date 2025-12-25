@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { createBrowserRouter } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import Layout from "@/layout/layout";
 import AboutPage from "@/pages/about";
@@ -8,22 +8,34 @@ import ProjectPage from "@/pages/case-studies/[slug]";
 import ContactPage from "@/pages/contact";
 import HomePage from "@/pages/home";
 
-export default function App() {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.CASE_STUDIES} element={<ProjectsPage />} />
-        {/* 
-           ROUTES.CASE_STUDY is a function (slug) => string.
-           We need the path pattern here. 
-           Extraction: '/case-studies/:slug' matches the pattern implied by the function.
-        */}
-        <Route path="/case-studies/:slug" element={<ProjectPage />} />
-        <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-        <Route path={ROUTES.CAREER} element={<CareersPage />} />
-        <Route path={ROUTES.CONTACT} element={<ContactPage />} />
-      </Route>
-    </Routes>
-  );
-}
+export const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: ROUTES.HOME,
+        element: <HomePage />,
+      },
+      {
+        path: ROUTES.CASE_STUDIES,
+        element: <ProjectsPage />,
+      },
+      {
+        path: "/case-studies/:slug",
+        element: <ProjectPage />,
+      },
+      {
+        path: ROUTES.ABOUT,
+        element: <AboutPage />,
+      },
+      {
+        path: ROUTES.CAREER,
+        element: <CareersPage />,
+      },
+      {
+        path: ROUTES.CONTACT,
+        element: <ContactPage />,
+      },
+    ],
+  },
+]);

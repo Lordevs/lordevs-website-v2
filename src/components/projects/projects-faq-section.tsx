@@ -1,8 +1,16 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getFAQsForPage } from "@/lib/utils/faqs";
 import { FAQSection } from "../common/faq-section";
+import type { FAQ } from "@/lib/types/database";
 
-export default async function ProjectsFAQsSection() {
-  const faqs = await getFAQsForPage("about");
+export default function ProjectsFAQsSection() {
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+
+  useEffect(() => {
+    getFAQsForPage("case-studies").then(setFaqs);
+  }, []);
 
   return (
     <FAQSection
