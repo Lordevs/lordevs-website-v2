@@ -8,6 +8,7 @@ const AboutPage = lazy(() => import("@/pages/about"));
 const CareersPage = lazy(() => import("@/pages/career"));
 const ProjectsPage = lazy(() => import("@/pages/case-studies"));
 const ProjectPage = lazy(() => import("@/pages/case-studies/[slug]"));
+const NewsDetailPage = lazy(() => import("@/pages/news/[slug]"));
 const ContactPage = lazy(() => import("@/pages/contact"));
 const ApplyJobPage = lazy(() => import("@/pages/career/apply-for-job"));
 const NewsPage = lazy(() => import("@/pages/news"));
@@ -77,6 +78,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <NewsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/news/:slug",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <NewsDetailPage />
           </Suspense>
         ),
       },
