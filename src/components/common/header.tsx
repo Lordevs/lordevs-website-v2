@@ -10,7 +10,7 @@ const navItems = [
   { name: "Home", href: ROUTES.HOME },
   { name: "Case Studies", href: ROUTES.CASE_STUDIES },
   { name: "About", href: ROUTES.ABOUT },
-  // { name: 'Career', href: '/careers' },
+  { name: "Career", href: ROUTES.CAREER },
   { name: "Contact", href: ROUTES.CONTACT },
 ];
 
