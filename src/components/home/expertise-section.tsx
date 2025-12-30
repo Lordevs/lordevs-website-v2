@@ -434,7 +434,7 @@ export function ExpertiseSection() {
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.95 }}
                           transition={{ duration: 0.5 }}
-                          className="relative h-32 w-full max-w-xs">
+                          className="relative h-32 w-full max-w-xs hidden">
                           <img
                             src={EXPERTISES[selected].image}
                             alt={EXPERTISES[selected].name}

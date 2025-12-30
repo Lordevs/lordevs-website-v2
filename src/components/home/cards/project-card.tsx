@@ -1,11 +1,13 @@
+"use client";
+
 import { useState } from "react";
+import { Link } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { Separator } from "@radix-ui/react-separator";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { NavLink } from "react-router";
 
 interface ProjectCardProps {
   title: string;
@@ -38,12 +40,12 @@ export function ProjectCard({
 
   return (
     <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.3 }}>
-      <NavLink to={ROUTES.CASE_STUDY(slug)}>
+      <Link to={ROUTES.CASE_STUDY(slug)}>
         <Card className="rounded-4xl border-[#939393] bg-[#080808] px-3 py-4 backdrop-blur-sm transition-colors hover:bg-[#080808]/70 hover:shadow-[0_4px_32px_0_rgba(59,130,246,0.5)]">
           <div className="flex flex-col gap-4 md:gap-6 lg:flex-row">
             {/* Left Side - Project Info */}
             <div
-              className="relative overflow-hidden rounded-[22px] border-1px border-[#4F1AD626] p-4 lg:w-1/3"
+              className="relative overflow-hidden rounded-[22px] border-px border-[#4F1AD626] p-4 lg:w-1/3"
               style={{
                 background:
                   "radial-gradient(43% 50% at 50% 50%, #0F091226, #0C0912)",
@@ -122,10 +124,9 @@ export function ProjectCard({
                     )}
                     <img
                       src={image || "/placeholder.svg"}
-                      loading="lazy"
                       alt={`${title} mockup ${index + 1}`}
                       className={cn(
-                        "object-cover transition-opacity duration-300",
+                        "object-cover h-full w-full transition-opacity duration-300",
                         imageLoadingStates[index] ? "opacity-0" : "opacity-100"
                       )}
                       onLoad={() => handleImageLoad(index)}
@@ -136,7 +137,7 @@ export function ProjectCard({
             </div>
           </div>
         </Card>
-      </NavLink>
+      </Link>
     </motion.div>
   );
 }
