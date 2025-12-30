@@ -27,7 +27,7 @@ export function FeaturedNewsCard({
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="relative mb-24 flex flex-col gap-12 rounded-[40px] border border-white/5 bg-[#0C0912]/40 backdrop-blur-3xl p-8 md:p-14 md:flex-row group transition-all duration-700 overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)]">
+      className="relative mb-24 flex flex-col gap-12 rounded-[40px] border border-white/5 bg-[#0C0912]/40 backdrop-blur-3xl p-8 md:p-10 md:flex-row group transition-all duration-700 overflow-hidden shadow-[0_50px_100px_-30px_rgba(0,0,0,0.5)]">
       <ShineBorder
         shineColor={["#41A2F8", "#8F00FF", "#00FFFF"]}
         duration={12}
@@ -41,7 +41,7 @@ export function FeaturedNewsCard({
         <div className="absolute bottom-0 left-0 h-[400px] w-[400px] bg-[#41A2F8]/10 blur-[100px] rounded-full" />
       </div>
 
-      <div className="relative h-80 w-full overflow-hidden rounded-[32px] md:h-[500px] md:w-[55%] z-10 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.3)]">
+      <div className="relative h-80 w-full overflow-hidden rounded-[32px] md:h-[350px] md:w-[55%] z-10 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.3)]">
         <div
           className="flex h-full w-full items-center justify-center transition-transform duration-2000 group-hover:scale-110"
           style={{
@@ -91,7 +91,7 @@ export function FeaturedNewsCard({
             </span>
           </div>
 
-          <h2 className="text-4xl lg:text-6xl font-black text-white transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-[#41A2F8] leading-[1.1] tracking-tight">
+          <h2 className="text-4xl lg:text-5xl font-black text-white transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-[#41A2F8] leading-[1.1] tracking-tight">
             {title}
           </h2>
         </div>
@@ -104,7 +104,7 @@ export function FeaturedNewsCard({
           <div className="flex items-center gap-3">
             <div className="h-12 w-12 rounded-full border-2 border-[#41A2F8] p-0.5 shadow-[0_0_15px_rgba(65,162,248,0.3)]">
               <img
-                src="/favicon.png"
+                src="/favicon.ico"
                 className="h-full w-full rounded-full grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all"
               />
             </div>
