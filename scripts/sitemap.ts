@@ -30,6 +30,7 @@ const staticRoutes = [
   { url: `${BASE_URL}/about`, changefreq: "weekly", priority: 0.8 },
   { url: `${BASE_URL}/career`, changefreq: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/contact`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/news`, changefreq: "monthly", priority: 0.7 },
 ];
 
 // Dynamic routes from Supabase
