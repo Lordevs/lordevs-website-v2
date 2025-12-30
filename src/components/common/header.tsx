@@ -11,6 +11,7 @@ const navItems = [
   { name: "Case Studies", href: ROUTES.CASE_STUDIES },
   { name: "About", href: ROUTES.ABOUT },
   { name: "Career", href: ROUTES.CAREER },
+  { name: "News", href: ROUTES.NEWS },
   { name: "Contact", href: ROUTES.CONTACT },
 ];
 

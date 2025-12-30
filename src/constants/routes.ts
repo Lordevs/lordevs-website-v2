@@ -5,5 +5,7 @@ export const ROUTES = {
   ABOUT: "/about",
   CAREER: "/careers",
   CAREER_APPLY: "/careers/apply-for-job",
+  NEWS: "/news",
+  NEWS_ARTICLE: (slug: string) => `/news/${slug}`,
   CONTACT: "/contact",
 } as const;
