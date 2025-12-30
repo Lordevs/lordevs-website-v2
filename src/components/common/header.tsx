@@ -123,7 +123,10 @@ export function Header() {
               <nav className="mb-6">
                 <div className="space-y-2">
                   {navItems.map((item, index) => {
-                    const isActive = location.pathname === item.href;
+                    const isActive =
+                      item.href === ROUTES.HOME
+                        ? location.pathname === item.href
+                        : location.pathname.startsWith(item.href);
                     return (
                       <motion.div
                         key={item.name}
@@ -169,7 +172,10 @@ function DesktopNav({ currentPath }: { currentPath: string }) {
   return (
     <nav className="hidden space-x-8 md:flex">
       {navItems.map((item, idx) => {
-        const isActive = currentPath === item.href;
+        const isActive =
+          item.href === ROUTES.HOME
+            ? currentPath === item.href
+            : currentPath.startsWith(item.href);
         return (
           <motion.div
             key={item.name}
