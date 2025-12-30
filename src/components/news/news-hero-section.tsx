@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export function NewsHeroSection() {
   return (
-    <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden pt-20">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
       {/* Enhanced Background with Gradient Dots */}
       <div className="absolute inset-0 z-0 bg-black">
         {/* Main background image */}
@@ -35,21 +35,29 @@ export function NewsHeroSection() {
         />
       </div>
 
-      <div className="relative z-10 container mx-auto flex flex-col items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-4xl text-center md:px-4">
-          <h1 className="text-4xl md:text-7xl font-md mb-4 font-bold text-white">
-            News, insights and more
-          </h1>
-          <p className="mb-6 text-lg text-center text-gray-300">
+      <div className="relative z-10 container mx-auto">
+        <div className="mx-auto max-w-6xl text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6 text-3xl leading-tight font-bold md:text-4xl md:text-[64px] text-white">
+            News,{" "}
+            <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+              Insights{" "}
+            </span>
+            and more
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mx-auto mb-8 max-w-4xl text-base text-gray-300 md:text-2xl">
             Dive into our newsletter for expert insights, tips, and industry
             trends to elevate <br className="hidden md:block" />
             your project management journey.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
       </div>
     </section>
   );
