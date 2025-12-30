@@ -68,7 +68,7 @@ export function ServicesSection() {
             <img
               src="./images/backgrounds/home/services-bg.svg"
               alt=""
-              className="object-cover h-full w-full"
+              className="object-cover"
             />
             {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" /> */}
           </div>
