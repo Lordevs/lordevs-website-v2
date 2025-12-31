@@ -44,6 +44,15 @@ const AdminAddNewsPage = lazy(
 const AdminEditNewsPage = lazy(
   () => import("@/pages/admin/(dashboard)/news/edit/[id]")
 );
+const AdminCareersPage = lazy(
+  () => import("@/pages/admin/(dashboard)/careers")
+);
+const AdminAddCareerPage = lazy(
+  () => import("@/pages/admin/(dashboard)/careers/add")
+);
+const AdminEditCareerPage = lazy(
+  () => import("@/pages/admin/(dashboard)/careers/edit/[id]")
+);
 
 // Loading fallback
 const PageLoader = () => (
@@ -226,6 +235,30 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <AdminEditNewsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.CAREERS,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminCareersPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.ADD_CAREER,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAddCareerPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.EDIT_CAREER(":id"),
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminEditCareerPage />
           </Suspense>
         ),
       },

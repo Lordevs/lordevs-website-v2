@@ -195,6 +195,38 @@ export interface Database {
           updated_at?: string;
         };
       };
+      careers: {
+        Row: {
+          id: string;
+          title: string;
+          features: string[];
+          tags: string[];
+          is_active: boolean;
+          order_index: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          features?: string[];
+          tags?: string[];
+          is_active?: boolean;
+          order_index?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          features?: string[];
+          tags?: string[];
+          is_active?: boolean;
+          order_index?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
@@ -216,3 +248,4 @@ export type Project = Database["public"]["Tables"]["projects"]["Row"];
 export type TestimonialRow =
   Database["public"]["Tables"]["testimonials"]["Row"];
 export type NewsRow = Database["public"]["Tables"]["news"]["Row"];
+export type CareerRow = Database["public"]["Tables"]["careers"]["Row"];

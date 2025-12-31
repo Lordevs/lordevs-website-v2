@@ -10,6 +10,7 @@ import {
   Menu,
   MessageSquare,
   Newspaper,
+  Briefcase,
   X,
 } from "lucide-react";
 
@@ -43,6 +44,11 @@ const navigation = [
     name: "News",
     href: ROUTES.ADMIN.NEWS,
     icon: Newspaper,
+  },
+  {
+    name: "Careers",
+    href: ROUTES.ADMIN.CAREERS,
+    icon: Briefcase,
   },
 ];
 

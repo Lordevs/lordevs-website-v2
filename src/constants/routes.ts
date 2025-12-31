@@ -21,5 +21,8 @@ export const ROUTES = {
     NEWS: "/admin/news",
     ADD_NEWS: "/admin/news/add",
     EDIT_NEWS: (id: string) => `/admin/news/edit/${id}`,
+    CAREERS: "/admin/careers",
+    ADD_CAREER: "/admin/careers/add",
+    EDIT_CAREER: (id: string) => `/admin/careers/edit/${id}`,
   },
 } as const;
