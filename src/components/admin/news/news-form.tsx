@@ -12,6 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 
 import AdminForm from "../common/form";
+import MarkdownEditor from "../common/markdown-editor";
 
 // type NewsInsert = Database["public"]["Tables"]["news"]["Insert"];
 
@@ -137,7 +138,7 @@ export default function NewsForm({
                   required
                 />
               </div>
-              <div>
+              {/* <div>
                 <Label htmlFor="slug" className="text-white">
                   Slug (Optional)
                 </Label>
@@ -150,7 +151,7 @@ export default function NewsForm({
                   className="mt-1 border-white/20 bg-white/5 text-white"
                   placeholder="auto-generated-from-title"
                 />
-              </div>
+              </div> */}
               <div>
                 <Label htmlFor="excerpt" className="text-white">
                   Excerpt (Summary)
@@ -173,16 +174,15 @@ export default function NewsForm({
                 <Label htmlFor="content" className="text-white">
                   Full Content (Markdown)
                 </Label>
-                <Textarea
-                  id="content"
+                <MarkdownEditor
                   value={formData.content || ""}
-                  onChange={(e) =>
+                  onChange={(value) =>
                     setFormData((prev) => ({
                       ...prev,
-                      content: e.target.value,
+                      content: value,
                     }))
                   }
-                  className="mt-1 min-h-[400px] border-white/20 bg-white/5 text-white font-mono"
+                  className="mt-1 min-h-[500px]"
                   placeholder="# Article content here..."
                 />
               </div>
