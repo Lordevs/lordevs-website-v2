@@ -1,5 +1,4 @@
 import {
-  MoreVertical,
   Pencil,
   Trash2,
   Calendar,
@@ -9,12 +8,6 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import type { CareerRow } from "@/lib/types/database";
 import { updateCareer, deleteCareer } from "@/lib/supabase/careers";
@@ -78,29 +71,6 @@ export default function CareerAdminCard({
   return (
     <>
       <div className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 transition-all hover:border-[#41A2F8]/30 hover:bg-white/10 hover:shadow-lg">
-        <div className="absolute top-0 right-0 p-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 text-white/60 hover:text-white">
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => onEdit(career.id)}>
-                <Pencil className="mr-2 h-4 w-4" /> Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-red-500 focus:text-red-500"
-                onClick={() => setDeleteDialogOpen(true)}>
-                <Trash2 className="mr-2 h-4 w-4" /> Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
         <div>
           <div className="mb-4">
             <h3 className="line-clamp-2 text-xl font-bold text-white group-hover:text-[#41A2F8]">
@@ -135,37 +105,55 @@ export default function CareerAdminCard({
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between pt-4 border-t border-white/10">
+        <div className="mt-6 flex flex-col gap-4 pt-4 border-t border-white/10 sm:flex-row sm:items-center sm:justify-between">
           <Badge
             variant={career.is_active ? "default" : "secondary"}
             className={
               career.is_active
-                ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
-                : "bg-white/10 text-white/50"
+                ? "bg-green-500/20 text-green-400 hover:bg-green-500/30 w-fit"
+                : "bg-white/10 text-white/50 w-fit"
             }>
             {career.is_active ? "Active" : "Draft"}
           </Badge>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            disabled={isUpdating}
-            onClick={handleStatusToggle}
-            className={
-              career.is_active
-                ? "text-white/60 hover:text-white hover:bg-white/10"
-                : "text-[#41A2F8] hover:text-[#41A2F8] hover:bg-[#41A2F8]/10"
-            }>
-            {career.is_active ? (
-              <>
-                <EyeOff className="mr-2 h-4 w-4" /> Deactivate
-              </>
-            ) : (
-              <>
-                <Eye className="mr-2 h-4 w-4" /> Activate
-              </>
-            )}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => onEdit(career.id)}
+              className="text-white/60 hover:text-white hover:bg-white/10">
+              <Pencil className="mr-2 h-4 w-4" /> Edit
+            </Button>
+
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setDeleteDialogOpen(true)}
+              className="text-red-400 hover:text-red-500 hover:bg-red-500/10">
+              <Trash2 className="mr-2 h-4 w-4" /> Delete
+            </Button>
+
+            <Button
+              size="sm"
+              variant="ghost"
+              disabled={isUpdating}
+              onClick={handleStatusToggle}
+              className={
+                career.is_active
+                  ? "text-white/60 hover:text-white hover:bg-white/10"
+                  : "text-[#41A2F8] hover:text-[#41A2F8] hover:bg-[#41A2F8]/10"
+              }>
+              {career.is_active ? (
+                <>
+                  <EyeOff className="mr-2 h-4 w-4" /> Deactivate
+                </>
+              ) : (
+                <>
+                  <Eye className="mr-2 h-4 w-4" /> Activate
+                </>
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 
