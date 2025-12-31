@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import { useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import {
+  ArrowLeft,
   CircleHelp,
   FolderOpen,
   LayoutDashboard,
   LogOut,
   Menu,
   MessageSquare,
+  Newspaper,
   X,
 } from "lucide-react";
 
@@ -37,6 +38,11 @@ const navigation = [
     name: "Testimonials",
     href: ROUTES.ADMIN.TESTIMONIALS,
     icon: MessageSquare,
+  },
+  {
+    name: "News",
+    href: ROUTES.ADMIN.NEWS,
+    icon: Newspaper,
   },
 ];
 
@@ -162,16 +168,35 @@ export function AdminSidebar() {
   );
 }
 
-export function AdminHeader({ title }: { title: string }) {
+export function AdminHeader({
+  title,
+  showBackButton = false,
+}: {
+  title: string;
+  showBackButton?: boolean;
+}) {
+  const navigate = useNavigate();
+
   return (
     <header className="relative border-b border-blue-500/20 bg-linear-to-r from-[#0A0B14] via-[#1A1B2E] to-[#0F1019] px-6 py-4 backdrop-blur-xl">
       {/* Gradient overlay */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-blue-600/5 via-transparent to-purple-600/5" />
 
       <div className="relative flex items-center justify-between">
-        <h1 className="bg-linear-to-r from-white to-gray-300 bg-clip-text text-2xl font-semibold text-transparent">
-          {title}
-        </h1>
+        <div className="flex items-center gap-4">
+          {showBackButton && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8 border-white/10 bg-white/5 text-white hover:bg-white/10"
+              onClick={() => navigate(-1)}>
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          )}
+          <h1 className="bg-linear-to-r from-white to-gray-300 bg-clip-text text-2xl font-semibold text-transparent">
+            {title}
+          </h1>
+        </div>
 
         {/* Decorative gradient line */}
         <div className="h-px w-32 bg-linear-to-r from-transparent via-blue-500/50 to-transparent" />

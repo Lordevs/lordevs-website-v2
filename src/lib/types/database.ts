@@ -154,6 +154,47 @@ export interface Database {
           updated_at?: string;
         };
       };
+      news: {
+        Row: {
+          id: string;
+          title: string;
+          slug: string;
+          excerpt: string | null;
+          content: string | null;
+          thumbnail_url: string | null;
+          is_active: boolean;
+          order_index: number;
+          published_at: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          slug?: string;
+          excerpt?: string | null;
+          content?: string | null;
+          thumbnail_url?: string | null;
+          is_active?: boolean;
+          order_index?: number;
+          published_at?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          slug?: string;
+          excerpt?: string | null;
+          content?: string | null;
+          thumbnail_url?: string | null;
+          is_active?: boolean;
+          order_index?: number;
+          published_at?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
@@ -174,3 +215,4 @@ export type FAQ = Database["public"]["Tables"]["faqs"]["Row"];
 export type Project = Database["public"]["Tables"]["projects"]["Row"];
 export type TestimonialRow =
   Database["public"]["Tables"]["testimonials"]["Row"];
+export type NewsRow = Database["public"]["Tables"]["news"]["Row"];

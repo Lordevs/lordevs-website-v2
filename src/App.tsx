@@ -37,6 +37,13 @@ const AdminAddTestimonialPage = lazy(
 const AdminEditTestimonialPage = lazy(
   () => import("@/pages/admin/(dashboard)/testimonials/edit/[id]")
 );
+const AdminNewsPage = lazy(() => import("@/pages/admin/(dashboard)/news"));
+const AdminAddNewsPage = lazy(
+  () => import("@/pages/admin/(dashboard)/news/add")
+);
+const AdminEditNewsPage = lazy(
+  () => import("@/pages/admin/(dashboard)/news/edit/[id]")
+);
 
 // Loading fallback
 const PageLoader = () => (
@@ -195,6 +202,30 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <AdminEditTestimonialPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.NEWS,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminNewsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.ADD_NEWS,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminAddNewsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.EDIT_NEWS(":id"),
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminEditNewsPage />
           </Suspense>
         ),
       },

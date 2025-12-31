@@ -18,5 +18,8 @@ export const ROUTES = {
     TESTIMONIALS: "/admin/testimonials",
     ADD_TESTIMONIAL: "/admin/testimonials/add",
     EDIT_TESTIMONIAL: (id: string) => `/admin/testimonials/edit/${id}`,
+    NEWS: "/admin/news",
+    ADD_NEWS: "/admin/news/add",
+    EDIT_NEWS: (id: string) => `/admin/news/edit/${id}`,
   },
 } as const;
