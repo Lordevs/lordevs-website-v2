@@ -11,6 +11,7 @@ import {
   MessageSquare,
   Newspaper,
   Briefcase,
+  Users,
   X,
 } from "lucide-react";
 
@@ -49,6 +50,11 @@ const navigation = [
     name: "Careers",
     href: ROUTES.ADMIN.CAREERS,
     icon: Briefcase,
+  },
+  {
+    name: "Job Applications",
+    href: ROUTES.ADMIN.JOB_APPLICATIONS,
+    icon: Users,
   },
 ];
 

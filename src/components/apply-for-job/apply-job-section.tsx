@@ -7,19 +7,29 @@ import {
   ReusableForm,
 } from "@/components/common/reuseable-form";
 
+import { toast } from "sonner";
+import { submitJobApplication } from "@/lib/supabase/job-applications";
+
 // Zod schema for contact form
 const contactFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
+  phoneNo: z.string().min(1, "Phone number is required"),
   message: z.string().min(1, "Message is required"),
-  subject: z.enum([
-    "general-inquiry",
-    "support-request",
-    "career-opportunity",
-    "feedback",
-    "partnership-inquiry",
-    "other",
-  ]),
+  applyingFor: z.string().min(1, "Please select a role"),
+  resume: z
+    .any()
+    .refine((files) => files?.length > 0, "Resume is required")
+    .refine((files) => files?.[0]?.size <= 5000000, `Max file size is 5MB.`)
+    .refine(
+      (files) =>
+        [
+          "application/pdf",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        ].includes(files?.[0]?.type),
+      "Only .pdf, .doc, and .docx formats are supported."
+    ),
 });
 
 // Field configuration for contact form
@@ -54,9 +64,26 @@ const contactFields: FieldConfig[] = [
 ];
 
 export function ApplyJobSection() {
-  const handleContactSubmit = (values: z.infer<typeof contactFormSchema>) => {
-    console.log("Submitted!", values);
-    // TODO: replace with real submission logic
+  const handleContactSubmit = async (
+    values: z.infer<typeof contactFormSchema>
+  ) => {
+    try {
+      const resumeFile = values.resume[0];
+      await submitJobApplication(
+        {
+          name: values.name,
+          email: values.email,
+          phoneNo: values.phoneNo,
+          message: values.message,
+          applyingFor: values.applyingFor,
+        },
+        resumeFile
+      );
+      toast.success("Application submitted successfully!");
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Failed to submit application. Please try again.");
+    }
   };
 
   return (

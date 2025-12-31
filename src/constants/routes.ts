@@ -24,5 +24,6 @@ export const ROUTES = {
     CAREERS: "/admin/careers",
     ADD_CAREER: "/admin/careers/add",
     EDIT_CAREER: (id: string) => `/admin/careers/edit/${id}`,
+    JOB_APPLICATIONS: "/admin/job-applications",
   },
 } as const;

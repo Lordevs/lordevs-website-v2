@@ -53,6 +53,9 @@ const AdminAddCareerPage = lazy(
 const AdminEditCareerPage = lazy(
   () => import("@/pages/admin/(dashboard)/careers/edit/[id]")
 );
+const AdminJobApplicationsPage = lazy(
+  () => import("@/pages/admin/(dashboard)/job-application")
+);
 
 // Loading fallback
 const PageLoader = () => (
@@ -259,6 +262,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <AdminEditCareerPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.ADMIN.JOB_APPLICATIONS,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminJobApplicationsPage />
           </Suspense>
         ),
       },

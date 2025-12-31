@@ -227,6 +227,41 @@ export interface Database {
           updated_at?: string;
         };
       };
+      job_applications: {
+        Row: {
+          id: string;
+          name: string;
+          email: string;
+          phone_number: string;
+          message: string;
+          role: string;
+          resume_url: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          email: string;
+          phone_number: string;
+          message: string;
+          role: string;
+          resume_url: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          email?: string;
+          phone_number?: string;
+          message?: string;
+          role?: string;
+          resume_url?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
