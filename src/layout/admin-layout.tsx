@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Outlet } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { createClient } from "@/lib/supabase/client";
 import { isAdminUser } from "@/lib/auth/admin";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AdminSidebar } from "@/components/admin/navigation";
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -108,7 +104,9 @@ export default function AdminLayout({
       {/* Main content */}
       <div className="relative flex h-screen overflow-hidden">
         <AdminSidebar />
-        <ScrollArea className="flex-1 overflow-auto">{children}</ScrollArea>
+        <ScrollArea className="flex-1 overflow-auto">
+          <Outlet />
+        </ScrollArea>
       </div>
     </div>
   );

@@ -1,18 +1,19 @@
-import { use, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { getProjectById, type ProjectFormData } from "@/lib/supabase/projects";
 import { Button } from "@/components/ui/button";
 import ProjectForm from "@/components/admin/projects/project-form";
 
-interface EditProjectPageProps {
-  params: Promise<{ id: string }>;
-}
-
-export default function EditProjectPage({ params }: EditProjectPageProps) {
+export default function EditProjectPage() {
   const navigate = useNavigate();
-  const { id } = use(params);
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    navigate(-1);
+    return null;
+  }
   const [loadingProject, setLoadingProject] = useState(true);
   const [projectData, setProjectData] = useState<ProjectFormData | null>(null);
 
