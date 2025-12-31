@@ -9,6 +9,7 @@ import {
 
 import { toast } from "sonner";
 import { submitJobApplication } from "@/lib/supabase/job-applications";
+import { useCareers } from "@/hooks/use-careers";
 
 // Zod schema for contact form
 const contactFormSchema = z.object({
@@ -19,56 +20,68 @@ const contactFormSchema = z.object({
   applyingFor: z.string().min(1, "Please select a role"),
   resume: z
     .any()
-    .refine((files) => files?.length > 0, "Resume is required")
-    .refine((files) => files?.[0]?.size <= 5000000, `Max file size is 5MB.`)
+    .refine((file) => file instanceof File, "Resume is required")
+    .refine((file) => file?.size <= 5000000, `Max file size is 5MB.`)
     .refine(
-      (files) =>
+      (file) =>
         [
           "application/pdf",
           "application/msword",
           "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        ].includes(files?.[0]?.type),
+        ].includes(file?.type),
       "Only .pdf, .doc, and .docx formats are supported."
     ),
 });
 
-// Field configuration for contact form
-const contactFields: FieldConfig[] = [
-  { name: "name", label: "Name", type: "text", placeholder: "Your full name" },
-  { name: "email", label: "Email", type: "email", placeholder: "Your email" },
-  {
-    name: "phoneNo",
-    label: "Phone Number",
-    type: "tel",
-    placeholder: "Your phone no",
-  },
-  {
-    name: "message",
-    label: "Message",
-    type: "textarea",
-    placeholder: "Type your message",
-  },
-  {
-    name: "applyingFor",
-    label: "Applying for",
-    type: "select",
-    options: [
-      { label: "Frontend Developer", value: "frontend" },
-      { label: "Backend Developer", value: "backend" },
-      { label: "Full Stack Developer", value: "fullstack" },
-      { label: "Data Scientist", value: "datascientist" },
-    ],
-    placeholder: "Select your option",
-  },
-  { name: "resume", label: "Resume", type: "file", accept: ".pdf,.doc,.docx" },
-];
-
 export function ApplyJobSection() {
+  const { careers, loading } = useCareers(true);
+
+  // Field configuration moved inside component to access careers data
+  const contactFields: FieldConfig[] = [
+    {
+      name: "name",
+      label: "Name",
+      type: "text",
+      placeholder: "Your full name",
+    },
+    { name: "email", label: "Email", type: "email", placeholder: "Your email" },
+    {
+      name: "phoneNo",
+      label: "Phone Number",
+      type: "tel",
+      placeholder: "Your phone no",
+    },
+    {
+      name: "message",
+      label: "Message",
+      type: "textarea",
+      placeholder: "Type your message",
+    },
+    {
+      name: "applyingFor",
+      label: "Applying for",
+      type: "select",
+      options: loading
+        ? []
+        : careers.map((career) => ({
+            label: career.title,
+            value: career.title,
+          })),
+      placeholder: loading ? "Loading positions..." : "Select your option",
+    },
+    {
+      name: "resume",
+      label: "Resume",
+      type: "file",
+      accept: ".pdf,.doc,.docx",
+    },
+  ];
+
   const handleContactSubmit = async (
     values: z.infer<typeof contactFormSchema>
   ) => {
     try {
-      const resumeFile = values.resume[0];
+      const resumeFile = values.resume;
       await submitJobApplication(
         {
           name: values.name,
@@ -150,7 +163,8 @@ export function ApplyJobSection() {
                 schema={contactFormSchema}
                 fields={contactFields}
                 onSubmit={handleContactSubmit}
-                submitLabel="Submit"
+                submitLabel={loading ? "Loading..." : "Submit"}
+                resetOnSuccess={true}
               />
             </div>
             <div className="absolute -right-2 -bottom-4 -z-10 h-40 w-16 rounded-full bg-linear-to-r from-[#00B1FE] to-[#504EFF] blur-[20px]" />

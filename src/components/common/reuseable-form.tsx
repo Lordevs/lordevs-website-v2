@@ -157,13 +157,26 @@ export function ReusableForm<T extends ZodType<any, any, any>>({
                     <div className="relative">
                       <label
                         htmlFor={field.name}
-                        className="flex w-full flex-col rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-3 transition hover:border-blue-500">
-                        <span className="text-sm font-light text-[#FFFFFFB2]">
-                          {controller.value?.name || "Upload Resume"}
-                        </span>
-                        <div className="mt-2 flex h-14 w-14 items-center justify-center self-center justify-self-center rounded-xl border border-[#949191] bg-[#FFFFFF0F] md:mt-0 md:h-18 md:w-18">
-                          <Upload className="h-5 w-5 text-[#949191]" />
-                        </div>
+                        className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border border-gray-700 bg-[#FFFFFF0F] px-4 py-8 transition hover:border-blue-500 hover:bg-[#FFFFFF1A]">
+                        {controller.value ? (
+                          <div className="flex flex-col items-center gap-2">
+                            <span className="text-sm font-medium text-white break-all">
+                              {controller.value.name}
+                            </span>
+                            <span className="text-xs text-green-400">
+                              (File selected)
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <span className="text-sm font-light text-[#FFFFFFB2]">
+                              Upload Resume
+                            </span>
+                            <div className="mt-4 flex h-14 w-14 items-center justify-center rounded-xl border border-[#949191] bg-[#FFFFFF0F]">
+                              <Upload className="h-5 w-5 text-[#949191]" />
+                            </div>
+                          </>
+                        )}
                       </label>
                       <input
                         id={field.name}
