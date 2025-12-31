@@ -1,49 +1,24 @@
-import { CareerCard, type CareerCardProps } from "./career-card";
+import { Loader2 } from "lucide-react";
+import { useCareers } from "@/hooks/use-careers";
+import { CareerCard } from "./career-card";
 
 export function CareerSection() {
-  const cards: CareerCardProps[] = [
-    {
-      title: "BACKEND DEV",
-      features: [
-        "Scalable API Design",
-        "Database & Cloud Integration",
-        "Performance Optimization",
-        "Secure Architecture",
-      ],
-      tags: ["Full time", "Internship"],
-    },
-    {
-      title: "FRONTEND DEV",
-      features: [
-        "Responsive UI Development",
-        "React & Modern Frameworks",
-        "Seamless API Integration",
-        "Cross-Browser Compatibility",
-      ],
-      tags: ["Internship"],
-    },
-    {
-      title: "UI/UX DESIGNER",
+  const { careers, loading } = useCareers(true);
 
-      features: [
-        "User Research & Testing",
-        "Wireframing & Prototyping",
-        "Design Systems & Consistency",
-        "Accessibility Focus",
-      ],
-      tags: ["Full time", "Internship"],
-    },
-    {
-      title: "ML ENGINEER",
-      features: [
-        "Model Development & Training",
-        "Data Pipeline Optimization",
-        "AI Model Deployment",
-        "Real-Time Inference",
-      ],
-      tags: ["Internship"],
-    },
-  ];
+  if (loading) {
+    return (
+      <section className="bg-black py-20">
+        <div className="container mx-auto px-6 text-center text-white">
+          <h2 className="text-4xl font-medium md:text-5xl">
+            Career pathways we offer
+          </h2>
+          <div className="flex h-64 items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-white/50" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-black py-20">
@@ -55,11 +30,25 @@ export function CareerSection() {
           Explore diverse career opportunities that align with your skills,
           interests, and aspirations in the AI and web development space.
         </p>
-        <div className="mx-auto grid max-w-[940px] grid-cols-1 gap-8 md:grid-cols-2">
-          {cards.map((card, i) => (
-            <CareerCard key={i} {...card} />
-          ))}
-        </div>
+
+        {careers.length === 0 ? (
+          <div className="rounded-xl border border-white/10 bg-white/5 p-12">
+            <p className="text-lg text-white/60">
+              No open positions at the moment. Please check back later.
+            </p>
+          </div>
+        ) : (
+          <div className="mx-auto grid max-w-[940px] grid-cols-1 gap-8 md:grid-cols-2">
+            {careers.map((career) => (
+              <CareerCard
+                key={career.id}
+                title={career.title}
+                features={career.features}
+                tags={career.tags}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
