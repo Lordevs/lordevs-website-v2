@@ -1,11 +1,7 @@
-'use client';
-
-import Image from 'next/image';
-import { Trash2, Upload } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Trash2, Upload } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface ProjectImageSectionProps {
   imagePreview: string | null;
@@ -36,10 +32,9 @@ export default function ProjectImageSection({
           />
           <Label
             htmlFor="image-upload"
-            className="flex cursor-pointer items-center gap-2 rounded-lg bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] px-4 py-2 text-white transition-opacity hover:opacity-90"
-          >
+            className="flex cursor-pointer items-center gap-2 rounded-lg bg-linear-to-r from-[#00B2FF] to-[#8F00FF] px-4 py-2 text-white transition-opacity hover:opacity-90">
             <Upload className="h-4 w-4" />
-            {imagePreview ? 'Change Image' : 'Upload Image'}
+            {imagePreview ? "Change Image" : "Upload Image"}
           </Label>
           {imagePreview && (
             <Button
@@ -47,27 +42,25 @@ export default function ProjectImageSection({
               variant="destructive"
               size="sm"
               onClick={onImageRemove}
-              className="px-3 py-1"
-            >
+              className="px-3 py-1">
               <Trash2 className="h-4 w-4" />
             </Button>
           )}
         </div>
-        {imagePreview && imagePreview.trim() !== '' && (
+        {imagePreview && imagePreview.trim() !== "" && (
           <div className="relative">
-            <Image
+            <img
               src={imagePreview}
               alt="Preview"
               width={400}
               height={192}
               className="h-48 w-full max-w-md rounded-lg border border-white/10 object-cover"
               onError={(e) => {
-                console.error('Main image load error:', imagePreview);
-                e.currentTarget.style.display = 'none';
+                console.error("Main image load error:", imagePreview);
+                e.currentTarget.style.display = "none";
               }}
-              unoptimized={imagePreview.startsWith('blob:')}
             />
-            {imagePreview.startsWith('http') && !imageFile && (
+            {imagePreview.startsWith("http") && !imageFile && (
               <div className="absolute top-2 left-2 rounded bg-blue-500 px-2 py-1 text-xs text-white">
                 Existing Image
               </div>
@@ -79,7 +72,7 @@ export default function ProjectImageSection({
             )}
             {hasExistingImage &&
               imagePreview &&
-              imagePreview.startsWith('http') &&
+              imagePreview.startsWith("http") &&
               !imageFile && (
                 <div className="absolute bottom-2 left-2 rounded bg-yellow-500 px-2 py-1 text-xs text-white">
                   Saved

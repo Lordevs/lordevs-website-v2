@@ -1,44 +1,41 @@
-'use client';
-
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-// Import new section components
-import { ROUTES } from '@/constants/routes';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { ROUTES } from "@/constants/routes";
+import { toast } from "sonner";
 
 import {
   createProject,
   deleteProjectImage,
-  ProjectFormData,
+  type ProjectFormData,
   updateProject,
   uploadProjectImage,
-} from '@/lib/supabase/projects';
-import { ProjectFeature, ProjectSection } from '@/lib/types/database';
-import { Button } from '@/components/ui/button';
-import { IconName } from '@/components/ui/icon-picker';
+} from "@/lib/supabase/projects";
+import type { ProjectFeature, ProjectSection } from "@/lib/types/database";
+import { Button } from "@/components/ui/button";
+import type { IconName } from "@/components/ui/icon-picker";
 
-import LoadingSpinner from '../common/loading-spinner';
-import BasicInformationSection from './basic-information-section';
-import ProjectFeaturesSection from './project-features-section';
-import ProjectImageSection from './project-image-section';
-import ProjectSectionsSection from './project-sections-section';
-import TagsSection from './tags-section';
+import LoadingSpinner from "../common/loading-spinner";
+import BasicInformationSection from "./basic-information-section";
+import ProjectFeaturesSection from "./project-features-section";
+import ProjectImageSection from "./project-image-section";
+import ProjectSectionsSection from "./project-sections-section";
+import TagsSection from "./tags-section";
 
 // Extended section interface for form state management
-interface ExtendedProjectSection extends Omit<ProjectSection, 'screenshots'> {
+interface ExtendedProjectSection extends Omit<ProjectSection, "screenshots"> {
   screenshots: (string | File)[];
   screenshotPreviews: string[];
 }
 
 // Extended feature interface for form state management
-interface ExtendedProjectFeature extends Omit<ProjectFeature, 'icon'> {
+interface ExtendedProjectFeature extends Omit<ProjectFeature, "icon"> {
   icon: IconName;
   iconPreview: string;
 }
 
 // Extended form data interface
 interface ExtendedProjectFormData
-  extends Omit<ProjectFormData, 'sections' | 'features'> {
+  extends Omit<ProjectFormData, "sections" | "features"> {
   sections: ExtendedProjectSection[];
   features: ExtendedProjectFeature[];
   main_image?: string;
@@ -57,7 +54,7 @@ export default function ProjectForm({
   isEdit = false,
   projectId,
 }: ProjectFormProps) {
-  const router = useRouter();
+  const router = useNavigate();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(
@@ -65,11 +62,11 @@ export default function ProjectForm({
   );
 
   const [formData, setFormData] = useState<ExtendedProjectFormData>({
-    title: initialData?.title || '',
-    subtitle: initialData?.subtitle || '',
-    tagline: initialData?.tagline || '',
-    services: initialData?.services || '',
-    categories: initialData?.categories || '',
+    title: initialData?.title || "",
+    subtitle: initialData?.subtitle || "",
+    tagline: initialData?.tagline || "",
+    services: initialData?.services || "",
+    categories: initialData?.categories || "",
     tags: initialData?.tags || [],
     is_active: initialData?.is_active ?? true,
     // is_featured: initialData?.is_featured ?? false,
@@ -82,13 +79,13 @@ export default function ProjectForm({
     features:
       initialData?.features?.map((feat) => ({
         ...feat,
-        icon: feat.icon || ('' as IconName),
-        iconPreview: feat.icon || '',
+        icon: feat.icon || ("" as IconName),
+        iconPreview: feat.icon || "",
       })) || [],
-    live_url: initialData?.live_url || '',
-    main_image: initialData?.main_image || '',
+    live_url: initialData?.live_url || "",
+    main_image: initialData?.main_image || "",
   });
-  const [tagInput, setTagInput] = useState('');
+  const [tagInput, setTagInput] = useState("");
 
   // Main image handlers
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,14 +98,14 @@ export default function ProjectForm({
   };
 
   const handleImageRemove = async () => {
-    if (imagePreview && imagePreview.startsWith('http')) {
+    if (imagePreview && imagePreview.startsWith("http")) {
       // If it's an existing image (URL), delete from storage
       try {
         await deleteProjectImage(imagePreview);
-        toast.success('Image deleted from storage');
+        toast.success("Image deleted from storage");
       } catch (error) {
-        console.error('Error deleting image:', error);
-        toast.error('Failed to delete image from storage');
+        console.error("Error deleting image:", error);
+        toast.error("Failed to delete image from storage");
       }
     }
     // Reset image state
@@ -117,7 +114,7 @@ export default function ProjectForm({
     // Also update the form data to remove the main_image
     setFormData((prev) => ({
       ...prev,
-      main_image: '',
+      main_image: "",
     }));
   };
 
@@ -125,8 +122,8 @@ export default function ProjectForm({
   const addSection = () => {
     const newSection: ExtendedProjectSection = {
       id: Date.now().toString(),
-      title: '',
-      description: '',
+      title: "",
+      description: "",
       screenshots: [],
       screenshotPreviews: [],
       isGrid: false,
@@ -185,13 +182,13 @@ export default function ProjectForm({
     previewUrl: string
   ) => {
     // If it's an existing image (URL), delete from storage
-    if (previewUrl.startsWith('http')) {
+    if (previewUrl.startsWith("http")) {
       try {
         await deleteProjectImage(previewUrl);
-        toast.success('Screenshot deleted from storage');
+        toast.success("Screenshot deleted from storage");
       } catch (error) {
-        console.error('Error deleting screenshot:', error);
-        toast.error('Failed to delete screenshot from storage');
+        console.error("Error deleting screenshot:", error);
+        toast.error("Failed to delete screenshot from storage");
       }
     }
 
@@ -222,10 +219,10 @@ export default function ProjectForm({
   const addFeature = () => {
     const newFeature: ExtendedProjectFeature = {
       id: Date.now().toString(),
-      title: '',
-      description: '',
-      icon: '' as IconName,
-      iconPreview: '',
+      title: "",
+      description: "",
+      icon: "" as IconName,
+      iconPreview: "",
     };
     setFormData((prev) => ({
       ...prev,
@@ -260,7 +257,7 @@ export default function ProjectForm({
         ...prev,
         tags: [...prev.tags, tagInput.trim()],
       }));
-      setTagInput('');
+      setTagInput("");
     }
   };
   const removeTag = (tag: string) =>
@@ -281,7 +278,7 @@ export default function ProjectForm({
         formData.sections.map(async (sec) => {
           // Separate existing URLs from new files
           const existingUrls = sec.screenshots.filter(
-            (item): item is string => typeof item === 'string'
+            (item): item is string => typeof item === "string"
           );
           const newFiles = sec.screenshots.filter(
             (item): item is File => item instanceof File
@@ -343,17 +340,17 @@ export default function ProjectForm({
           imageFile || undefined,
           formData.main_image || initialData?.main_image
         );
-        toast.success('Project updated successfully!');
+        toast.success("Project updated successfully!");
       } else {
         // Create new project
         await createProject(payload, imageFile || undefined);
-        toast.success('Project created successfully!');
+        toast.success("Project created successfully!");
       }
-      router.push(ROUTES.ADMIN.PROJECTS);
+      router(ROUTES.ADMIN.PROJECTS);
     } catch (error) {
       console.error(error);
       toast.error(
-        isEdit ? 'Failed to update project.' : 'Failed to create project.'
+        isEdit ? "Failed to update project." : "Failed to create project."
       );
     } finally {
       setLoading(false);
@@ -377,7 +374,7 @@ export default function ProjectForm({
         onUpdateSubtitle={(subtitle) =>
           setFormData((prev) => ({ ...prev, subtitle }))
         }
-        tagline={formData.tagline || ''}
+        tagline={formData.tagline || ""}
         onUpdateTagline={(tagline) =>
           setFormData((prev) => ({ ...prev, tagline }))
         }
@@ -427,15 +424,14 @@ export default function ProjectForm({
         type="button"
         onClick={handleSubmit}
         disabled={loading}
-        className="w-full bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] hover:opacity-90"
-      >
+        className="w-full bg-linear-to-r from-[#00B2FF] to-[#8F00FF] hover:opacity-90">
         {loading
           ? isEdit
-            ? 'Updating...'
-            : 'Creating...'
+            ? "Updating..."
+            : "Creating..."
           : isEdit
-            ? 'Update Project'
-            : 'Create Project'}
+          ? "Update Project"
+          : "Create Project"}
       </Button>
     </form>
   );

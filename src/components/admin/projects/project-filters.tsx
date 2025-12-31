@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { ROUTES } from '@/constants/routes';
-import { Plus, Search } from 'lucide-react';
+import { Link } from "react-router";
+import { ROUTES } from "@/constants/routes";
+import { Plus, Search } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 
 interface ProjectFiltersProps {
   searchTerm: string;
@@ -22,9 +22,9 @@ interface ProjectFiltersProps {
 }
 
 const STATUS_OPTIONS = [
-  { value: 'all', label: 'All Status' },
-  { value: 'active', label: 'Active' },
-  { value: 'inactive', label: 'Inactive' },
+  { value: "all", label: "All Status" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
 ];
 
 export default function ProjectFilters({
@@ -45,18 +45,17 @@ export default function ProjectFilters({
             placeholder="Search projects..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="min-w-[250px] rounded-lg border border-blue-500/30 bg-gradient-to-r from-[#23243A]/50 to-[#181A20]/50 pl-10 text-white placeholder-gray-400 backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
+            className="min-w-[250px] rounded-lg border border-blue-500/30 bg-linear-to-r from-[#23243A]/50 to-[#181A20]/50 pl-10 text-white placeholder-gray-400 backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
           />
         </div>
 
         <Select
           defaultValue={filterStatus}
-          onValueChange={(value) => setFilterStatus(value)}
-        >
-          <SelectTrigger className="min-w-[150px] rounded-lg border border-blue-500/30 bg-gradient-to-r from-[#23243A]/50 to-[#181A20]/50 px-3 py-2 text-white backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 focus:outline-none">
+          onValueChange={(value) => setFilterStatus(value)}>
+          <SelectTrigger className="min-w-[150px] rounded-lg border border-blue-500/30 bg-linear-to-r from-[#23243A]/50 to-[#181A20]/50 px-3 py-2 text-white backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 focus:outline-none">
             <span className="text-gray-400">
               {STATUS_OPTIONS.find((s) => s.value === filterStatus)?.label ||
-                'All Status'}
+                "All Status"}
             </span>
           </SelectTrigger>
           <SelectContent>
@@ -70,11 +69,10 @@ export default function ProjectFilters({
 
         <Select
           defaultValue={filterCategory}
-          onValueChange={(value) => setFilterCategory(value)}
-        >
-          <SelectTrigger className="min-w-[150px] rounded-lg border border-blue-500/30 bg-gradient-to-r from-[#23243A]/50 to-[#181A20]/50 px-3 py-2 text-white backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 focus:outline-none">
+          onValueChange={(value) => setFilterCategory(value)}>
+          <SelectTrigger className="min-w-[150px] rounded-lg border border-blue-500/30 bg-linear-to-r from-[#23243A]/50 to-[#181A20]/50 px-3 py-2 text-white backdrop-blur-sm focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 focus:outline-none">
             <span className="text-gray-400">
-              {filterCategory === 'all' ? 'All Categories' : filterCategory}
+              {filterCategory === "all" ? "All Categories" : filterCategory}
             </span>
           </SelectTrigger>
           <SelectContent>
@@ -88,9 +86,9 @@ export default function ProjectFilters({
         </Select>
       </div>
 
-      <Link href={ROUTES.ADMIN.ADD_PROJECT}>
-        <Button className="group relative bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105 hover:from-[#0094D9] hover:to-[#7300D9] hover:shadow-blue-500/40">
-          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#00B2FF] to-[#8F00FF] opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-20" />
+      <Link to={ROUTES.ADMIN.ADD_PROJECT}>
+        <Button className="group relative bg-linear-to-r from-[#00B2FF] to-[#8F00FF] shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105 hover:from-[#0094D9] hover:to-[#7300D9] hover:shadow-blue-500/40">
+          <div className="absolute inset-0 rounded-lg bg-linear-to-r from-[#00B2FF] to-[#8F00FF] opacity-0 blur-sm transition-opacity duration-300 group-hover:opacity-20" />
           <Plus className="relative mr-2 h-4 w-4" />
           <span className="relative">New Project</span>
         </Button>

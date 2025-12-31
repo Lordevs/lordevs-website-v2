@@ -1,10 +1,7 @@
-'use client';
-
-import { Plus, Trash2 } from 'lucide-react';
-
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface TagsSectionProps {
   tags: string[];
@@ -34,14 +31,13 @@ export default function TagsSection({
               placeholder="Add a tag"
               className="border-white/20 bg-white/5 text-white"
               onKeyPress={(e) =>
-                e.key === 'Enter' && (e.preventDefault(), onAddTag())
+                e.key === "Enter" && (e.preventDefault(), onAddTag())
               }
             />
             <Button
               type="button"
               onClick={onAddTag}
-              className="bg-gradient-to-r from-[#00B2FF] to-[#8F00FF]"
-            >
+              className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF]">
               <Plus className="h-4 w-4" />
             </Button>
           </div>
@@ -49,14 +45,12 @@ export default function TagsSection({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r from-[#00B2FF]/20 to-[#8F00FF]/20 px-3 py-1 text-sm font-medium text-white/90"
-              >
+                className="flex items-center gap-2 rounded-full border border-white/10 bg-linear-to-r from-[#00B2FF]/20 to-[#8F00FF]/20 px-3 py-1 text-sm font-medium text-white/90">
                 {tag}
                 <button
                   type="button"
                   onClick={() => onRemoveTag(tag)}
-                  className="text-white/70 hover:text-white"
-                >
+                  className="text-white/70 hover:text-white">
                   <Trash2 className="h-3 w-3" />
                 </button>
               </span>
