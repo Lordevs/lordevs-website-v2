@@ -1,8 +1,8 @@
-import { getSupabaseClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 
 export async function isAdminUser(email: string): Promise<boolean> {
   try {
-    const supabase = getSupabaseClient();
+    const supabase = createClient();
 
     const { data, error } = await supabase
       .from("admin_users")
@@ -24,7 +24,7 @@ export async function isAdminUser(email: string): Promise<boolean> {
 
 export async function getCurrentUser() {
   try {
-    const supabase = getSupabaseClient();
+    const supabase = createClient();
     const {
       data: { user },
       error,

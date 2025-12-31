@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { createClient } from "@/lib/supabase/client";
+import { isAdminUser } from "@/lib/auth/admin";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,27 +14,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/common/logo";
-
-async function isAdminUser(email: string): Promise<boolean> {
-  try {
-    const supabase = createClient();
-    const { data, error } = await supabase
-      .from("admin_users")
-      .select("id, is_active")
-      .eq("email", email)
-      .eq("is_active", true)
-      .single();
-
-    if (error || !data) {
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error("Error checking admin user:", error);
-    return false;
-  }
-}
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
