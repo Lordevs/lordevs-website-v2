@@ -1,4 +1,4 @@
-import { BlogList } from "@/components/news/blog-list";
+import { BlogList } from "@/components/news/news-list";
 import { NewsHeroSection } from "@/components/news/news-hero-section";
 import { NewsItem } from "@/components/news/news-item";
 import FutureTechSection from "@/components/news/future-tech-section";
