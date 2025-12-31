@@ -220,21 +220,6 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="order_index" className="text-white">
-                    Order Index
-                  </Label>
-                  <Input
-                    id="order_index"
-                    type="number"
-                    {...register("order_index")}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
-                  />
-                  <p className="text-xs text-gray-400">
-                    Lower numbers appear first
-                  </p>
-                </div>
-
                 <div className="flex flex-row items-center justify-between rounded-lg border border-white/10 bg-white/5 p-4">
                   <div className="space-y-0.5">
                     <Label className="text-base text-white">
