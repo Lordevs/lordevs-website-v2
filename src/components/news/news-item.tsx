@@ -1,66 +1,16 @@
-import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedNewsCard } from "./cards/featured-news-card";
 import { NewsCard } from "./cards/news-card";
-
-interface BlogItem {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  thumbnailUrl: string;
-  publishedDate: string;
-}
+import { useNews } from "@/hooks/use-news";
 
 interface NewsItemProps {
   /** Blog ID/slug to exclude from the list (useful on blog detail pages) */
   excludeId?: string;
 }
 
-// MOCK DATA
-const MOCK_BLOGS: BlogItem[] = [
-  {
-    id: "1",
-    title: "The Future of AI in Web Development",
-    slug: "future-ai-web-dev",
-    description:
-      "Artificial Intelligence is revolutionizing how we build the web. From code generation to automated testing, explore the tools shaping the future.",
-    thumbnailUrl: "/opengraph-image.png",
-    publishedDate: "2024-12-28",
-  },
-  {
-    id: "2",
-    title: "Optimizing React Performance",
-    slug: "optimizing-react-performance",
-    description:
-      "Learn key strategies to boost your React application's performance, including memoization, lazy loading, and code splitting techniques.",
-    thumbnailUrl: "/opengraph-image.png",
-    publishedDate: "2024-12-25",
-  },
-  {
-    id: "3",
-    title: "Understanding Next.js App Router",
-    slug: "nextjs-app-router",
-    description:
-      "A comprehensive guide to the new App Router in Next.js 13+. Discover how to leverage server components, layouts, and nested routing.",
-    thumbnailUrl: "/opengraph-image.png",
-    publishedDate: "2024-12-20",
-  },
-  {
-    id: "4",
-    title: "Tailwind CSS Best Practices",
-    slug: "tailwind-css-best-practices",
-    description:
-      "Write cleaner, more maintainable CSS with Tailwind. We share our top tips for organizing classes and creating reusable components.",
-    thumbnailUrl: "/opengraph-image.png",
-    publishedDate: "2024-12-15",
-  },
-];
-
 export function NewsItem({ excludeId }: NewsItemProps) {
-  // Simulate loading mock data
-  const [blogs] = useState<BlogItem[]>(MOCK_BLOGS);
-  const [loading] = useState(false);
+  // Fetch active news only
+  const { news: blogs, loading } = useNews(true);
 
   if (loading) {
     return (
@@ -97,8 +47,12 @@ export function NewsItem({ excludeId }: NewsItemProps) {
     );
   }
 
-  if (blogs.length === 0) {
-    return null;
+  if (!blogs || blogs.length === 0) {
+    return (
+      <section className="mx-auto max-w-7xl px-4 py-12 text-center text-white">
+        <p>No news articles available at the moment.</p>
+      </section>
+    );
   }
 
   // Filter out the excluded blog if viewing a detail page
@@ -108,16 +62,20 @@ export function NewsItem({ excludeId }: NewsItemProps) {
 
   const [featured, ...others] = filteredBlogs;
 
+  // Helper to extract description
+  const getDescription = (item: any) =>
+    item.excerpt || item.content?.slice(0, 150) + "..." || "";
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-12 text-white">
       {/* Featured Article */}
       {featured && (
         <FeaturedNewsCard
           title={featured.title}
-          slug={featured.slug}
-          description={featured.description}
-          publishedDate={featured.publishedDate}
-          thumbnailUrl={featured.thumbnailUrl}
+          slug={featured.slug || featured.id}
+          description={getDescription(featured)}
+          publishedDate={featured.published_at}
+          thumbnailUrl={featured.thumbnail_url || "opengraph-image.png"}
         />
       )}
 
@@ -128,9 +86,9 @@ export function NewsItem({ excludeId }: NewsItemProps) {
             key={item.id}
             id={item.id}
             title={item.title}
-            slug={item.slug}
-            publishedDate={item.publishedDate}
-            thumbnailUrl={item.thumbnailUrl}
+            slug={item.slug || item.id}
+            publishedDate={item.published_at}
+            thumbnailUrl={item.thumbnail_url || "/opengraph-image.png"}
           />
         ))}
       </div>

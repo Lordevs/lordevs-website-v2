@@ -1,18 +1,12 @@
 import { ArrowLeft, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-interface Blog {
-  id: string;
-  title: string;
-  description: string;
-  thumbnailUrl: string;
-  publishedDate: string;
-}
+import type { NewsRow } from "@/lib/types/database";
 
 interface NewsArticleProps {
-  blog: Blog | null;
+  blog: NewsRow | null;
   loading: boolean;
   error: string | null;
 }
@@ -24,80 +18,70 @@ export default function NewsArticle({
 }: NewsArticleProps) {
   const navigate = useNavigate();
 
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-
   if (loading) {
     return (
-      <article className="max-w-4xl mx-auto px-4 py-8 text-white">
-        {/* Skeleton UI */}
-        <div className="animate-pulse space-y-6">
-          <div className="h-6 bg-[#4F1AD61A] rounded w-24" />
-          <div className="h-4 bg-[#4F1AD61A] rounded w-32" />
-          <div className="h-10 bg-[#4F1AD61A] rounded w-3/4" />
-          <div className="h-6 bg-[#4F1AD61A] rounded w-40" />
-          <div className="flex space-x-4">
-            <div className="h-10 w-10 bg-[#4F1AD61A] rounded-full" />
-          </div>
-          <div className="h-64 bg-[#4F1AD61A] rounded-lg w-full" />
-          <div className="space-y-2">
-            <div className="h-4 bg-[#4F1AD61A] rounded w-full" />
-            <div className="h-4 bg-[#4F1AD61A] rounded w-5/6" />
-            <div className="h-4 bg-[#4F1AD61A] rounded w-4/6" />
-            <div className="h-4 bg-[#4F1AD61A] rounded w-3/6" />
+      <div className="container mx-auto max-w-4xl px-4 pb-20 pt-10">
+        <div className="animate-pulse space-y-8">
+          <div className="h-8 w-32 rounded bg-gray-700/50" />
+          <div className="h-12 w-3/4 rounded bg-gray-700/50" />
+          <div className="aspect-video w-full rounded-2xl bg-gray-700/50" />
+          <div className="space-y-4">
+            <div className="h-4 w-full rounded bg-gray-700/50" />
+            <div className="h-4 w-full rounded bg-gray-700/50" />
+            <div className="h-4 w-2/3 rounded bg-gray-700/50" />
           </div>
         </div>
-      </article>
+      </div>
     );
   }
 
   if (error || !blog) {
     return (
-      <article className="max-w-4xl mx-auto px-4 py-8 text-white">
-        <button
-          onClick={() => navigate(-1)}
-          className="inline-flex items-center text-lg hover:text-[#41A2F8] transition-colors cursor-pointer border-none bg-transparent">
-          <ArrowLeft className="mr-2" /> Go back
-        </button>
-        <div className="mt-8 text-center text-gray-400">
-          <p className="text-xl">{error || "Article not found."}</p>
-        </div>
-      </article>
+      <div className="container mx-auto flex min-h-[50vh] max-w-4xl flex-col items-center justify-center px-4 text-center">
+        <h2 className="mb-4 text-3xl font-bold text-white">
+          {error || "Article not found"}
+        </h2>
+        <Button onClick={() => navigate("/news")} variant="outline">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Back to News
+        </Button>
+      </div>
     );
   }
 
-  const { title, description, publishedDate } = blog;
+  const { title, content, published_at, thumbnail_url, excerpt } = blog;
+
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareDescription = excerpt || content?.slice(0, 200) || "";
 
   const linkedInShareUrl =
     `https://www.linkedin.com/shareArticle?mini=true` +
     `&url=${encodeURIComponent(currentUrl)}` +
     `&title=${encodeURIComponent(title)}` +
-    `&summary=${encodeURIComponent(description.slice(0, 200))}` +
+    `&summary=${encodeURIComponent(shareDescription)}` +
     `&source=${encodeURIComponent(
       typeof window !== "undefined" ? window.location.host : ""
     )}`;
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8 text-white">
+    <article className="container mx-auto max-w-4xl px-4 pb-20 pt-10">
+      {/* Back Button */}
       <Link
         to="/news"
-        className="inline-flex items-center text-lg hover:text-[#41A2F8] mb-8 transition-colors">
-        <ArrowLeft className="mr-2" /> Go back
+        className="mb-8 inline-flex items-center text-sm text-gray-400 transition-colors hover:text-white">
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        Back to News
       </Link>
 
       <div className="flex justify-between items-center mb-6">
         <div className="text-gray-400 text-sm">
           Posted on{" "}
-          {new Date(publishedDate).toLocaleDateString(undefined, {
+          {new Date(published_at).toLocaleDateString(undefined, {
             year: "numeric",
             month: "long",
             day: "numeric",
           })}
         </div>
       </div>
-
-      <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-        {title}
-      </h1>
 
       <div className="flex flex-col sm:flex-row justify-between mb-12 space-y-4 sm:space-y-0">
         <div />
@@ -124,7 +108,7 @@ export default function NewsArticle({
             background: "radial-gradient(circle at center, #0F091226, #0C0912)",
           }}>
           <img
-            src="/opengraph-image.png"
+            src={thumbnail_url || "/opengraph-image.png"}
             alt={title}
             className="object-contain opacity-80 w-[300px] h-[300px]"
           />
@@ -203,7 +187,7 @@ export default function NewsArticle({
               />
             ),
           }}>
-          {description}
+          {content || ""}
         </ReactMarkdown>
       </div>
     </article>

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { ArrowRight, Calendar, User } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import { ShineBorder } from "@/components/ui/shine-border";
 import { TiltCard } from "@/components/common/tilt-card";
 import { motion } from "framer-motion";
@@ -52,20 +52,12 @@ export function NewsCard({
                 <img
                   src={thumbnailUrl || "/opengraph-image.png"}
                   alt={title}
-                  width={140}
-                  height={140}
+                  width={100}
+                  height={100}
                   className="object-contain opacity-70 transition-all duration-500 group-hover:opacity-100 group-hover:brightness-125 drop-shadow-[0_0_20px_rgba(65,162,248,0.3)]"
                 />
               </div>
               <div className="absolute inset-0 bg-linear-to-t from-[#0C0912] via-transparent to-transparent opacity-60" />
-
-              {/* Floating Badge */}
-              <div className="absolute top-4 left-4 z-20">
-                <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[10px] font-bold text-[#41A2F8] uppercase tracking-widest shadow-lg">
-                  <div className="h-1.5 w-1.5 rounded-full bg-[#41A2F8] animate-pulse" />
-                  Latest Update
-                </span>
-              </div>
             </div>
           </div>
 
@@ -80,13 +72,9 @@ export function NewsCard({
                     year: "numeric",
                   })}
                 </span>
-                <span className="flex items-center gap-1.5 text-[11px] font-semibold text-gray-500">
-                  <User className="h-3 w-3 text-[#8F00FF]" />
-                  Team Lordevs
-                </span>
               </div>
 
-              <h3 className="mb-4 text-2xl font-bold text-white group-hover:text-[#41A2F8] transition-colors leading-[1.3] decoration-[#41A2F8] decoration-2 underline-offset-4 group-hover:underline">
+              <h3 className="mb-4 text-xl font-bold text-white group-hover:text-[#41A2F8] transition-colors leading-[1.3] decoration-[#41A2F8] decoration-2 underline-offset-4 group-hover:underline">
                 {title}
               </h3>
             </div>

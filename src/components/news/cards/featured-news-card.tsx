@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Clock, Globe } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { truncateMarkdown } from "@/lib/markdown-utils";
 import { ShineBorder } from "@/components/ui/shine-border";
@@ -58,14 +58,14 @@ export function FeaturedNewsCard({
             }}
             src={thumbnailUrl || "/opengraph-image.png"}
             alt={title}
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             className="object-contain drop-shadow-[0_20px_50px_rgba(65,162,248,0.4)] transition-all duration-700 group-hover:brightness-125"
           />
         </div>
         <div className="absolute inset-0 bg-linear-to-tr from-black/40 to-transparent" />
 
-        {/* Featured Tag Floating */}
+        {/* Featured Tag Floating
         <div className="absolute bottom-8 left-8 z-20 flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#41A2F8] shadow-[0_0_30px_#41A2F866]">
             <Sparkles className="h-6 w-6 text-white" />
@@ -75,28 +75,17 @@ export function FeaturedNewsCard({
               Recommended
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="relative flex w-full flex-col justify-center md:w-[45%] z-10 py-4">
         <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-4 mb-8">
-            <span className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400">
-              <Clock className="h-4 w-4 text-[#41A2F8]" />
-              Trending
-            </span>
-            <span className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400">
-              <Globe className="h-4 w-4 text-[#8F00FF]" />
-              Global Update
-            </span>
-          </div>
-
-          <h2 className="text-4xl lg:text-5xl font-black text-white transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-[#41A2F8] leading-[1.1] tracking-tight">
+          <h2 className="text-xl lg:text-2xl font-black text-white transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-[#41A2F8] leading-[1.1] tracking-tight">
             {title}
           </h2>
         </div>
 
-        <div className="mb-10 text-xl leading-[1.6] text-gray-400 font-medium max-w-xl italic border-l-4 border-[#41A2F8]/60 pl-6 py-2">
+        <div className="mb-10 text-md leading-[1.6] text-gray-400 font-medium max-w-xl italic border-l-4 border-[#41A2F8]/60 pl-6 py-2">
           <ReactMarkdown>{truncateMarkdown(description, 240)}</ReactMarkdown>
         </div>
 
@@ -116,7 +105,7 @@ export function FeaturedNewsCard({
                 })}
               </span>
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                Lordevs Official
+                Lordevs
               </span>
             </div>
           </div>
@@ -124,7 +113,7 @@ export function FeaturedNewsCard({
           <Button
             asChild
             variant="gradient"
-            className="px-12 py-8 text-2xl font-black rounded-[24px] shadow-[0_20px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_30px_60px_rgba(59,130,246,0.5)] transition-all transform hover:scale-105 active:scale-95 group/btn">
+            className="px-12 py-4 text-mg font-black rounded-[24px] shadow-[0_20px_40px_rgba(59,130,246,0.3)] hover:shadow-[0_30px_60px_rgba(59,130,246,0.5)] transition-all transform hover:scale-105 active:scale-95 group/btn">
             <Link to={`/news/${slug}`} className="flex items-center gap-3">
               Read Story
               <ArrowRight className="h-7 w-7 transition-transform group-hover/btn:translate-x-3" />
