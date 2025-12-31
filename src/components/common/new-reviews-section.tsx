@@ -81,12 +81,12 @@ export function ReviewsSection() {
 
         {/* Testimonial Slider */}
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <Marquee pauseOnHover className="[--duration:30s]">
+          <Marquee reverse pauseOnHover className="[--duration:30s]">
             {firstRow.map((testimonial, index) => (
               <TestimonialCard key={index} {...testimonial} />
             ))}
           </Marquee>
-          <Marquee reverse pauseOnHover className="[--duration:30s]">
+          <Marquee pauseOnHover className="[--duration:30s]">
             {secondRow.map((testimonial, index) => (
               <TestimonialCard key={index} {...testimonial} />
             ))}

@@ -58,12 +58,13 @@ export function Marquee({
         .map((_, i) => (
           <div
             key={i}
-            className={cn("flex shrink-0 justify-around `gap-(--gap)", {
+            className={cn("flex shrink-0 justify-around gap-(--gap)", {
               "animate-marquee flex-row": !vertical,
               "animate-marquee-vertical flex-col": vertical,
               "group-hover:paused": pauseOnHover,
-              "direction-[reverse]": reverse,
-            })}>
+              reverse: reverse,
+            })}
+            style={{ animationDirection: reverse ? "reverse" : "normal" }}>
             {children}
           </div>
         ))}

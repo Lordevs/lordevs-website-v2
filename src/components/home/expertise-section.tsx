@@ -42,7 +42,7 @@ const EXPERTISES = [
     },
   },
   {
-    name: "No-Code",
+    name: "Vibe Coding",
     tags: ["Low Maintenance", "Fast Delivery"],
     desc: "We build powerful, functional applications using modern no-code tools—perfect for MVPs, dashboards, and internal tools. Our no-code solutions are fast to deploy, easy to manage, and scalable as your needs grow.",
     bullets: [
@@ -76,7 +76,7 @@ const EXPERTISES = [
     },
   },
   {
-    name: "AI Tools",
+    name: "AI Agents",
     tags: ["Automation", "Personalized UX"],
     desc: "We create intelligent tools that leverage AI to automate processes, deliver personalized experiences, and drive smarter decision-making. Our AI-powered solutions are built to seamlessly integrate with your applications and elevate user engagement.",
     bullets: [

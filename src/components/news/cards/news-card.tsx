@@ -91,18 +91,8 @@ export function NewsCard({
               </h3>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-7 w-7 rounded-full border-2 border-[#0C0912] bg-[#1A1A2E] flex items-center justify-center overflow-hidden">
-                    <img src="/favicon.ico" className="h-4 w-4 opacity-50" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="inline-flex items-center justify-center rounded-2xl px-6 py-2.5 font-extrabold text-[#41A2F8] bg-[#41A2F8]/10 border border-[#41A2F8]/20 shadow-[0_5px_15px_rgba(59,130,246,0.2)] transition-all transform group-hover:bg-[#41A2F8] group-hover:text-white group-hover:shadow-[0_10px_20px_rgba(59,130,246,0.4)] active:scale-95 group/btn">
+            <div className="flex items-center justify-end pt-4 border-t border-white/10">
+              <div className="inline-flex items-center justify-end rounded-2xl px-6 py-2.5 font-extrabold text-[#41A2F8] bg-[#41A2F8]/10 border border-[#41A2F8]/20 shadow-[0_5px_15px_rgba(59,130,246,0.2)] transition-all transform group-hover:bg-[#41A2F8] group-hover:text-white group-hover:shadow-[0_10px_20px_rgba(59,130,246,0.4)] active:scale-95 group/btn">
                 <span className="flex items-center gap-2">
                   Read
                   <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1.5" />
