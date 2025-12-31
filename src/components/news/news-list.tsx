@@ -8,6 +8,7 @@ import { useNews } from "@/hooks/use-news";
 
 export function BlogList() {
   const { news: headlines, loading } = useNews(true);
+  const listHeadlines = headlines ? headlines.slice(4) : [];
 
   if (loading) {
     return (
@@ -17,7 +18,7 @@ export function BlogList() {
     );
   }
 
-  if (!headlines || headlines.length === 0) {
+  if (listHeadlines.length === 0) {
     return null;
   }
 
@@ -26,7 +27,7 @@ export function BlogList() {
       <Welcome />
       <section className="py-16">
         <div className="divide-y divide-gray-700 text-white">
-          {headlines.map((post) => (
+          {listHeadlines.map((post) => (
             <div
               key={post.id}
               className="

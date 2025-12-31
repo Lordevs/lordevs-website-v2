@@ -60,7 +60,8 @@ export function NewsItem({ excludeId }: NewsItemProps) {
     ? blogs.filter((blog) => blog.id !== excludeId && blog.slug !== excludeId)
     : blogs;
 
-  const [featured, ...others] = filteredBlogs;
+  const featured = filteredBlogs[0];
+  const others = filteredBlogs.slice(1, 4);
 
   // Helper to extract description
   const getDescription = (item: any) =>
