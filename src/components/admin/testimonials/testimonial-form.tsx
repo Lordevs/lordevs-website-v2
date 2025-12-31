@@ -1,25 +1,27 @@
-'use client';
-
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Star } from 'lucide-react';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { Star } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   createTestimonial,
-  TestimonialFormData,
+  type TestimonialFormData,
   updateTestimonial,
-} from '@/lib/supabase/testimonials';
-import { Testimonial } from '@/lib/types/database';
-import { Button } from '@/components/ui/button';
-import { Flag } from '@/components/ui/flag';
-import { FlagCode, FlagPicker, flagsData } from '@/components/ui/flag-picker';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/lib/supabase/testimonials";
+import type { Testimonial } from "@/lib/types/database";
+import { Button } from "@/components/ui/button";
+import { Flag } from "@/components/ui/flag";
+import {
+  type FlagCode,
+  FlagPicker,
+  flagsData,
+} from "@/components/ui/flag-picker";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 
-import AdminForm from '../common/form';
+import AdminForm from "../common/form";
 
 export interface TestimonialFormProps {
   initialData?: Testimonial;
@@ -32,17 +34,17 @@ export default function TestimonialForm({
   isEdit = false,
   testimonialId,
 }: TestimonialFormProps) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<FlagCode | undefined>(
     (initialData?.country as FlagCode) || undefined
   );
 
   const [formData, setFormData] = useState<TestimonialFormData>({
-    image: initialData?.image || '',
-    name: initialData?.name || '',
-    country: initialData?.country || '',
-    content: initialData?.content || '',
+    image: initialData?.image || "",
+    name: initialData?.name || "",
+    country: initialData?.country || "",
+    content: initialData?.content || "",
     rating: initialData?.rating || 5,
     is_active: initialData?.is_active ?? true,
   });
@@ -58,7 +60,7 @@ export default function TestimonialForm({
 
   const handleClearCountry = () => {
     setSelectedCountry(undefined);
-    setFormData((prev) => ({ ...prev, country: '', image: '' }));
+    setFormData((prev) => ({ ...prev, country: "", image: "" }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -72,18 +74,18 @@ export default function TestimonialForm({
           undefined, // No image file since we're using flags
           initialData?.image
         );
-        toast.success('Testimonial updated successfully!');
+        toast.success("Testimonial updated successfully!");
       } else {
         await createTestimonial(formData, undefined); // No image file since we're using flags
-        toast.success('Testimonial created successfully!');
+        toast.success("Testimonial created successfully!");
       }
-      router.push('/admin/testimonials');
+      navigate("/admin/testimonials");
     } catch (error) {
       console.error(error);
       toast.error(
         isEdit
-          ? 'Failed to update testimonial.'
-          : 'Failed to create testimonial.'
+          ? "Failed to update testimonial."
+          : "Failed to create testimonial."
       );
     } finally {
       setLoading(false);
@@ -96,8 +98,8 @@ export default function TestimonialForm({
         key={index}
         className={`h-5 w-5 cursor-pointer transition-colors ${
           index < rating
-            ? 'fill-yellow-400 text-yellow-400'
-            : 'text-gray-300 hover:text-yellow-400'
+            ? "fill-yellow-400 text-yellow-400"
+            : "text-gray-300 hover:text-yellow-400"
         }`}
         onClick={() => setFormData((prev) => ({ ...prev, rating: index + 1 }))}
       />
@@ -108,13 +110,12 @@ export default function TestimonialForm({
     <AdminForm
       id="testimonial-form"
       onSubmit={handleSubmit}
-      onCancel={() => router.back()}
+      onCancel={() => navigate(-1)}
       isSubmitting={loading}
       cancelLabel="Cancel"
-      submitLabel={isEdit ? 'Update Testimonial' : 'Create Testimonial'}
+      submitLabel={isEdit ? "Update Testimonial" : "Create Testimonial"}
       className="space-y-8 p-6"
-      btnContainerClassName="flex-row-reverse"
-    >
+      btnContainerClassName="flex-row-reverse">
       {/* <form onSubmit={handleSubmit} className="relative space-y-8 p-6"> */}
       {/* Basic Information */}
       <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
@@ -172,8 +173,7 @@ export default function TestimonialForm({
                   variant="outline"
                   size="sm"
                   onClick={handleClearCountry}
-                  className="border-white/20 text-white/80 hover:text-white"
-                >
+                  className="border-white/20 text-white/80 hover:text-white">
                   Clear
                 </Button>
               )}
