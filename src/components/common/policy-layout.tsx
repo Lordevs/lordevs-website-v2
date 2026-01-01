@@ -28,7 +28,7 @@ export function PolicyLayout({ title, description, url, children }: PolicyLayout
                         initial={{ opacity: 0, scaleX: 0 }}
                         animate={{ opacity: 1, scaleX: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="mt-8 h-px w-full origin-left bg-gradient-to-r from-white/20 via-white/5 to-transparent"
+                        className="mt-8 h-px w-full origin-left bg-linear-to-r from-white/20 via-white/5 to-transparent"
                     />
                 </div>
             </section>

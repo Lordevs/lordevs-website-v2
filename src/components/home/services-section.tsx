@@ -12,7 +12,7 @@ export function ServicesSection() {
       mockupType: "chat" as const,
     },
     {
-      title: "FULL STACK APPS",
+      title: "VIBE CODED APPS",
       description:
         "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
       mockupType: "dashboard" as const,
@@ -28,6 +28,12 @@ export function ServicesSection() {
       description:
         "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
       mockupType: "workflow" as const,
+    },
+    {
+      title: "DEBUGGING & REFACTORING",
+      description:
+        "Expert debugging and modernization of existing software systems to ensure peak performance and stability.",
+      mockupType: "dashboard" as const,
     },
   ];
 

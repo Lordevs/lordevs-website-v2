@@ -5,7 +5,8 @@ import { HeroSection } from "@/components/home/hero-section";
 import HomeFAQsSection from "@/components/home/home-faq-section";
 import { IntegrationsSection } from "@/components/home/integrations-section";
 import { PortfolioSection } from "@/components/home/portfolio-section";
-import { ServicesSection } from "@/components/home/services-section";
+import { BentoServicesSection } from "@/components/home/bento-services-section";
+// import { ServicesSection } from "@/components/home/services-section";
 import { SEO } from "@/components/common/seo";
 
 export default function HomePage() {
@@ -18,7 +19,8 @@ export default function HomePage() {
         url="/"
       />
       <HeroSection />
-      <ServicesSection />
+      <BentoServicesSection />
+      {/* <ServicesSection /> */}
       <AboutSection />
       <ExpertiseSection />
       <PortfolioSection />
