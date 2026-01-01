@@ -14,6 +14,9 @@ const ContactPage = lazy(() => import("@/pages/contact"));
 const ApplyJobPage = lazy(() => import("@/pages/career/apply-for-job"));
 const NewsPage = lazy(() => import("@/pages/news"));
 const HomePage = lazy(() => import("@/pages/home"));
+const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
+const CookiesPolicyPage = lazy(() => import("@/pages/cookies-policy"));
+const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
 
 // Admin Pages
 const AdminLoginPage = lazy(() => import("@/pages/admin/login"));
@@ -137,6 +140,30 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <ContactPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.PRIVACY_POLICY,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <PrivacyPolicyPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.COOKIES_POLICY,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <CookiesPolicyPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: ROUTES.TERMS_CONDITIONS,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <TermsConditionsPage />
           </Suspense>
         ),
       },

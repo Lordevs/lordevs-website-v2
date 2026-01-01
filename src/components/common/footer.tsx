@@ -29,9 +29,9 @@ export function Footer() {
   ];
 
   const policyLinks = [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Cookies Policy", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
+    { name: "Privacy Policy", href: ROUTES.PRIVACY_POLICY },
+    { name: "Cookies Policy", href: ROUTES.COOKIES_POLICY },
+    { name: "Terms & Conditions", href: ROUTES.TERMS_CONDITIONS },
   ];
 
   return (
