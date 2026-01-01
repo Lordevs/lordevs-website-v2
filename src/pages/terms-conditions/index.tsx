@@ -1,11 +1,12 @@
 import { PolicyLayout } from "@/components/common/policy-layout";
+import { ROUTES } from "@/constants/routes";
 
 export default function TermsConditionsPage() {
     return (
         <PolicyLayout
-            title="Terms & Conditions"
-            description="Read our terms and conditions for using our services and website."
-            url="/terms-conditions"
+            title="Terms & Conditions | Our Agreement with You"
+            description="Understand the terms and conditions for using the Lordevs website and services. Review our intellectual property rights and user responsibilities."
+            url={ROUTES.TERMS_CONDITIONS}
         >
             <div className="space-y-12">
                 <section className="space-y-4">

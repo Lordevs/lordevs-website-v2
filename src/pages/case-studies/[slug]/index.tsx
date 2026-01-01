@@ -6,6 +6,8 @@ import { ProjectFeatureGrid } from "@/components/projects/detail/project-feature
 import { ProjectHero } from "@/components/projects/detail/project-hero";
 import { ProjectSection } from "@/components/projects/detail/project-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SEO } from "@/components/common/seo";
+import { ROUTES } from "@/constants/routes";
 import { getProjectBySlug } from "@/lib/supabase/projects";
 import type { Project } from "@/lib/types/database";
 
@@ -75,6 +77,11 @@ export default function ProjectPage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
+      <SEO
+        title={`${project.title} | Case Study`}
+        description={project.tagline || project.subtitle || `Read about our work on ${project.title}.`}
+        url={ROUTES.CASE_STUDY(project.project_slug)}
+      />
       <ProjectHero {...hero} />
 
       {/* Project Sections */}

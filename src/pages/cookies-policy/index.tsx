@@ -1,11 +1,12 @@
 import { PolicyLayout } from "@/components/common/policy-layout";
+import { ROUTES } from "@/constants/routes";
 
 export default function CookiesPolicyPage() {
     return (
         <PolicyLayout
-            title="Cookies Policy"
-            description="Understand how we use cookies and similar technologies on our website."
-            url="/cookies-policy"
+            title="Cookies Policy | How We Use Cookies to Enhance Your Experience"
+            description="Learn about how Lordevs uses cookies and similar technologies to provide a better browsing experience and improve our services."
+            url={ROUTES.COOKIES_POLICY}
         >
             <div className="space-y-12">
                 <section className="space-y-4">

@@ -11,7 +11,7 @@ interface PolicyLayoutProps {
 export function PolicyLayout({ title, description, url, children }: PolicyLayoutProps) {
     return (
         <main className="min-h-screen bg-black text-white selection:bg-white/20">
-            <SEO title={`${title} | LORDEVS`} description={description} url={url} />
+            <SEO title={`${title}`} description={description} url={url} />
 
             {/* Hero Section for Policy */}
             <section className="relative pt-32 pb-16 md:pt-40 md:pb-24">

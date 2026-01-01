@@ -1,11 +1,12 @@
 import { PolicyLayout } from "@/components/common/policy-layout";
+import { ROUTES } from "@/constants/routes";
 
 export default function PrivacyPolicyPage() {
     return (
         <PolicyLayout
-            title="Privacy Policy"
-            description="Learn about how we collect, use, and protect your personal information."
-            url="/privacy-policy"
+            title="Privacy Policy | Our Commitment to Your Privacy"
+            description="Read the Lordevs Privacy Policy to understand how we collect, use, and protect your personal information. Your privacy is our top priority."
+            url={ROUTES.PRIVACY_POLICY}
         >
             <div className="space-y-12">
                 <section className="space-y-4">
