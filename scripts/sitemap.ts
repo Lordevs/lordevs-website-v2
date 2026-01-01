@@ -31,6 +31,9 @@ const staticRoutes = [
   { url: `${BASE_URL}/career`, changefreq: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/contact`, changefreq: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/news`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/privacy-policy`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/cookies-policy`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/terms-conditions`, changefreq: "monthly", priority: 0.7 },
 ];
 
 interface ProjectResult {
