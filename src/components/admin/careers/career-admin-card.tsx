@@ -49,7 +49,7 @@ export default function CareerAdminCard({
       toast.success(
         `Career ${newStatus ? "published" : "unpublished"} successfully`
       );
-    } catch (error) {
+    } catch {
       toast.error("Failed to update status");
     } finally {
       setIsUpdating(false);
@@ -61,7 +61,7 @@ export default function CareerAdminCard({
       await deleteCareer(career.id);
       onDelete(career.id);
       toast.success("Career deleted successfully");
-    } catch (error) {
+    } catch {
       toast.error("Failed to delete career");
     } finally {
       setDeleteDialogOpen(false);

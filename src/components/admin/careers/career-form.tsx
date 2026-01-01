@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm, useFieldArray, type SubmitHandler } from "react-hook-form";
+import { useForm, useFieldArray, type SubmitHandler, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useNavigate } from "react-router";
@@ -43,7 +43,7 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
   };
 
   const form = useForm<CareerFormValues>({
-    resolver: zodResolver(careerSchema) as any,
+    resolver: zodResolver(careerSchema) as unknown as Resolver<CareerFormValues>,
     defaultValues,
   });
 
@@ -60,7 +60,7 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
     remove: removeFeature,
   } = useFieldArray({
     control,
-    // @ts-ignore
+    // @ts-expect-error - features is a valid field name in CareerFormValues
     name: "features",
   });
 
@@ -70,7 +70,7 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
     remove: removeTag,
   } = useFieldArray({
     control,
-    // @ts-ignore
+    // @ts-expect-error - tags is a valid field name in CareerFormValues
     name: "tags",
   });
 
@@ -172,11 +172,9 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
                         </Button>
                       </div>
                     ))}
-                    {errors.features && (
-                      <p className="text-sm text-red-500">
-                        {errors.features.message as any}
-                      </p>
-                    )}
+                    <p className="text-sm text-red-500">
+                      {errors.features?.message}
+                    </p>
                   </div>
                 </div>
 
@@ -210,11 +208,9 @@ export function CareerForm({ initialData, isEdit = false }: CareerFormProps) {
                         </Button>
                       </div>
                     ))}
-                    {errors.tags && (
-                      <p className="text-sm text-red-500">
-                        {errors.tags.message as any}
-                      </p>
-                    )}
+                    <p className="text-sm text-red-500">
+                      {errors.tags?.message}
+                    </p>
                   </div>
                 </div>
               </div>

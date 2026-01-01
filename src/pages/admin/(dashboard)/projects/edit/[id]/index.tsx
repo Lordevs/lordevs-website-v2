@@ -9,15 +9,14 @@ import ProjectForm from "@/components/admin/projects/project-form";
 export default function EditProjectPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-
-  if (!id) {
-    navigate(-1);
-    return null;
-  }
   const [loadingProject, setLoadingProject] = useState(true);
   const [projectData, setProjectData] = useState<ProjectFormData | null>(null);
 
   useEffect(() => {
+    if (!id) {
+      navigate(-1);
+      return;
+    }
     // Load project data
     const loadProject = async () => {
       try {
@@ -35,8 +34,8 @@ export default function EditProjectPage() {
           main_image: project.main_image,
           live_url: project.live_url || "",
         });
-      } catch (error) {
-        console.error("Error loading project:", error);
+      } catch (_error) {
+        console.error("Error loading project:", _error);
         toast.error("Failed to load project data");
       } finally {
         setLoadingProject(false);
@@ -44,7 +43,7 @@ export default function EditProjectPage() {
     };
 
     loadProject();
-  }, [id]);
+  }, [id, navigate]);
 
   if (loadingProject) {
     return (

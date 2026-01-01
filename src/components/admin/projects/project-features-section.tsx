@@ -1,7 +1,8 @@
 import { Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
-import { type IconName, IconPicker } from "@/components/ui/icon-picker";
+import { IconPicker } from "@/components/ui/icon-picker";
+import { type IconName } from "lucide-react/dynamic";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";

@@ -11,11 +11,8 @@ import {
 import type { Testimonial } from "@/lib/types/database";
 import { Button } from "@/components/ui/button";
 import { Flag } from "@/components/ui/flag";
-import {
-  type FlagCode,
-  FlagPicker,
-  flagsData,
-} from "@/components/ui/flag-picker";
+import { FlagPicker } from "@/components/ui/flag-picker";
+import { type FlagCode, flagsData } from "@/components/ui/flags-data";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -96,11 +93,10 @@ export default function TestimonialForm({
     return Array.from({ length: 5 }, (_, index) => (
       <Star
         key={index}
-        className={`h-5 w-5 cursor-pointer transition-colors ${
-          index < rating
+        className={`h-5 w-5 cursor-pointer transition-colors ${index < rating
             ? "fill-yellow-400 text-yellow-400"
             : "text-gray-300 hover:text-yellow-400"
-        }`}
+          }`}
         onClick={() => setFormData((prev) => ({ ...prev, rating: index + 1 }))}
       />
     ));

@@ -12,7 +12,7 @@ import {
 } from "@/lib/supabase/projects";
 import type { ProjectFeature, ProjectSection } from "@/lib/types/database";
 import { Button } from "@/components/ui/button";
-import type { IconName } from "@/components/ui/icon-picker";
+import type { IconName } from "lucide-react/dynamic";
 
 import LoadingSpinner from "../common/loading-spinner";
 import BasicInformationSection from "./basic-information-section";
@@ -358,7 +358,7 @@ export default function ProjectForm({
   };
 
   if (loading) {
-    <LoadingSpinner />;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -430,8 +430,8 @@ export default function ProjectForm({
             ? "Updating..."
             : "Creating..."
           : isEdit
-          ? "Update Project"
-          : "Create Project"}
+            ? "Update Project"
+            : "Create Project"}
       </Button>
     </form>
   );
