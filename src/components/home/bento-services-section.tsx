@@ -6,47 +6,47 @@ import { TiltCard } from "../common/tilt-card";
 export function BentoServicesSection() {
     const services = [
         {
-            title: "ERP RAG MODELS",
+            title: "Enterprise Software Solutions",
             description:
-                "Enhance customer interactions by automating responses with intelligent chatbots, providing seamless service tailored to your business.",
-            mockupType: "chat" as const,
-            className: "md:col-span-7",
+                "Advanced chatbots and virtual agents designed to handle customer support, internal queries and dynamic interactions.",
+            mockupType: "enterprise" as const,
+            className: "md:col-span-6",
         },
         {
-            title: "AI SAAS APPS",
+            title: "Vibe Coding Applications",
             description:
-                "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
-            mockupType: "workflow" as const,
-            className: "md:col-span-5",
+                "We automate your workflows to streamline repetitive tasks, enhance efficiency, save time, and eliminate errors.",
+            mockupType: "vibe" as const,
+            className: "md:col-span-6",
         },
         {
-            title: "VIBE CODED APPS",
+            title: "SaaS Applications",
             description:
-                "Effortlessly generate high-quality, engaging content tailored to your audience using AI- powered tools.",
-            mockupType: "dashboard" as const,
+                "Curation, cleaning and structuring of data to ensure high-quality inputs for effective AI and machine learning outcomes.",
+            mockupType: "saas" as const,
             className: "md:col-span-4",
         },
         {
-            title: "ERP SOLUTIONS",
+            title: "AI Powered Apps",
             description:
-                "Empower your teams with centralized task management, real-time collaboration, and intelligent workflows.",
-            mockupType: "erp" as const,
+                "Curation, cleaning and structuring of data to ensure high-quality inputs for effective AI and machine learning outcomes.",
+            mockupType: "ai" as const,
             className: "md:col-span-4",
         },
         {
-            title: "DEBUGGING & REFACTORING",
+            title: "Software Integrations",
             description:
-                "Expert debugging and modernization of existing software systems to ensure peak performance and stability.",
-            mockupType: "dashboard" as const,
+                "Curation, cleaning and structuring of data to ensure high-quality inputs for effective AI and machine learning outcomes.",
+            mockupType: "integrations" as const,
             className: "md:col-span-4",
         },
     ];
 
     return (
-        <section className="overflow-hidden py-10 md:py-20">
-            <div className="relative z-10 container mx-auto px-4">
+        <section className="relative overflow-hidden bg-[#050505] py-20 md:py-32">
+            <div className="relative z-10 container mx-auto px-4 lg:px-8">
                 {/* Section Header */}
-                <div className="mb-24 text-center">
+                <div className="mb-16 md:mb-24 text-center">
                     <SectionBagde name="Services" />
 
                     <motion.h2
@@ -54,34 +54,25 @@ export function BentoServicesSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="mx-auto mb-4 max-w-3xl text-3xl font-bold md:text-5xl md:leading-14">
+                        className="mx-auto mb-6 max-w-4xl text-4xl font-bold tracking-tight md:text-6xl md:leading-[1.1] text-white">
                         Innovative Services for Your{" "}
-                        <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-[#1E72FC] via-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
                             Business
                         </span>{" "}
-                        growth
+                        Growth
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                         viewport={{ once: true }}
-                        className="mx-auto max-w-sm text-lg text-[#B2B2B2] md:max-w-2xl md:text-2xl">
-                        Tailored solutions to streamline, innovate, and grow
+                        className="mx-auto max-w-2xl text-lg text-[#B2B2B2] md:text-xl md:leading-relaxed">
+                        Extending your development capabilities with tailored solutions designed to streamline, innovate, and scale.
                     </motion.p>
                 </div>
 
                 {/* Services Grid (Bento Layout) */}
-                <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
-                    {/* Background Image at the center*/}
-                    <div className="absolute -top-20 left-1/2 z-0 h-[327px] w-[548px] -translate-x-1/2">
-                        <img
-                            src="./images/backgrounds/home/services-bg.svg"
-                            alt=""
-                            className="object-cover"
-                        />
-                    </div>
-
+                <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-12 md:gap-8 lg:gap-8">
                     {services.map((service, index) => (
                         <div key={index} className={`${service.className}`}>
                             <TiltCard className="h-full">
