@@ -6,7 +6,7 @@ import { TiltCard } from "../common/tilt-card";
 export function BentoServicesSection() {
     const services = [
         {
-            title: "LLM RAG MODELS",
+            title: "ERP RAG MODELS",
             description:
                 "Enhance customer interactions by automating responses with intelligent chatbots, providing seamless service tailored to your business.",
             mockupType: "chat" as const,
