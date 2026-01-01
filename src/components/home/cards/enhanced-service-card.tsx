@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 interface ServiceCardProps {
   title: string;
   description: string;
-  mockupType: "enterprise" | "vibe" | "saas" | "ai" | "integrations";
+  mockupType: "enterprise" | "vibe" | "saas" | "ai" | "integrations" | "chat" | "dashboard" | "erp" | "workflow";
   animationDelay?: number;
 }
 
