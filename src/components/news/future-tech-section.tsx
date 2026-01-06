@@ -11,7 +11,7 @@ const FutureTechSection: FC = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start mb-12">
           <div className="shrink-0 flex justify-start items-center w-full md:w-auto px-4">
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="Company Logo"
               width={50}
               height={50}
@@ -117,7 +117,7 @@ const FutureTechSection: FC = () => {
                     Stay Connected on LinkedIn
                   </h3>
                   <Link
-                    to="https://www.linkedin.com/company/lordevs/"
+                    to="https://www.linkedin.com/company/DotCode/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="

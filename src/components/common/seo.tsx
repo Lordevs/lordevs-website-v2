@@ -8,7 +8,7 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, url, image }: SEOProps) {
-  const siteUrl = "https://lordevs.com";
+  const siteUrl = "https://DotCode.com";
   const currentUrl = url ? `${siteUrl}${url}` : siteUrl;
   const defaultImage = `${siteUrl}/opengraph-image.png`;
   const ogImage = image || defaultImage;

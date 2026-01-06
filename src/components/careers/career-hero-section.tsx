@@ -59,7 +59,7 @@ export function CareerHeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mx-auto mb-8 max-w-4xl text-base text-gray-300 md:text-2xl">
-            At Lordevs, we&rsquo;re shaping the future of AI-driven websites.
+            At DotCode, we&rsquo;re shaping the future of AI-driven websites.
             Join our team of innovators and help us push boundaries.
           </motion.p>
 

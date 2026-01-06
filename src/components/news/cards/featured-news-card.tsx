@@ -105,7 +105,7 @@ export function FeaturedNewsCard({
                 })}
               </span>
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                Lordevs
+                DotCode
               </span>
             </div>
           </div>

@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     sitemapPlugin({
-      hostname: "https://lordevs.com",
+      hostname: "https://DotCode.com",
     }),
   ],
   resolve: {

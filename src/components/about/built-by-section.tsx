@@ -28,7 +28,7 @@ export function BuiltBySection() {
           <h2 className="text-3xl font-medium text-white md:text-5xl">
             Built by{" "}
             <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
-              LORDEVS
+              DotCode
             </span>
           </h2>
           <p className="mt-2 text-base text-gray-300 md:text-2xl">
@@ -59,7 +59,7 @@ export function BuiltBySection() {
           className="mx-auto max-w-4xl text-3xl font-medium text-white md:mt-36 md:text-5xl">
           We at{" "}
           <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
-            Lordevs
+            DotCode
           </span>
           , help founders like you to automate their day to day business
           operations with the help of AI

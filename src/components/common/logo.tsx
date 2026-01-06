@@ -19,7 +19,7 @@ export function Logo({
       className={cn("flex items-center justify-center", containerClassName)}>
       <div className={cn("relative h-10 w-24", className)}>
         <img
-          src="/logo.svg"
+          src="/logo.png"
           alt={siteConfig.name}
           className="h-full w-full object-contain"
         />

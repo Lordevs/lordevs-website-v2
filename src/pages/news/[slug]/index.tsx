@@ -42,9 +42,9 @@ export default function NewsDetailPage() {
   return (
     <div>
       <SEO
-        title={blog ? `${blog.title} | Lordevs News` : "Loading News..."}
+        title={blog ? `${blog.title} | DotCode News` : "Loading News..."}
         description={
-          blog ? getDescription(blog) : "Reading the latest from Lordevs"
+          blog ? getDescription(blog) : "Reading the latest from DotCode"
         }
       />
       <div className="min-h-screen bg-[#0C0912] pt-28">

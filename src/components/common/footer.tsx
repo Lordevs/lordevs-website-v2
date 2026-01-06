@@ -21,16 +21,16 @@ export function Footer() {
 
   // Updated social icons to match the image, using placeholder divs for Upwork and Fiverr
   const socialIcons = [
-    // { icon: '/images/logos/upwork-logo.svg', href: '#', label: 'Upwork' },
-    // { icon: '/images/logos/fiver-logo.svg', href: '#', label: 'Fiverr' },
+    // { icon: '/images/logos/upwork-logo.png', href: '#', label: 'Upwork' },
+    // { icon: '/images/logos/fiver-logo.png', href: '#', label: 'Fiverr' },
     {
-      icon: "/images/logos/linkedin-logo.svg",
-      href: "https://www.linkedin.com/company/lordevs/",
+      icon: "/images/logos/linkedin-logo.png",
+      href: "https://www.linkedin.com/company/DotCode/",
       label: "LinkedIn",
     },
     {
-      icon: "/images/logos/instagram-logo.svg",
-      href: "https://www.instagram.com/lordevs.co/",
+      icon: "/images/logos/instagram-logo.png",
+      href: "https://www.instagram.com/DotCode.co/",
       label: "Instagram",
     },
   ];
@@ -180,9 +180,9 @@ export function Footer() {
               viewport={{ once: true }}
               className="mt-4 text-left md:mt-0 md:text-right">
               <a
-                href="mailto:info@lordevs.com"
+                href="mailto:info@DotCode.com"
                 className="text-xl text-white transition-colors duration-300 hover:text-[#C7C7C7]">
-                info@lordevs.com
+                info@DotCode.com
               </a>
             </motion.div>
           </motion.div>
@@ -196,7 +196,7 @@ export function Footer() {
           viewport={{ once: true }}
           className="mt-8 text-center md:mt-16">
           <p className="text-sm text-[#C7C7C7]">
-            Lordevs.com All rights reserved.
+            DotCode.com All rights reserved.
           </p>
         </motion.div>
       </div>

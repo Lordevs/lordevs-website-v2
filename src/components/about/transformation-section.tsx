@@ -93,7 +93,7 @@ export function TransformationSection() {
               Shaping Tomorrow Through Bold Digital Transformation
             </h2>
             <p className="mt-8 text-base text-[#B2B2B2] md:text-2xl">
-              Whether you have a startup or an established enterprise, LORDEVS
+              Whether you have a startup or an established enterprise, DotCode
               provides tailored software development services that drive
               business growth. From custom applications to enterprise-level
               solutions, we ensure that your technology investments work for
@@ -114,7 +114,7 @@ export function TransformationSection() {
                 icon="/icons/robot-icon.svg"
                 tag="Empowerment"
                 title="Powering Tomorrow's Businesses with AI-Driven IT Solutions">
-                Our team at LORDEVS specializes in delivering scalable software
+                Our team at DotCode specializes in delivering scalable software
                 solutions, ensuring that your business stays ahead of the curve.
                 Whether it&lsquo;s application development, system integration,
                 or cloud solutions, we offer a comprehensive suite of services
@@ -134,7 +134,7 @@ export function TransformationSection() {
                 icon="/icons/up-down-arrow-icon.svg"
                 tag="Innovate"
                 title="Your Full-Cycle AI Partner">
-                LORDEVS delivers intelligent AI-driven solutions that help
+                DotCode delivers intelligent AI-driven solutions that help
                 businesses automate workflows, enhance user experiences, and
                 make smarter decisions. From custom web applications to machine
                 learning systems, our team builds scalable, end-to-end platforms

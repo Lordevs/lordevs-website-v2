@@ -18,7 +18,7 @@ export function AboutSection() {
             className="mb-8 text-3xl leading-tight font-medium md:text-5xl">
             We at{" "}
             <span className="bg-linear-to-r from-[#00B2FF] to-[#8F00FF] bg-clip-text text-transparent">
-              Lordevs
+              DotCode
             </span>
             , help founders like you to automate their day to day business
             operations with the help of AI

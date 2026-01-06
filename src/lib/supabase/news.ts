@@ -34,7 +34,7 @@ export const uploadNewsImage = async (
   const filePath = `news/${fileName}`;
 
   const { error } = await supabase.storage
-    .from("lordevs")
+    .from("DotCode")
     .upload(filePath, file, {
       cacheControl: "3600",
       upsert: false,
@@ -44,7 +44,7 @@ export const uploadNewsImage = async (
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from("lordevs").getPublicUrl(filePath);
+  } = supabase.storage.from("DotCode").getPublicUrl(filePath);
 
   return publicUrl;
 };
@@ -53,10 +53,10 @@ export const uploadNewsImage = async (
  * Delete image from Supabase storage
  */
 export const deleteNewsImage = async (imageUrl: string): Promise<void> => {
-  const path = imageUrl.split("/storage/v1/object/public/lordevs/")[1];
+  const path = imageUrl.split("/storage/v1/object/public/DotCode/")[1];
   if (!path) return;
 
-  const { error } = await supabase.storage.from("lordevs").remove([path]);
+  const { error } = await supabase.storage.from("DotCode").remove([path]);
   if (error) throw error;
 };
 

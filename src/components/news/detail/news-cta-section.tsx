@@ -23,7 +23,7 @@ const NewsCtaSection: FC = () => {
 
       <div className="relative z-10 flex flex-col justify-center items-center max-w-4xl mx-auto text-center px-4 space-y-8">
         <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-          Stay Ahead with Lordevs
+          Stay Ahead with DotCode
         </h2>
         <p className="text-gray-400 text-lg md:text-xl w-full max-w-2xl leading-relaxed">
           Discover how our creative solutions can optimise your operations,

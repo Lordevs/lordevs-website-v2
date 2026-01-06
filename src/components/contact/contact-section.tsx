@@ -129,9 +129,9 @@ export function ContactSection() {
             <div className="flex items-center space-x-3 text-[#FFFFFFB2]">
               <Mail className="h-5 w-5" />
               <a
-                href="mailto:info@lordevs.com"
+                href="mailto:info@DotCode.com"
                 className="hover:text-[#FFFFFFB2]">
-                info@lordevs.com
+                info@DotCode.com
               </a>
             </div>
           </motion.div>

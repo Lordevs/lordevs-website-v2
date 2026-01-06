@@ -9,8 +9,8 @@ export default function NewsPage() {
   return (
     <div className="min-h-screen bg-black">
       <SEO
-        title="News | Lordevs"
-        description="News and insights from Lordevs"
+        title="News | DotCode"
+        description="News and insights from DotCode"
       />
       <NewsHeroSection />
       <NewsItem />

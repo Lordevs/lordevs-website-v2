@@ -17,14 +17,14 @@ export function CustomerConfirmationEmailTemplate({
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Thank you for contacting LORDEVS</title>
+      <title>Thank you for contacting DotCode</title>
     </head>
     <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         
         <!-- Header -->
         <div style="background: radial-gradient(circle at 50% 50%, #3533cd 0%, #000000 50%, #000000 100%); padding: 40px 30px; text-align: center;">
-          <img src="https://vjspmdjvlosgvthhodhu.supabase.co/storage/v1/object/public/lordevs/public/logo.png" alt="LORDEVS Logo" style="height: 80px;">
+          <img src="https://vjspmdjvlosgvthhodhu.supabase.co/storage/v1/object/public/DotCode/public/logo.png" alt="DotCode Logo" style="height: 80px;">
           <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
             Thank you for reaching out!
           </h1>
@@ -90,12 +90,12 @@ export function CustomerConfirmationEmailTemplate({
               Feel free to reach out to us directly:
             </p>
             <div style="margin-bottom: 12px;">
-              <a href="mailto:info@lordevs.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
-                info@lordevs.com
+              <a href="mailto:info@DotCode.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
+                info@DotCode.com
               </a>
             </div>
             <div>
-              <a href="https://lordevs.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
+              <a href="https://DotCode.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
                 Visit our website
               </a>
             </div>
@@ -108,7 +108,7 @@ export function CustomerConfirmationEmailTemplate({
             This is an automated confirmation email. Please do not reply to this email.
           </p>
           <p style="color: #a0aec0; font-size: 14px; margin: 0;">
-            © 2025 LORDEVS. All rights reserved.
+            © 2025 DotCode. All rights reserved.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export function CustomerConfirmationEmailPlainText({
   return `
 Hi ${name},
 
-Thank you for reaching out to LORDEVS! We've received your message and appreciate you taking the time to contact us.
+Thank you for reaching out to DotCode! We've received your message and appreciate you taking the time to contact us.
 
 YOUR QUERY SUMMARY
 ==================
@@ -146,11 +146,11 @@ WHAT HAPPENS NEXT?
 NEED IMMEDIATE ASSISTANCE?
 =========================
 Feel free to reach out to us directly:
-Email: info@lordevs.com
-Website: https://lordevs.com
+Email: info@DotCode.com
+Website: https://DotCode.com
 
 ---
 This is an automated confirmation email. Please do not reply to this email.
-© 2025 LORDEVS. All rights reserved.
+© 2025 DotCode. All rights reserved.
   `.trim();
 }

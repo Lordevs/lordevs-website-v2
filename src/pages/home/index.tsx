@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <SEO
-        title="Home | LORDEVS"
+        title="Home | DotCode"
         description="We Turn Your Vision into Impact with AI-Powered Products"
         url="/"
       />

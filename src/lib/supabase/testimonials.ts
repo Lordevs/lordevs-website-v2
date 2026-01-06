@@ -39,7 +39,7 @@ export const uploadTestimonialImage = async (
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from("lordevs").getPublicUrl(data.path);
+  } = supabase.storage.from("DotCode").getPublicUrl(data.path);
 
   return publicUrl;
 };

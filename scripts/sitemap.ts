@@ -20,7 +20,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const BASE_URL = (
-  process.env.VITE_FRONTEND_URL || "https://lordevs.com"
+  process.env.VITE_FRONTEND_URL || "https://DotCode.com"
 ).replace(/['"‘]+/g, "");
 
 // Static routes

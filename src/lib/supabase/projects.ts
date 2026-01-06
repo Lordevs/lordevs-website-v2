@@ -41,7 +41,7 @@ export const uploadProjectImage = async (
   const filePath = `projects/${fileName}`;
 
   const { data, error } = await supabase.storage
-    .from("lordevs")
+    .from("DotCode")
     .upload(filePath, file, {
       cacheControl: "3600",
       upsert: false, // still false so you get errors if you really duplicate––but names now unique
@@ -51,7 +51,7 @@ export const uploadProjectImage = async (
 
   const {
     data: { publicUrl },
-  } = supabase.storage.from("lordevs").getPublicUrl(data.path);
+  } = supabase.storage.from("DotCode").getPublicUrl(data.path);
 
   return publicUrl;
 };
@@ -65,7 +65,7 @@ export const deleteProjectImage = async (imageUrl: string): Promise<void> => {
   const fileName = urlParts[urlParts.length - 1];
   const filePath = `projects/${fileName}`;
 
-  const { error } = await supabase.storage.from("lordevs").remove([filePath]);
+  const { error } = await supabase.storage.from("DotCode").remove([filePath]);
 
   if (error) {
     throw error;

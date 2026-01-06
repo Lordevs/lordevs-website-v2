@@ -32,7 +32,7 @@ export default function Newsletter() {
 
           <div className="relative z-10 space-y-6 flex flex-col items-center">
             <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
-              Stay Updated with Lordevs
+              Stay Updated with DotCode
             </h2>
             <p className="text-base md:text-lg text-gray-400 mx-auto max-w-xl">
               Subscribe to our newsletter for the latest news, product updates,
