@@ -2,6 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FeaturedNewsCard } from "./cards/featured-news-card";
 import { NewsCard } from "./cards/news-card";
 import { useNews } from "@/hooks/use-news";
+import type { NewsRow } from "@/lib/types/database";
 
 interface NewsItemProps {
   /** Blog ID/slug to exclude from the list (useful on blog detail pages) */
@@ -64,7 +65,7 @@ export function NewsItem({ excludeId }: NewsItemProps) {
   const others = filteredBlogs.slice(1, 4);
 
   // Helper to extract description
-  const getDescription = (item: any) =>
+  const getDescription = (item: NewsRow) =>
     item.excerpt || item.content?.slice(0, 150) + "..." || "";
 
   return (

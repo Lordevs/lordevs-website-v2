@@ -19,40 +19,34 @@ interface IconProps extends Omit<LucideProps, "ref"> {
  */
 const Icon = React.forwardRef<React.ComponentRef<LucideIcon>, IconProps>(
   ({ name, fallback, src, alt, className, size = 16, ...props }, ref) => {
-    try {
-      // If src is provided, render as image (for custom uploaded icons)
-      if (src) {
-        return (
-          <img
-            src={src}
-            alt={alt || `${name} icon`}
-            width={typeof size === "number" ? size : 16}
-            height={typeof size === "number" ? size : 16}
-            className={cn("h-4 w-4", className)}
-          />
-        );
-      }
-
-      // If the name is a valid IconName, render the dynamic icon
-      if (name && typeof name === "string") {
-        return (
-          <DynamicIcon
-            name={name as IconName}
-            className={className}
-            size={size}
-            {...props}
-            ref={ref}
-          />
-        );
-      }
-
-      // If no name provided, render fallback or nothing
-      return fallback ? <>{fallback}</> : null;
-    } catch (error) {
-      // If icon fails to load, render fallback or nothing
-      console.warn(`Failed to load icon: ${name}`, error);
-      return fallback ? <>{fallback}</> : null;
+    // If src is provided, render as image (for custom uploaded icons)
+    if (src) {
+      return (
+        <img
+          src={src}
+          alt={alt || `${name} icon`}
+          width={typeof size === "number" ? size : 16}
+          height={typeof size === "number" ? size : 16}
+          className={cn("h-4 w-4", className)}
+        />
+      );
     }
+
+    // If the name is a valid string, render the dynamic icon
+    if (name && typeof name === "string") {
+      return (
+        <DynamicIcon
+          name={name as IconName}
+          className={className}
+          size={size}
+          {...props}
+          ref={ref}
+        />
+      );
+    }
+
+    // If no name provided, render fallback or nothing
+    return fallback ? <>{fallback}</> : null;
   }
 );
 

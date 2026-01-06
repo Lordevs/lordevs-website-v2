@@ -31,7 +31,15 @@ const staticRoutes = [
   { url: `${BASE_URL}/career`, changefreq: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/contact`, changefreq: "monthly", priority: 0.7 },
   { url: `${BASE_URL}/news`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/privacy-policy`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/cookies-policy`, changefreq: "monthly", priority: 0.7 },
+  { url: `${BASE_URL}/terms-conditions`, changefreq: "monthly", priority: 0.7 },
 ];
+
+interface ProjectResult {
+  project_slug: string;
+  updated_at: string;
+}
 
 // Dynamic routes from Supabase
 async function getCaseStudyRoutes() {
@@ -47,8 +55,10 @@ async function getCaseStudyRoutes() {
       return [];
     }
 
+    const projects = data as unknown as ProjectResult[];
+
     return (
-      data?.map((project: any) => ({
+      projects?.map((project) => ({
         url: `${BASE_URL}/case-studies/${project.project_slug}`,
         lastmod: project.updated_at
           ? new Date(project.updated_at).toISOString()

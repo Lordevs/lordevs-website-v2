@@ -68,7 +68,7 @@ const FutureTechSection: FC = () => {
               <div className="relative z-10">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <h3 className="text-white font-bold text-xl">
-                    Access the Latest Company Reports
+                    Access the Latest Company Portfolio
                   </h3>
                   <button
                     type="button"

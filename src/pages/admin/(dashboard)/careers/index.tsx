@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { ListFilter, Plus, Search } from "lucide-react";
@@ -26,15 +26,7 @@ export default function AdminCareersPage() {
     "all" | "active" | "inactive"
   >("all");
 
-  useEffect(() => {
-    setCareers(allCareers);
-  }, [allCareers]);
-
-  useEffect(() => {
-    filterCareers();
-  }, [careers, searchTerm, statusFilter]);
-
-  const filterCareers = () => {
+  const filterCareers = useCallback(() => {
     let filtered = careers;
 
     if (searchTerm) {
@@ -54,7 +46,15 @@ export default function AdminCareersPage() {
     }
 
     setFilteredCareers(filtered);
-  };
+  }, [careers, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    setCareers(allCareers);
+  }, [allCareers]);
+
+  useEffect(() => {
+    filterCareers();
+  }, [filterCareers]);
 
   const handleEdit = (id: string) => {
     navigate(ROUTES.ADMIN.EDIT_CAREER(id));

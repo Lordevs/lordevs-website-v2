@@ -1,13 +1,14 @@
 import { ApplyJobSection } from "@/components/apply-for-job/apply-job-section";
 import { SEO } from "@/components/common/seo";
+import { ROUTES } from "@/constants/routes";
 
 export default function ApplyJobPage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <SEO
-        title="Apply for Job | DotCode"
-        description="DotCode is an innovative software company specializing in AI-driven solutions. We help businesses and startups leverage artificial intelligence to create customized SaaS applications, automate processes, and optimize their operations. Our services include AI development, machine learning integration, data analytics, and more."
-        url="/careers/apply-for-job"
+        title="Apply for Job | Build the Future with Us"
+        description="At Lordevs, we're shaping the future of AI-driven websites. Join our team of innovators and help us push boundaries."
+        url={ROUTES.CAREER}
       />
       <ApplyJobSection />
     </main>

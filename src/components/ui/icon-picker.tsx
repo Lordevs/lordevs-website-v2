@@ -213,6 +213,7 @@ const IconPicker = React.forwardRef<
 
     const parentRef = React.useRef<HTMLDivElement>(null);
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const virtualizer = useVirtualizer({
       count: virtualItems.length,
       getScrollElement: () => parentRef.current,
@@ -250,7 +251,7 @@ const IconPicker = React.forwardRef<
           }, 1);
         }
       },
-      [open, onOpenChange, virtualizer]
+      [open, onOpenChange, virtualizer, setSearch]
     );
 
     const handleIconClick = useCallback(
@@ -259,7 +260,7 @@ const IconPicker = React.forwardRef<
         setIsOpen(false);
         setSearch("");
       },
-      [handleValueChange]
+      [handleValueChange, setSearch]
     );
 
     const handleSearchChange = useCallback(
@@ -272,7 +273,7 @@ const IconPicker = React.forwardRef<
 
         virtualizer.scrollToOffset(0);
       },
-      [virtualizer]
+      [virtualizer, setSearch]
     );
 
     const scrollToCategory = useCallback(
@@ -467,4 +468,4 @@ const Icon = React.forwardRef<React.ComponentRef<LucideIcon>, IconProps>(
 );
 Icon.displayName = "Icon";
 
-export { Icon, IconPicker, type IconName };
+export { Icon, IconPicker };

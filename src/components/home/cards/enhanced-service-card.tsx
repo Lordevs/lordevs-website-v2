@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
   title: string;
   description: string;
-  mockupType: "chat" | "dashboard" | "erp" | "workflow";
+  mockupType: "enterprise" | "vibe" | "saas" | "ai" | "integrations" | "chat" | "dashboard" | "erp" | "workflow";
   animationDelay?: number;
 }
 
@@ -17,87 +18,89 @@ export function EnhancedServiceCard({
   mockupType,
   animationDelay = 0,
 }: ServiceCardProps) {
-  const getServiceImage = () => {
+  const getServiceData = () => {
     switch (mockupType) {
-      case "chat":
-        return (
-          <div className="relative h-48 w-full md:h-56">
-            <img
-              src="/images/services/service-1.png"
-              alt=""
-              className="h-full w-full md:h-56 md:w-full"
-            />
-          </div>
-        );
-      case "dashboard":
-        return (
-          <div className="relative h-48 md:h-56">
-            <img
-              src="/images/services/service-2.png"
-              alt=""
-              className="h-full w-full md:h-56 md:w-full"
-            />
-          </div>
-        );
-      case "erp":
-        return (
-          <div className="relative h-48 md:h-56">
-            <img
-              src="/images/services/service-3.png"
-              alt=""
-              className="h-full w-full md:h-56 md:w-full"
-            />
-          </div>
-        );
-      case "workflow":
-        return (
-          <div className="relative h-48 md:h-56">
-            <img
-              src="/images/services/service-4.png"
-              alt=""
-              className="h-full w-full md:h-56 md:w-full"
-            />
-          </div>
-        );
+      case "enterprise":
+        return {
+          src: "/images/services/service-1.png",
+          imgClass: "w-full translate-x-[5%] translate-y-4 md:translate-y-6",
+        };
+      case "vibe":
+        return {
+          src: "/images/services/service-2.png",
+          imgClass: "w-[90%] md:w-[85%] translate-y-4 md:translate-y-12",
+        };
+      case "saas":
+        return {
+          src: "/images/services/service-3.png",
+          imgClass: "w-[85%] translate-y-2 md:translate-y-4",
+        };
+      case "ai":
+        return {
+          src: "/images/services/service-4.png",
+          imgClass: "w-[95%] translate-y-2 md:translate-y-8",
+        };
+      case "integrations":
+        return {
+          src: "/images/services/service-5.png",
+          imgClass: "w-[85%] translate-y-2 md:translate-y-4",
+        };
+      default:
+        return {
+          src: "/images/services/service-1.png",
+          imgClass: "w-full",
+        };
     }
   };
 
+  const { src, imgClass } = getServiceData();
+
   return (
     <motion.div
-      whileHover={{ scale: 1.02, y: -4 }}
-      transition={{ duration: 0.3, delay: animationDelay }}
-      viewport={{ once: true }}
+      whileHover={{ scale: 1.01, y: -2 }}
+      transition={{ duration: 0.3 }}
       className="group h-full cursor-pointer">
-      {/* background: radial-gradient(59% 61% at 15.8% 14.3%, #000000 0%, #0D0D12 100%);
-       */}
       <Card
-        className="relative z-10 flex w-full flex-col gap-0 overflow-hidden rounded-[35px] border-2 border-transparent bg-[#181A20] py-0 shadow-lg transition-all duration-300 hover:shadow-[0_4px_32px_0_rgba(59,130,246,0.5)] md:h-full"
+        className="relative z-10 flex w-full flex-col gap-0 overflow-hidden rounded-2xl border border-[#1E72FC] bg-clip-padding backdrop-blur-[15px] transition-all duration-300 md:h-full"
         style={{
-          background:
-            "radial-gradient(59% 61% at 15.8% 14.3%, #000000 0%, #000000 100%)",
+          background: "linear-gradient(111deg, rgba(77, 77, 77, 0.24) 1.21%, rgba(30, 114, 252, 0.12) 100%)",
+          boxShadow: "-20px 66px 120px -80px rgba(0, 122, 255, 0.15) inset",
         }}>
         <ShineBorder
-          shineColor={["#00B2FF", "#cfcfcf33", "#8F00FF", "#cfcfcf33"]}
-          borderWidth={2}
-          className="z-10"
+          shineColor={["#1E72FC", "#6136FF", "#8F00FF", "#ffffff"]}
+          duration={8}
+          borderWidth={1}
+          className="z-10 opacity-60"
         />
-        <div>{getServiceImage()}</div>
-        <div className="p-6 md:p-11 md:pt-6">
-          {/* <div className="mb-6">{getMockupContent()}</div> */}
 
+        {/* Content Top */}
+        <div className="flex flex-col px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 + animationDelay }}
             viewport={{ once: true }}
-            className="space-y-3">
-            <h3 className="text-xl font-medium text-white transition-colors duration-300 group-hover:text-[#41A2F8] md:text-3xl">
+            className="space-y-4">
+            <h3 className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#41A2F8] md:text-3xl lg:text-4xl tracking-tight leading-tight">
               {title}
             </h3>
-            <p className="text-[#AEAEB2] transition-colors duration-300 group-hover:text-gray-300 md:text-xl md:leading-relaxed">
+            <p className="text-sm text-[#B2B2B2] transition-colors duration-300 group-hover:text-gray-300 md:text-base lg:text-xl md:leading-relaxed font-medium">
               {description}
             </p>
           </motion.div>
+        </div>
+
+        {/* Mockup Bottom */}
+        <div className="flex w-full items-end justify-center">
+          <motion.img
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 + animationDelay }}
+            viewport={{ once: true }}
+            src={src}
+            alt={title}
+            className={cn("transition-transform duration-500 group-hover:scale-110", imgClass)}
+          />
         </div>
       </Card>
     </motion.div>

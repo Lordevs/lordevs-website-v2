@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { ListFilter, Plus, Search } from "lucide-react";
@@ -28,26 +28,18 @@ export default function TestimonialsPage() {
     "all" | "active" | "inactive"
   >("all");
 
-  useEffect(() => {
-    loadTestimonials();
-  }, []);
-
-  useEffect(() => {
-    filterTestimonials();
-  }, [testimonials, searchTerm, statusFilter]);
-
-  const loadTestimonials = async () => {
+  const loadTestimonials = useCallback(async () => {
     try {
       const data = await getTestimonials();
       setTestimonials(data);
-    } catch (error) {
-      console.error("Error loading testimonials:", error);
+    } catch (_error) {
+      console.error("Error loading testimonials:", _error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const filterTestimonials = () => {
+  const filterTestimonials = useCallback(() => {
     let filtered = testimonials;
 
     // Filter by search term
@@ -72,7 +64,15 @@ export default function TestimonialsPage() {
     }
 
     setFilteredTestimonials(filtered);
-  };
+  }, [testimonials, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    loadTestimonials();
+  }, [loadTestimonials]);
+
+  useEffect(() => {
+    filterTestimonials();
+  }, [filterTestimonials]);
 
   const handleEdit = (id: string) => {
     navigate(ROUTES.ADMIN.EDIT_TESTIMONIAL(id));

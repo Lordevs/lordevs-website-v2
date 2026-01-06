@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { InfiniteLogoCarousel } from "../common/infinite-logo-carousel";
 import { NavLink } from "react-router";
+import { ROUTES } from "@/constants/routes";
 
 export function HeroSection() {
   const aiLogos = [
@@ -75,7 +76,7 @@ export function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="my-10 md:my-16">
-            <NavLink to="/contact">
+            <NavLink to={ROUTES.CONTACT}>
               <Button
                 variant="gradient"
                 className="cursor-pointer px-10 py-5 text-lg font-semibold md:px-16 md:py-6 md:text-xl">

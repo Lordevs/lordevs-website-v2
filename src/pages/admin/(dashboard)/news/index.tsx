@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/constants/routes";
 import { ListFilter, Plus, Search } from "lucide-react";
@@ -26,15 +26,7 @@ export default function NewsPage() {
     "all" | "active" | "inactive"
   >("all");
 
-  useEffect(() => {
-    setNews(allNews);
-  }, [allNews]);
-
-  useEffect(() => {
-    filterNews();
-  }, [news, searchTerm, statusFilter]);
-
-  const filterNews = () => {
+  const filterNews = useCallback(() => {
     let filtered = news;
 
     if (searchTerm) {
@@ -53,7 +45,15 @@ export default function NewsPage() {
     }
 
     setFilteredNews(filtered);
-  };
+  }, [news, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    setNews(allNews);
+  }, [allNews]);
+
+  useEffect(() => {
+    filterNews();
+  }, [filterNews]);
 
   const handleEdit = (id: string) => {
     navigate(ROUTES.ADMIN.EDIT_NEWS(id));

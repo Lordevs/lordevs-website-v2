@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router";
 import { getNewsById } from "@/lib/supabase/news";
 import type { NewsRow } from "@/lib/types/database";
@@ -11,22 +11,21 @@ export default function EditNewsPage() {
   const [news, setNews] = useState<NewsRow | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (id) {
-      loadNews();
-    }
-  }, [id]);
-
-  const loadNews = async () => {
+  const loadNews = useCallback(async () => {
+    if (!id) return;
     try {
-      const data = await getNewsById(id!);
+      const data = await getNewsById(id);
       setNews(data);
-    } catch (error) {
-      console.error("Error loading news article:", error);
+    } catch (_error) {
+      console.error("Error loading news article:", _error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadNews();
+  }, [loadNews]);
 
   if (loading) {
     return (

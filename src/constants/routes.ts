@@ -8,6 +8,9 @@ export const ROUTES = {
   NEWS: "/news",
   NEWS_ARTICLE: (slug: string) => `/news/${slug}`,
   CONTACT: "/contact",
+  PRIVACY_POLICY: "/privacy-policy",
+  COOKIES_POLICY: "/cookies-policy",
+  TERMS_CONDITIONS: "/terms-conditions",
   ADMIN: {
     INDEX: "/admin",
     LOGIN: "/admin/login",

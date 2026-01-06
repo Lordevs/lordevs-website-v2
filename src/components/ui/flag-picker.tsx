@@ -209,6 +209,7 @@ const FlagPicker = React.forwardRef<
 
     const parentRef = React.useRef<HTMLDivElement>(null);
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const virtualizer = useVirtualizer({
       count: virtualItems.length,
       getScrollElement: () => parentRef.current,
@@ -488,4 +489,4 @@ const Flag = React.forwardRef<HTMLDivElement, FlagProps>(
 );
 Flag.displayName = "Flag";
 
-export { Flag, FlagPicker, flagsData, type FlagCode, type FlagData };
+export { Flag, FlagPicker };

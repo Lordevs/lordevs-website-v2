@@ -1,4 +1,4 @@
-import type { IconName } from "@/components/ui/icon-picker";
+import { type IconName } from "lucide-react/dynamic";
 
 // Supporting types
 export interface ProjectSection {

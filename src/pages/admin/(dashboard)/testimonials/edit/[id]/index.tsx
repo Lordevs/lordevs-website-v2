@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router";
 import { toast } from "sonner";
 
@@ -14,23 +14,22 @@ export default function EditTestimonialPage() {
   const [testimonial, setTestimonial] = useState<Testimonial | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (testimonialId) {
-      loadTestimonial();
-    }
-  }, [testimonialId]);
-
-  const loadTestimonial = async () => {
+  const loadTestimonial = useCallback(async () => {
+    if (!testimonialId) return;
     try {
       const data = await getTestimonialById(testimonialId);
       setTestimonial(data);
-    } catch (error) {
-      console.error("Error loading testimonial:", error);
+    } catch (_error) {
+      console.error("Error loading testimonial:", _error);
       toast.error("Failed to load testimonial");
     } finally {
       setLoading(false);
     }
-  };
+  }, [testimonialId]);
+
+  useEffect(() => {
+    loadTestimonial();
+  }, [loadTestimonial]);
 
   if (loading) {
     return (

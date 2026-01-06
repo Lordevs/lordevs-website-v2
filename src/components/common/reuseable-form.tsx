@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Upload } from "lucide-react";
 import { type FieldValues, type Resolver, useForm } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { z } from "zod";
 
 // ShadCN form components
 import { Button } from "@/components/ui/button";
@@ -40,7 +40,8 @@ export interface FieldConfig {
 }
 
 // Props for the reusable form
-interface ReusableFormProps<T extends ZodType<any, any, any>> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface ReusableFormProps<T extends z.ZodType<any, any, any>> {
   schema: T;
   fields: FieldConfig[];
   onSubmit: (values: z.infer<T>) => void | Promise<void>;
@@ -51,7 +52,7 @@ interface ReusableFormProps<T extends ZodType<any, any, any>> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ReusableForm<T extends ZodType<any, any, any>>({
+export function ReusableForm<T extends z.ZodType<any, any, any>>({
   schema,
   fields,
   onSubmit,
@@ -84,14 +85,9 @@ export function ReusableForm<T extends ZodType<any, any, any>>({
   });
 
   const handleSubmit = async (values: z.infer<T>) => {
-    try {
-      await onSubmit(values);
-      if (resetOnSuccess) {
-        form.reset(getDefaultValues() as z.infer<T> & FieldValues);
-      }
-    } catch (error) {
-      // Let the parent component handle the error
-      throw error;
+    await onSubmit(values);
+    if (resetOnSuccess) {
+      form.reset(getDefaultValues() as z.infer<T> & FieldValues);
     }
   };
 
