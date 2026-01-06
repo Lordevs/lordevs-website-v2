@@ -59,7 +59,7 @@ export function AboutHeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true, amount: 0.4 }}
             className="mx-auto mb-8 max-w-4xl text-lg text-gray-300 md:text-2xl">
-            Lordevs is your trusted agency for creative strategy. We specialize
+            DotCode is your trusted agency for creative strategy. We specialize
             in cutting-edge digital business solutions.
           </motion.p>
 

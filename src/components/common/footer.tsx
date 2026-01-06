@@ -17,13 +17,13 @@ export function Footer() {
 
   const socialIcons = [
     {
-      icon: "/images/logos/linkedin-logo.png",
-      href: "https://www.linkedin.com/company/DotCode/",
+      icon: "/images/logos/linkedin-logo.svg",
+      href: "https://www.linkedin.com/company/lordevs/",
       label: "LinkedIn",
     },
     {
-      icon: "/images/logos/instagram-logo.png",
-      href: "https://www.instagram.com/DotCode.co/",
+      icon: "/images/logos/instagram-logo.svg",
+      href: "https://www.instagram.com/lordevs/",
       label: "Instagram",
     },
   ];
@@ -172,7 +172,7 @@ export function Footer() {
           transition={{ duration: 0.6, delay: 0.7 }}
           viewport={{ once: true }}
           className="text-center text-sm text-[#C7C7C7]">
-          Copyright © {new Date().getFullYear()} Lordevs. All rights reserved.
+          Copyright © {new Date().getFullYear()} DotCode. All rights reserved.
         </motion.p>
       </div>
     </footer>

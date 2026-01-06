@@ -8,7 +8,7 @@ export default function CareersPage() {
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <SEO
         title="Careers | Build the Future with Us"
-        description="Discover career opportunities at Lordevs, where innovation meets impact. Join our dynamic team and be part of a forward-thinking organization."
+        description="Discover career opportunities at DotCode, where innovation meets impact. Join our dynamic team and be part of a forward-thinking organization."
         url={ROUTES.CAREER}
       />
       <CareerHeroSection />

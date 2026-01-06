@@ -7,7 +7,7 @@ export default function ApplyJobPage() {
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <SEO
         title="Apply for Job | Build the Future with Us"
-        description="At Lordevs, we're shaping the future of AI-driven websites. Join our team of innovators and help us push boundaries."
+        description="At DotCode, we're shaping the future of AI-driven websites. Join our team of innovators and help us push boundaries."
         url={ROUTES.CAREER}
       />
       <ApplyJobSection />

@@ -13,7 +13,7 @@ export default function AboutPage() {
     <main className="min-h-screen overflow-x-hidden bg-black text-white">
       <SEO
         title="About | Pioneering AI Innovation with Revolution!"
-        description="Lordevs is your trusted agency for creative strategy. We specialize in cutting-edge digital business solutions."
+        description="DotCode is your trusted agency for creative strategy. We specialize in cutting-edge digital business solutions."
         url={ROUTES.ABOUT}
       />
       <AboutHeroSection />
