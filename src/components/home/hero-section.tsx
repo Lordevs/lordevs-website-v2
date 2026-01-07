@@ -7,12 +7,12 @@ import { ROUTES } from "@/constants/routes";
 
 export function HeroSection() {
   const aiLogos = [
-    { name: "OpenAI", logo: "./images/logos/openai-logo.svg" },
-    { name: "Claude", logo: "./images/logos/claude-logo.svg" },
-    { name: "Loveable", logo: "./images/logos/loveable-logo.svg" },
-    { name: "Gemini", logo: "./images/logos/gemini-logo.svg" },
-    { name: "Langchain", logo: "./images/logos/langchain-logo.svg" },
-    { name: "DALL-E", logo: "./images/logos/dalle-logo.svg" },
+    { name: "OpenAI", logo: "./images/logos/openai-logo.png" },
+    { name: "Claude", logo: "./images/logos/claude-logo.png" },
+    { name: "Loveable", logo: "./images/logos/loveable-logo.png" },
+    { name: "Gemini", logo: "./images/logos/gemini-logo.png" },
+    { name: "Langchain", logo: "./images/logos/langchain-logo.png" },
+    { name: "DALL-E", logo: "./images/logos/dalle-logo.png" },
   ];
 
   return (

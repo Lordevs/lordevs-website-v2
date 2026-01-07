@@ -17,12 +17,12 @@ export function Footer() {
 
   const socialIcons = [
     {
-      icon: "/images/logos/linkedin-logo.svg",
+      icon: "/images/logos/linkedin-logo.png",
       href: "https://www.linkedin.com/company/lordevs/",
       label: "LinkedIn",
     },
     {
-      icon: "/images/logos/instagram-logo.svg",
+      icon: "/images/logos/instagram-logo.png",
       href: "https://www.instagram.com/lordevs/",
       label: "Instagram",
     },
