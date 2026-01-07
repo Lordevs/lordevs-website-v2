@@ -17,11 +17,11 @@ export function Logo({
     <NavLink
       to={href}
       className={cn("flex items-center justify-center", containerClassName)}>
-      <div className={cn("relative h-10 w-24", className)}>
+      <div className={cn("relative h-10 w-48", className)}>
         <img
-          src="/logo.png"
+          src="/logo.svg"
           alt={siteConfig.name}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-cover"
         />
       </div>
     </NavLink>

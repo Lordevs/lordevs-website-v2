@@ -17,12 +17,12 @@ export function Footer() {
 
   const socialIcons = [
     {
-      icon: "/images/logos/linkedin-logo.png",
+      icon: "/images/logos/linkedin-logo.svg",
       href: "https://www.linkedin.com/company/lordevs/",
       label: "LinkedIn",
     },
     {
-      icon: "/images/logos/instagram-logo.png",
+      icon: "/images/logos/instagram-logo.svg",
       href: "https://www.instagram.com/lordevs/",
       label: "Instagram",
     },
@@ -45,7 +45,7 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}>
-              <Logo className="h-12 w-auto" />
+              <Logo />
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
