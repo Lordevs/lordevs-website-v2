@@ -39,13 +39,13 @@ export function Footer() {
       <div className="relative z-10 container mx-auto max-w-6xl px-6 pt-12 pb-8 md:pt-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-8">
           {/* Column 1: Logo and Description */}
-          <div className="flex flex-col items-start space-y-6">
+          <div className="flex flex-col items-start space-y-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}>
-              <Logo />
+              <Logo className="w-40" />
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
