@@ -145,9 +145,9 @@ export function ApplyJobSection() {
             <div className="flex items-center space-x-3 text-[#FFFFFFB2]">
               <Mail className="h-5 w-5" />
               <a
-                href="mailto:info@DotCode.com"
+                href="mailto:info@dotcodesolutions.com"
                 className="hover:text-[#FFFFFFB2]">
-                info@DotCode.com
+                info@dotcodesolutions.com
               </a>
             </div>
           </motion.div>

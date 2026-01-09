@@ -90,8 +90,8 @@ export function CustomerConfirmationEmailTemplate({
               Feel free to reach out to us directly:
             </p>
             <div style="margin-bottom: 12px;">
-              <a href="mailto:info@DotCode.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
-                info@DotCode.com
+              <a href="mailto:info@dotcodesolutions.com" style="color: #3533cd; text-decoration: none; font-weight: 600;">
+                info@dotcodesolutions.com
               </a>
             </div>
             <div>
@@ -146,7 +146,7 @@ WHAT HAPPENS NEXT?
 NEED IMMEDIATE ASSISTANCE?
 =========================
 Feel free to reach out to us directly:
-Email: info@DotCode.com
+Email: info@dotcodesolutions.com
 Website: https://DotCode.com
 
 ---

@@ -14,7 +14,8 @@ export default function PrivacyPolicyPage() {
             Welcome to DotCode. We are committed to protecting your personal
             information and your right to privacy. If you have any questions or
             concerns about this privacy notice, or our practices with regards to
-            your personal information, please contact us at info@DotCode.com.
+            your personal information, please contact us at
+            info@dotcodesolutions.com.
           </p>
         </section>
 
